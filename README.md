@@ -6,37 +6,40 @@ Aliexpress Display between 2€ and 5€, tested with a ESP32 Wemos lite, Arduin
 
 Arduino IDE Board : "WEMOS LOLIN32 Lite"
 
-All three displays work stable with 80MHz even with a 50cm long cable between ESP32 and display.
+All three displays work stable with 80MHz even with a 50cm long cable between ESP32 and display. 
 
-Speed (40MHz/80MHz) : Bouncy_Circles 45/85fps, boing_ball 105/135fps, Sprite_Rotating 153/305fps.
-
-| Test               | 170x320 | 240x280 | 240x320 |
+| Tests              | 170x320 | 240x280 | 240x320 |
 | :----------------- | ------: | ------: | ------: |
 | Bouncy_Circles     |  88 fps |  73 fps |  65 fps |
 | boing_ball         | 134 fps | 133 fps | 136 fps |
 | SpriteRotatingCube | 303 fps | 303 fps | 303 fps |
+| Display Surface    |   matte |   matte |  glossy |
 | Power Consumption  |  34 mA  |  41 mA  |  48 mA  |
 
-![adabot](pictures/adabot.jpg)
+![_Front](pictures/_Front.jpg)
 
-![Display_170x320](pictures/Display_170x320.jpg)
+Front
 
-The display is easy to read from different angles.
+![_Back](pictures/_Back.jpg)
 
-![angle](pictures/angles.jpg)
+Back
 
-[Arduino\TFT_graphicstest_PDQ.ino](Arduino/TFT_graphicstest_170x320/TFT_graphicstest_170x320.ino) ( modified )
+![graphicstest](pictures/graphicstest.png)
 
-![graphicstest](pictures/graphicstest_3.jpg)
-
-
-[Arduino\Bouncy_Circles.ino](Arduino/Bouncy_Circles/Bouncy_Circles.ino) and [Arduino\SpriteRotatingCube.ino](Arduino/SpriteRotatingCube/SpriteRotatingCube.ino) and [Arduino\boing_ball.ino](Arduino/boing_ball/boing_ball.ino) ( not modified )
+- [Arduino\TFT_graphicstest_170x320.ino](Arduino/TFT_graphicstest_170x320/TFT_graphicstest_170x320.ino) ( modified )
+- [Arduino\TFT_graphicstest_240x280.ino](Arduino/TFT_graphicstest_240x280/TFT_graphicstest_240x280.ino) ( modified )
+- [Arduino\TFT_graphicstest_240x320.ino](Arduino/TFT_graphicstest_240x320/TFT_graphicstest_240x320.ino) ( modified )
 
 ![Bouncy_Circles](pictures/dma_tests.jpg)
 
-[Arduino\show_pictures.ino](Arduino/show_pictures/show_pictures.ino) 
+[Arduino\Bouncy_Circles.ino](Arduino/Bouncy_Circles/Bouncy_Circles.ino) and [Arduino\SpriteRotatingCube.ino](Arduino/SpriteRotatingCube/SpriteRotatingCube.ino) and [Arduino\boing_ball.ino](Arduino/boing_ball/boing_ball.ino) ( not modified )
 
 ![show_pictures](pictures/show_pictures.jpg)
+
+- [Arduino\show_pictures_170x320.ino](Arduino/show_pictures_170x320/show_pictures_170x320.ino)  
+- [Arduino\show_pictures_240x280.ino](Arduino/show_pictures_240x280/show_pictures_240x280.ino)  
+- [Arduino\show_pictures_240x320.ino](Arduino/show_pictures_240x320/show_pictures_240x320.ino)  
+
 
 ## Connections for Wemos Lolin32 lite 
 
@@ -62,29 +65,34 @@ Edit the file [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries
 
 // new setup file in folder Arduino/libraries, so updates will not overwrite your setups.
 #include <../Setup407_ST7789_320x170.h>  // new setup file for  ST7789 170x320 
+//#include <../Setup408_ST7789_280x240.h>  // new setup file for  ST7789 240x280 
+//#include <../Setup409_ST7789_320x240.h>  // new setup file for  ST7789 240x320 
 ```
-Create a new file [Arduino\libraries\Setup407_ST7789_320x170.h](Arduino/libraries/Setup407_ST7789_320x170.h) 
+Create the new files :
+- [Arduino\libraries\Setup407_ST7789_320x170.h](Arduino/libraries/Setup407_ST7789_320x170.h)
+- [Arduino\libraries\Setup408_ST7789_280x240.h](Arduino/libraries/Setup408_ST7789_280x240.h) 
+- [Arduino\libraries\Setup409_ST7789_320x240.h](Arduino/libraries/Setup409_ST7789_320x240.h) 
 
 ```java
 #define USER_SETUP_ID 407
 
 // Driver
-#define ST7789_DRIVER          // Configure all registers
+#define ST7789_DRIVER            // Configure all registers
 #define TFT_WIDTH  170
 #define TFT_HEIGHT 320
 #define TFT_INVERSION_ON
 #define TFT_BACKLIGHT_ON 1
 
-#define TFT_RGB_ORDER TFT_BGR  // !!! Only for Display 240x320 !!!
+//#define TFT_RGB_ORDER TFT_BGR  // !!! Only for Display 240x320 !!!
 
 // Pins
-#define TFT_BL     -1          // 16  // LED backlight
-#define TFT_MISO   -1          // Not connected
+#define TFT_BL     -1            // 16  // LED backlight
+#define TFT_MISO   -1            // Not connected
 #define TFT_MOSI   23
 #define TFT_SCLK   18
 #define TFT_CS      5 
 #define TFT_DC     17
-#define TFT_RST    -1          // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
+#define TFT_RST    -1            // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
 
 // Fonts
 #define LOAD_GLCD
@@ -107,9 +115,25 @@ Create a new file [Arduino\libraries\Setup407_ST7789_320x170.h](Arduino/librarie
 
 All files can be found above in the folder Arduino.
 
+Setup :
+- [Arduino\libraries\Setup407_ST7789_320x170.h](Arduino/libraries/Setup407_ST7789_320x170.h)
+- [Arduino\libraries\Setup408_ST7789_280x240.h](Arduino/libraries/Setup408_ST7789_280x240.h) 
+- [Arduino\libraries\Setup409_ST7789_320x240.h](Arduino/libraries/Setup409_ST7789_320x240.h) 
+- [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h )
+
+Benchmark :
 - [Arduino\TFT_graphicstest_170x320.ino](Arduino/TFT_graphicstest_170x320/TFT_graphicstest_170x320.ino) ( modified )
-- [Arduino\show_pictures.ino](Arduino/show_pictures/show_pictures.ino) 
-- [Arduino\boing_ball.ino](Arduino/boing_ball/boing_ball.ino) ( not modified )
-- [Arduino\Bouncy_Circles.ino](Arduino/Bouncy_Circles/Bouncy_Circles.ino) ( not modified )
-- [Arduino\SpriteRotatingCube.ino](Arduino/SpriteRotatingCube/SpriteRotatingCube.ino) ( not modified )
+- [Arduino\TFT_graphicstest_240x280.ino](Arduino/TFT_graphicstest_240x280/TFT_graphicstest_240x280.ino) ( modified )
+- [Arduino\TFT_graphicstest_240x320.ino](Arduino/TFT_graphicstest_240x320/TFT_graphicstest_240x320.ino) ( modified )
+
+Show Pictures :
+- [Arduino\show_pictures_170x320.ino](Arduino/show_pictures_170x320/show_pictures_170x320.ino)  
+- [Arduino\show_pictures_240x280.ino](Arduino/show_pictures_240x280/show_pictures_240x280.ino)  
+- [Arduino\show_pictures_240x320.ino](Arduino/show_pictures_240x320/show_pictures_240x320.ino)  
+
+Original TFT_eSPI Examples :
+- boing_ball.ino
+- Bouncy_Circles.ino
+- SpriteRotatingCube.ino
+- TFT_graphicstest_PDQ    ( for Display 240x320 )
  
