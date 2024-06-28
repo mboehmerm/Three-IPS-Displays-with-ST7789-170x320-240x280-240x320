@@ -2,13 +2,13 @@
 
 # Three IPS Displays with ST7789 ( 170x320 , 240x280 and 240x320 ), same 8 pin connector
 
-Aliexpress Display between 2€ and 5€, tested with a ESP32 Wemos lite, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43.
+Aliexpress Displays between 2€ and 5€, tested with  ESP32 Wemos lite, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43.
 
 Arduino IDE Board : "WEMOS LOLIN32 Lite"
 
-All three displays work stable with 80MHz even with a 50cm long cable between ESP32 and display. 
+All three displays work stable with 80MHz, even with a 50cm long cable between ESP32 and display. 
 
-| Tests              | 170x320 | 240x280 | 240x320 |
+| Test               | 170x320 | 240x280 | 240x320 |
 | :----------------- | ------: | ------: | ------: |
 | Bouncy_Circles     |  88 fps |  73 fps |  65 fps |
 | boing_ball         | 134 fps | 133 fps | 136 fps |
