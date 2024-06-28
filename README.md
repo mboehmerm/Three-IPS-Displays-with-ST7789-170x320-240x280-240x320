@@ -1,6 +1,5 @@
-# !!! UNDER construction !!!
-
-# Three IPS Displays with ST7789 ( 170x320 , 240x280 and 240x320 ), same 8 pin connector
+# Three IPS Displays with ST7789 and the same 8 pin connector
+## Resolution 170x320, 240x280 and 240x320 
 
 Aliexpress Displays between 2€ and 5€, tested with  ESP32 Wemos lite, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43.
 
