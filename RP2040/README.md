@@ -10,18 +10,20 @@ URL : https://github.com/earlephilhower/arduino-pico/releases/download/global/pa
 
 Arduino IDE Board : "VCC-GND YD RP2040"
 
-All three displays worked stable with 62.5MHz (75MHz), if the RP2040 runs with 125MHz (150MHz). Higher frequencies  didn't work or were not stable.
+All three displays worked stable with 62.5MHz (75MHz), if the RP2040 runs with 125MHz (150MHz). Higher than 150MHz didn't work or were not stable.
 
 ![3_benchmarks](pictures/3_benchmarks.png)
 TFT_eSPI graphicstest
 
+- [Arduino\RP2040_TFT_graphicstest_170x320.ino](Arduino/RP2040_TFT_graphicstest_170x320/RP2040_TFT_graphicstest_170x320.ino)
+- [Arduino\RP2040_TFT_graphicstest_240x280.ino](Arduino/RP2040_TFT_graphicstest_240x280/RP2040_TFT_graphicstest_240x280.ino)
+- [Arduino\RP2040_TFT_graphicstest_240x320.ino](Arduino/RP2040_TFT_graphicstest_240x320/RP2040_TFT_graphicstest_240x320.ino)
 
-## Installation for YD RP2040 by Earle F. Philhower, III, v3.93
+## Install Earle Philhower's RP2040 board package 
+
 Open up the Arduino IDE and go to File->Preferences.
-
 In the dialog that pops up, enter the following URL in the "Additional Boards Manager URLs" field:
-
-https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
+- https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
 
 ## Connections for YD RP2040
 
@@ -42,7 +44,7 @@ https://github.com/earlephilhower/arduino-pico/releases/download/global/package_
 
 ![RGB_Pinout](pictures/RGB_Pinout.png)
 
-The Serial monitor in the program [Arduino\RP2040_WS2812.ino](Arduino/RP2040_WS2812/RP2040_WS2812.ino) shows the pins of the YD RP2040 :
+The serial monitor in the program [Arduino\RP2040_WS2812.ino](Arduino/RP2040_WS2812/RP2040_WS2812.ino) shows the pins of the YD RP2040 :
 
 ```java
 MOSI: 19
@@ -56,13 +58,18 @@ LED_BUILTIN: 25
 
 ## More Displays
 
+For these displays install the library u8g2 by olikraus.
+
 ![3_I2C_Displays](pictures/3_I2C_Displays.png)
-Three I2C-Displays SSD1306 , SSD1306 , SSD1309
+Three monochrome I2C-Displays. Driver SSD1306 (left), SSD1306 (middle), SSD1309 (right display)
 
 ![GMG12864](pictures/GMG12864.png)
-SPI-Display GMG12864-06D
+SPI display GMG12864-06D
 
 - [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino)
+- [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino) with Backlight dimming ( only CMG12864-06D )
+
+Choose the driver in the test programs :
 
 ```java
 // Enable only one of the four display drivers :
@@ -77,20 +84,6 @@ U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);     // 0.96" mini or 4 button
 //U8G2_ST7565_ERC12864_ALT_F_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 17, /* dc=*/ 22, /* reset=*/ U8X8_PIN_NONE); 
 //#define CONTRAST 75  //  Don't forget this for GMG12864  !!
 ```
-
-xxx
-
----
-xxx
-
-
-
-
-- [Arduino\RP2040_TFT_graphicstest_170x320.ino](Arduino/RP2040_TFT_graphicstest_170x320/RP2040_TFT_graphicstest_170x320.ino)
-- [Arduino\RP2040_TFT_graphicstest_240x280.ino](Arduino/RP2040_TFT_graphicstest_240x280/RP2040_TFT_graphicstest_240x280.ino)
-- [Arduino\RP2040_TFT_graphicstest_240x320.ino](Arduino/RP2040_TFT_graphicstest_240x320/RP2040_TFT_graphicstest_240x320.ino)
-
-
 
 ## Configure the library TFT_eSPI
 
@@ -108,7 +101,7 @@ Edit the file [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries
 ```
 Create the new files :
 - [Arduino\libraries\Setup451_RP2040_ST7789_170x320.h](Arduino/libraries/Setup451_RP2040_ST7789_170x320.h)
-- [Arduino\libraries\Setup452_RP2040_ST7789_240x28.h](Arduino/libraries/Setup451_RP2040_ST7789_240x280.h)
+- [Arduino\libraries\Setup452_RP2040_ST7789_240x280.h](Arduino/libraries/Setup451_RP2040_ST7789_240x280.h)
 - [Arduino\libraries\Setup453_RP2040_ST7789_240x320.h](Arduino/libraries/Setup451_RP2040_ST7789_240x320.h)
 
 
@@ -125,7 +118,7 @@ Create the new files :
 //#define TFT_RGB_ORDER TFT_BGR  // !!! Only for Display 240x320 !!!
 
 // The PIO can only be user with Earle Philhower's RP2040 board package:
-//   https://github.com/earlephilhower/arduino-pico
+// https://github.com/earlephilhower/arduino-pico
 
 // PIO SPI allows high SPI clock rates to be used when the processor is over-clocked.
 // PIO SPI is "write only" and the TFT_eSPI touch functions are not supported.
@@ -156,10 +149,10 @@ Create the new files :
 
 // Other options
 // RP2040 max frequency if f is 125MHz / 2 = 62.5MHz. Take next higher integer.
-// #define SPI_FREQUENCY       25000000  // f/2  25.00MHz
-// #define SPI_FREQUENCY       32000000  // f/2  31.25MHz
-// #define SPI_FREQUENCY       42000000  // f/2  41.67MHz
-#define SPI_FREQUENCY       70000000  // f/2  62.50MHz
+// #define SPI_FREQUENCY 25000000  // f/2  25.00MHz
+// #define SPI_FREQUENCY 32000000  // f/2  31.25MHz
+// #define SPI_FREQUENCY 42000000  // f/2  41.67MHz
+#define SPI_FREQUENCY    70000000  // f/2  62.50MHz
 
 ```
 ## Test programs
@@ -171,22 +164,21 @@ Setup :
 - [Arduino\libraries\Setup408_ST7789_280x240.h](Arduino/libraries/Setup408_ST7789_280x240.h) 
 - [Arduino\libraries\Setup409_ST7789_320x240.h](Arduino/libraries/Setup409_ST7789_320x240.h) 
 - [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h )
+- [Arduino\RP2040_WS2812.ino](Arduino/RP2040_WS2812/RP2040_WS2812.ino) 
 
-Benchmark :
-- [Arduino\TFT_graphicstest_170x320.ino](Arduino/TFT_graphicstest_170x320/TFT_graphicstest_170x320.ino) ( modified )
-- [Arduino\TFT_graphicstest_240x280.ino](Arduino/TFT_graphicstest_240x280/TFT_graphicstest_240x280.ino) ( modified )
-- [Arduino\TFT_graphicstest_240x320.ino](Arduino/TFT_graphicstest_240x320/TFT_graphicstest_240x320.ino) ( modified )
+Benchmark IPS color displays :
 
-Show Pictures :
-- [Arduino\show_pictures_170x320.ino](Arduino/show_pictures_170x320/show_pictures_170x320.ino)  
-- [Arduino\show_pictures_240x280.ino](Arduino/show_pictures_240x280/show_pictures_240x280.ino)  
-- [Arduino\show_pictures_240x320.ino](Arduino/show_pictures_240x320/show_pictures_240x320.ino)  
+- [Arduino\RP2040_TFT_graphicstest_170x320.ino](Arduino/RP2040_TFT_graphicstest_170x320/RP2040_TFT_graphicstest_170x320.ino)
+- [Arduino\RP2040_TFT_graphicstest_240x280.ino](Arduino/RP2040_TFT_graphicstest_240x280/RP2040_TFT_graphicstest_240x280.ino)
+- [Arduino\RP2040_TFT_graphicstest_240x320.ino](Arduino/RP2040_TFT_graphicstest_240x320/RP2040_TFT_graphicstest_240x320.ino)
+- [Arduino\RP2040_TFT_graphicstest_PDQ.ino](Arduino/RP2040_TFT_graphicstest_PDQ/RP2040_TFT_graphicstest_PDQ.ino)
+
+Benchmark other displays :
+
+- [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino)
+- [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino)
 
 Original TFT_eSPI Examples :
 - boing_ball.ino
 - Bouncy_Circles.ino
 - SpriteRotatingCube.ino
-- TFT_graphicstest_PDQ    ( for Display 240x320 )
- 
-
-![4_Displays](pictures/4_Displays.png)

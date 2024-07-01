@@ -7,6 +7,8 @@ Arduino IDE Board : "WEMOS LOLIN32 Lite"
 
 All three displays work stable with 80MHz, even with a 50cm long cable between ESP32 and display. 
 
+Similar tests but with an RP2040 can be found in the folder [RP2040](RP2040/README.md).
+
 | Test               | 170x320 | 240x280 | 240x320 |
 | :----------------- | ------: | ------: | ------: |
 | Bouncy_Circles     |  88 fps |  73 fps |  65 fps |
