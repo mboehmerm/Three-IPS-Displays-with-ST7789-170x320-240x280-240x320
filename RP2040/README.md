@@ -104,6 +104,8 @@ Create the new files :
 - [Arduino\libraries\Setup452_RP2040_ST7789_240x280.h](Arduino/libraries/Setup451_RP2040_ST7789_240x280.h)
 - [Arduino\libraries\Setup453_RP2040_ST7789_240x320.h](Arduino/libraries/Setup451_RP2040_ST7789_240x320.h)
 
+Don't forget the line "#define RP2040_PIO_SPI", which is necessary for Earle Philhower's RP2040 board package !
+
 
 ```java
 #define USER_SETUP_ID 451
