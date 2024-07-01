@@ -84,7 +84,7 @@ xxx
 xxx
 
 
-![graphicstest](pictures/graphicstest.png)
+
 
 - [Arduino\RP2040_TFT_graphicstest_170x320.ino](Arduino/RP2040_TFT_graphicstest_170x320/RP2040_TFT_graphicstest_170x320.ino)
 - [Arduino\RP2040_TFT_graphicstest_240x280.ino](Arduino/RP2040_TFT_graphicstest_240x280/RP2040_TFT_graphicstest_240x280.ino)
@@ -102,17 +102,18 @@ Edit the file [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries
 //#include <User_Setup.h>                // Default setup is root library folder
 
 // new setup file in folder Arduino/libraries, so updates will not overwrite your setups.
-#include <../Setup407_ST7789_320x170.h>  // new setup file for  ST7789 170x320 
-//#include <../Setup408_ST7789_280x240.h>  // new setup file for  ST7789 240x280 
-//#include <../Setup409_ST7789_320x240.h>  // new setup file for  ST7789 240x320 
+#include <../Setup451_RP2040_ST7789_170x320.h>  // RP2040, ST7789
+//#include <../Setup452_RP2040_ST7789_240x280.h>  // RP2040, ST7789
+//#include <../Setup453_RP2040_ST7789_240x320.h>  // RP2040, ST7789
 ```
 Create the new files :
-- [Arduino\libraries\Setup407_ST7789_320x170.h](Arduino/libraries/Setup407_ST7789_320x170.h)
-- [Arduino\libraries\Setup408_ST7789_280x240.h](Arduino/libraries/Setup408_ST7789_280x240.h) 
-- [Arduino\libraries\Setup409_ST7789_320x240.h](Arduino/libraries/Setup409_ST7789_320x240.h) 
+- [Arduino\libraries\Setup451_RP2040_ST7789_170x320.h](Arduino/libraries/Setup451_RP2040_ST7789_170x320.h)
+- [Arduino\libraries\Setup452_RP2040_ST7789_240x28.h](Arduino/libraries/Setup451_RP2040_ST7789_240x280.h)
+- [Arduino\libraries\Setup453_RP2040_ST7789_240x320.h](Arduino/libraries/Setup451_RP2040_ST7789_240x320.h)
+
 
 ```java
-#define USER_SETUP_ID 407
+#define USER_SETUP_ID 451
 
 // Driver
 #define ST7789_DRIVER            // Configure all registers
@@ -123,14 +124,24 @@ Create the new files :
 
 //#define TFT_RGB_ORDER TFT_BGR  // !!! Only for Display 240x320 !!!
 
-// Pins
-#define TFT_BL     -1            // 16  // LED backlight
-#define TFT_MISO   -1            // Not connected
-#define TFT_MOSI   23
+// The PIO can only be user with Earle Philhower's RP2040 board package:
+//   https://github.com/earlephilhower/arduino-pico
+
+// PIO SPI allows high SPI clock rates to be used when the processor is over-clocked.
+// PIO SPI is "write only" and the TFT_eSPI touch functions are not supported.
+// A touch screen could be used with a third party library on different SPI pins.
+
+// This invokes the PIO based SPI interface for the RP2040 processor.
+#define RP2040_PIO_SPI  // Black screen if you forget this line
+
+//Pins RP2040
+#define TFT_BL     -1   // LED back-light  // 26
+#define TFT_MISO   -1   // Not connected
+#define TFT_MOSI   19
 #define TFT_SCLK   18
-#define TFT_CS      5 
-#define TFT_DC     17
-#define TFT_RST    -1            // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
+#define TFT_CS     17 
+#define TFT_DC     22
+#define TFT_RST    -1   // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
 
 // Fonts
 #define LOAD_GLCD
@@ -144,9 +155,11 @@ Create the new files :
 #define SMOOTH_FONT
 
 // Other options
-//#define SPI_READ_FREQUENCY    20000000
-//#define SPI_FREQUENCY         40000000
-#define SPI_FREQUENCY         80000000
+// RP2040 max frequency if f is 125MHz / 2 = 62.5MHz. Take next higher integer.
+// #define SPI_FREQUENCY       25000000  // f/2  25.00MHz
+// #define SPI_FREQUENCY       32000000  // f/2  31.25MHz
+// #define SPI_FREQUENCY       42000000  // f/2  41.67MHz
+#define SPI_FREQUENCY       70000000  // f/2  62.50MHz
 
 ```
 ## Test programs
