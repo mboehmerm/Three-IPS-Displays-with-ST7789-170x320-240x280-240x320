@@ -2,7 +2,7 @@
 
 # Three IPS Displays with ST7789 and YD RP2040.
 
-Three Aliexpress Displays between 2€ and 5€, tested with an YD RP2040 about 2-3€, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43.
+Three Aliexpress Displays between 2€ and 5€, tested with an YD RP2040 about 2-3€, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43 .
 
 Boards Manager : Raspberry Pi Pico/RP2040 by Earle F. Philhower, III, v3.93
 
@@ -25,7 +25,7 @@ https://github.com/earlephilhower/arduino-pico/releases/download/global/package_
 
 ## Connections for YD RP2040
 
-| GPIO | TFT   |     |Description          |
+| GPIO | TFT   | Interface |Description    |
 | ---: | :---- | :-- | :------------------ |
 |    4 | SDA   | I2C | SDA                 |
 |    5 | CLK   | I2C | SCL                 |
@@ -35,8 +35,8 @@ https://github.com/earlephilhower/arduino-pico/releases/download/global/package_
 |   18 | SCL   | SPI | CLK                 |
 |   17 | CS    | SPI | CS                  |
 |   22 | DC    | SPI | DC                  |
-|  (26)| BLK   |     | 3.3V ( or PWM-Pin ) |
 |   EN | RST   | SPI | Reset               |
+|  (26)| BLK   |     | 3.3V ( or PWM-Pin ) |
 |      | VCC   |     | 3.3V                |
 |      | GND   |     | GND                 |
 
