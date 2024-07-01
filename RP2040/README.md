@@ -1,16 +1,12 @@
-# !!!! Under construction !!!
+# Seven displays and YD RP2040.
 
-# Three IPS Displays with ST7789 and YD RP2040.
+Seven cheap Aliexpress displays, tested with an YD RP2040 about 2-3€, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43 .
 
-Three Aliexpress Displays between 2€ and 5€, tested with an YD RP2040 about 2-3€, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43 .
-
-Boards Manager : Raspberry Pi Pico/RP2040 by Earle F. Philhower, III, v3.93
-
-URL : https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
+Board Package : Raspberry Pi Pico/RP2040 by Earle F. Philhower, III, v3.93
 
 Arduino IDE Board : "VCC-GND YD RP2040"
 
-All three displays worked stable with 62.5MHz (75MHz), if the RP2040 runs with 125MHz (150MHz). Higher than 150MHz didn't work or were not stable.
+All three IPS displays worked stable with 62.5MHz (75MHz), if the RP2040 runs with 125MHz (150MHz). Higher than 150MHz didn't work or were not stable.
 
 ![3_benchmarks](pictures/3_benchmarks.png)
 TFT_eSPI graphicstest
@@ -56,18 +52,22 @@ SCL: 5
 LED_BUILTIN: 25
 ```
 
-## More Displays
+## Four monochrome displays
 
 For these displays install the library u8g2 by olikraus.
 
 ![3_I2C_Displays](pictures/3_I2C_Displays.png)
-Three monochrome I2C-Displays. Driver SSD1306 (left), SSD1306 (middle), SSD1309 (right display)
+Three I2C-Displays. Driver SSD1306 (left), SSD1306 (middle), SSD1309 (right).
+
+Pay attention to the VCC and GND pins, which is reversed on the right display !
 
 ![GMG12864](pictures/GMG12864.png)
 SPI display GMG12864-06D
 
 - [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino)
-- [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino) with Backlight dimming ( only CMG12864-06D )
+- [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino) with Backlight dimming ( only CMG12864-06D ).
+
+The backlight pin of the GMG12864 is connected with an 47 Ohm resistor, which draws about 12mA on the RP2040 pin and can make problems.
 
 Choose the driver in the test programs :
 
