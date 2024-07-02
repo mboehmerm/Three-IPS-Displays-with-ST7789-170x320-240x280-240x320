@@ -1,14 +1,14 @@
 # Seven displays and YD RP2040.
 
-Seven cheap Aliexpress displays, tested with a YD RP2040, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43 .
+Seven cheap Aliexpress displays, tested with a YD RP2040, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43 ( u8g2 2.34.22 ).
 
-Board Package : Raspberry Pi Pico/RP2040 by Earle F. Philhower, III, v3.93
+**Board Package :** Raspberry Pi Pico/RP2040 by Earle F. Philhower, III, v3.93
 
-Arduino IDE Board : "VCC-GND YD RP2040"
+**Arduino IDE Board :** "VCC-GND YD RP2040"
 
 All three IPS displays worked stable with 125MHz (SPI 62.5MHz). Overclocking runs with 150MHz (SPI 75MHz) on all three displays.
 
-200MHz (SPI 100MHz) and 250 MHz (SPI 125MHz) worked only with the display 240x280 and i had to connect RESET pin of the display to pin 27 (for example), not to pin RUN. 
+200MHz (SPI 100MHz) and 250 MHz (SPI 125MHz) worked only with the display 240x280 and i had to connect the RESET pin of the display to pin 27 (for example), not to pin RUN. 
 
 ![3_benchmarks](pictures/3_benchmarks.png)
 TFT_eSPI graphicstest
@@ -38,22 +38,22 @@ Found here : https://forums.raspberrypi.com/viewtopic.php?t=368305
 
 ## Connections for YD RP2040
 
-| GPIO      | TFT   | Interface |Description          |
-| --------: | :---- | :-------- | :------------------ |
-|         4 | SDA   | I2C       | SDA                 |
-|         5 | CLK   | I2C       | SCL                 |
-|-----------|------ |-----------|---------------------|
-|        19 | SDA   | SPI       | MOSI                |
-|       (16)|       | SPI       | MISO ( not used )   |
-|        18 | SCL   | SPI       | CLK                 |
-|        17 | CS    | SPI       | CS                  |
-|        22 | DC    | SPI       | DC                  |
-|  (27) RUN | RST   | SPI       | Reset               |
-|      (26) | BLK   |           | 3.3V ( or PWM-Pin ) |
-|           | VCC   |           | 3.3V                |
-|           | GND   |           | GND                 |
+| GPIO      | TFT   | Interface |Description           |
+| --------: | :---- | :-------- | :------------------- |
+|         4 | SDA   | I2C       | SDA                  |
+|         5 | CLK   | I2C       | SCL                  |
+|-----------|------ |-----------|----------------------|
+|        19 | SDA   | SPI       | MOSI                 |
+|       (16)|       | SPI       | MISO  ( not used )   |
+|        18 | SCL   | SPI       | CLK                  |
+|        17 | CS    | SPI       | CS                   |
+|        22 | DC    | SPI       | DC                   |
+|   RUN (27)| RST   | SPI       | Reset ( or PWM-Pin ) |
+|       (26)| BLK   |           | 3.3V  ( or PWM-Pin ) |
+|           | VCC   |           | 3.3V                 |
+|           | GND   |           | GND                  |
 
-It's more stable to use the pin 27 (for example) than the pin RUN.
+**RESET pin :** It's more stable to use the pin 27 (for example) than the pin RUN.
 
 ![RGB_Pinout](pictures/RGB_Pinout.png)
 
@@ -76,7 +76,7 @@ For these displays install the library u8g2 by olikraus.
 ![3_I2C_Displays](pictures/3_I2C_Displays.png)
 Three I2C-Displays. Driver SSD1306 (left), SSD1306 (middle), SSD1309 (right).
 
-Pay attention to the VCC and GND pins, which is reversed on the right display !
+**Pay attention** to the VCC and GND pins, which is reversed on the right display !
 
 ![GMG12864](pictures/GMG12864.png)
 SPI display GMG12864-06D
@@ -121,7 +121,7 @@ Create the new files :
 - [Arduino\libraries\Setup452_RP2040_ST7789_240x280.h](Arduino/libraries/Setup451_RP2040_ST7789_240x280.h)
 - [Arduino\libraries\Setup453_RP2040_ST7789_240x320.h](Arduino/libraries/Setup451_RP2040_ST7789_240x320.h)
 
-Don't forget the line "#define RP2040_PIO_SPI", which is necessary for Earle Philhower's RP2040 board package !
+**Don't forget** the line "#define RP2040_PIO_SPI", which is necessary for Earle Philhower's RP2040 board package !
 
 
 ```java
