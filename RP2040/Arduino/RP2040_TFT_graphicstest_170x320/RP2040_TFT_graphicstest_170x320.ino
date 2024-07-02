@@ -23,6 +23,9 @@
 // Use hardware SPI
 TFT_eSPI tft = TFT_eSPI();
 
+// Backlight Pin
+const int pwmPin = 26; 
+
 unsigned long total = 0;
 unsigned long tn = 0;
 void setup() {
@@ -33,8 +36,26 @@ void setup() {
  
   tft.init();
   
-  //Serial.println("tft.init done"); 
+  // Backlight PWM Pin
+  pinMode(pwmPin, OUTPUT);
 
+  tft.fillScreen(TFT_BLUE);
+  tft.setTextColor(TFT_WHITE);
+  tft.setCursor(40, 150);
+	tft.setTextSize(2);
+  tft.print(F("Dimming"));
+  
+  delay(500);
+
+  for (int i=255; i>0; i--) {
+    analogWrite(pwmPin, i);
+    delay(10);
+    }
+  for (int i=0; i<128; i++) {
+    analogWrite(pwmPin, i);
+    delay(10);
+    }
+  delay(500);
 }
 
 void loop(void)

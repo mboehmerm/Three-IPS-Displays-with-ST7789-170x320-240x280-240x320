@@ -6,7 +6,9 @@ Board Package : Raspberry Pi Pico/RP2040 by Earle F. Philhower, III, v3.93
 
 Arduino IDE Board : "VCC-GND YD RP2040"
 
-All three IPS displays worked stable with 125MHz (SPI 62.5MHz). Overclocking runs with 150MHz (SPI 75MHz) on all three displays, 200MHz (SPI 100MHz) only with the display 240x280.
+All three IPS displays worked stable with 125MHz (SPI 62.5MHz). Overclocking runs with 150MHz (SPI 75MHz) on all three displays.
+
+200MHz (SPI 100MHz) and 250 MHz (SPI 125MHz) worked only with the display 240x280 and i had to connect RESET pin of the display to pin 27 (for example), not to pin RUN. 
 
 ![3_benchmarks](pictures/3_benchmarks.png)
 TFT_eSPI graphicstest
@@ -26,7 +28,7 @@ Go to Tools->Boards->Board Manager in the IDE. Choose "Raspberry Pi Pico/RP2040"
 
 ## RP2040 First use 
 
-When i got the RP2040 a RPI-RP2 drive showed up on windows but no com port. The solution for me was :
+When i got the RP2040 a RPI-RP2 drive showed up on windows but no com port. The solution i found was :
 
 Copy the [PicoBlink.ino.uf2](documents/PicoBlink.ino.uf2) file to the RPI-RP2 drive. After uploading the drive disappears and a com port shows up. The LED on the board is flashing. 
 
@@ -36,20 +38,22 @@ Found here : https://forums.raspberrypi.com/viewtopic.php?t=368305
 
 ## Connections for YD RP2040
 
-| GPIO | TFT   | Interface |Description    |
-| ---: | :---- | :-- | :------------------ |
-|    4 | SDA   | I2C | SDA                 |
-|    5 | CLK   | I2C | SCL                 |
-|------|------ |-----|-------------------- |
-|   19 | SDA   | SPI | MOSI                |
-|  (16)|       | SPI | MISO ( not used )   |
-|   18 | SCL   | SPI | CLK                 |
-|   17 | CS    | SPI | CS                  |
-|   22 | DC    | SPI | DC                  |
-|   EN | RST   | SPI | Reset               |
-|  (26)| BLK   |     | 3.3V ( or PWM-Pin ) |
-|      | VCC   |     | 3.3V                |
-|      | GND   |     | GND                 |
+| GPIO      | TFT   | Interface |Description          |
+| --------: | :---- | :-------- | :------------------ |
+|         4 | SDA   | I2C       | SDA                 |
+|         5 | CLK   | I2C       | SCL                 |
+|-----------|------ |-----------|---------------------|
+|        19 | SDA   | SPI       | MOSI                |
+|       (16)|       | SPI       | MISO ( not used )   |
+|        18 | SCL   | SPI       | CLK                 |
+|        17 | CS    | SPI       | CS                  |
+|        22 | DC    | SPI       | DC                  |
+|  (27) RUN | RST   | SPI       | Reset               |
+|      (26) | BLK   |           | 3.3V ( or PWM-Pin ) |
+|           | VCC   |           | 3.3V                |
+|           | GND   |           | GND                 |
+
+It's more stable to use the pin 27 (for example) than the pin RUN.
 
 ![RGB_Pinout](pictures/RGB_Pinout.png)
 
@@ -149,7 +153,8 @@ Don't forget the line "#define RP2040_PIO_SPI", which is necessary for Earle Phi
 #define TFT_SCLK   18
 #define TFT_CS     17 
 #define TFT_DC     22
-#define TFT_RST    -1   // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
+#define TFT_RST    -1   // Set TFT_RST to -1 if display RESET is connected to RP2040 board RUN
+//#define TFT_RST    27   // For overclocking, RESET was connected to pin 27  
 
 // Fonts
 #define LOAD_GLCD
@@ -164,19 +169,22 @@ Don't forget the line "#define RP2040_PIO_SPI", which is necessary for Earle Phi
 
 // Other options
 // RP2040 max frequency if f is 125MHz / 2 = 62.5MHz. Take next higher integer.
-// #define SPI_FREQUENCY 25000000  // f/2  25.00MHz
-// #define SPI_FREQUENCY 32000000  // f/2  31.25MHz
-// #define SPI_FREQUENCY 42000000  // f/2  41.67MHz
-#define SPI_FREQUENCY    70000000  // f/2  62.50MHz
+
+// #define SPI_FREQUENCY  25000000  // 125/5 =  25.00MHz
+// #define SPI_FREQUENCY  32000000  // 125/4 =  31.25MHz
+// #define SPI_FREQUENCY  42000000  // 125/3 =  41.67MHz
+// #define SPI_FREQUENCY  70000000  // 125/2 =  62.50MHz
+// #define SPI_FREQUENCY 100000000  // 200/2 = 125.00MHz  Overclocking
+   #define SPI_FREQUENCY 125000000  // 250/2 = 125.00MHz  Overclocking
 
 ```
 ## RP2040 Factory Reset
 
 When testing the backlight and overclocking the RP2040 sometimes wasn't accessible any more. No  RPI-RP2 drive showed up and no com port appeared on windows. 
 
-Solution : Hold down BOOT button then press RESET button. The RPI-RP2 drive should appear. Copy [PicoBlink.ino.uf2](documents/PicoBlink.ino.uf2) file to the RPI-RP2 drive. It should upload and the drive will disappear: this is normal. The LED on your board may or may not be flashing. Arduino sketches should probably upload now. But while uploading the first program, the com port changed.  
+Solution : Hold down BOOT button then press RESET button when the RP2040 is connected. The RPI-RP2 drive should appear. Copy [PicoBlink.ino.uf2](documents/PicoBlink.ino.uf2) file to the RPI-RP2 drive. After upload and the drive will disappear. The LED on the board starts flashing. Arduino sketches should upload now. But while uploading the first Arduino program, the com port changes. 
 
-Similar solution found here : 
+Similar solutions can be found here : 
 
 RP2040 Pico clone firmware https://forums.raspberrypi.com/viewtopic.php?t=368305
 

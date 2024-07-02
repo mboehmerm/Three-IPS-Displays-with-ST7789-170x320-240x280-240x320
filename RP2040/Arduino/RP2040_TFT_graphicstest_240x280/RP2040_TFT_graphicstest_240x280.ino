@@ -24,6 +24,9 @@
 // Use hardware SPI
 TFT_eSPI tft = TFT_eSPI();
 
+// Backlight Pin
+const int pwmPin = 26; 
+
 unsigned long total = 0;
 unsigned long tn = 0;
 void setup() {
@@ -33,6 +36,27 @@ void setup() {
   Serial.println("Bodmer's TFT_eSPI library Test!"); 
 
   tft.init(); 
+
+  // Backlight PWM Pin
+  pinMode(pwmPin, OUTPUT);
+
+  tft.fillScreen(TFT_BLUE);
+  tft.setTextColor(TFT_WHITE);
+  tft.setCursor(20, 130);
+	tft.setTextSize(2);
+  tft.print(F("Backlight Dimming"));
+  
+  delay(500);
+
+  for (int i=255; i>0; i--) {
+    analogWrite(pwmPin, i);
+    delay(10);
+    }
+  for (int i=0; i<128; i++) {
+    analogWrite(pwmPin, i);
+    delay(10);
+    }
+  delay(500);
 }
 
 void loop(void)
@@ -394,8 +418,8 @@ uint32_t testHaD()
 
   tft.setTextColor(TFT_YELLOW);
   tft.setCursor(0, 225);
-  tft.print(F("       http://hackaday.io/"));
-  tft.print(F("    Xark"));
+  tft.println(F("http://hackaday.io/"));
+  tft.print(F("       Xark"));
 
   delay(3 * 1000L);
   
@@ -897,7 +921,7 @@ uint32_t testFilledRoundRects()
 }
 /*
 
-RP2040 62.5MHz
+RP2040 125MHz SPI 62.5MHz
 Benchmark                Time (microseconds)
 HaD pushColor            92411
 Screen fill              18293
@@ -913,6 +937,42 @@ Triangles (outline)      11394
 Triangles (filled)       72432
 Rounded rects (outline)  10842
 Rounded rects (filled)   217541
+Done!
+
+RP2040 200MHz SPI 100MHz
+Benchmark                Time (microseconds)
+HaD pushColor            57796
+Screen fill              11437
+Text                     6552
+Pixels                   84608
+Lines                    79731
+Horiz/Vert Lines         4813
+Rectangles (outline)     3555
+Rectangles (filled)      135657
+Circles (filled)         14296
+Circles (outline)        8710
+Triangles (outline)      7204
+Triangles (filled)       45211
+Rounded rects (outline)  6366
+Rounded rects (filled)   135948
+Done!
+
+RP2040 250MHz SPI 125MHz
+Benchmark                Time (microseconds)
+HaD pushColor            46165
+Screen fill              9146
+Text                     5153
+Pixels                   67598
+Lines                    63671
+Horiz/Vert Lines         3840
+Rectangles (outline)     2818
+Rectangles (filled)      108458
+Circles (filled)         11378
+Circles (outline)        6934
+Triangles (outline)      5759
+Triangles (filled)       36136
+Rounded rects (outline)  5086
+Rounded rects (filled)   108918
 Done!
 
 ESP32 S3 80MHz
