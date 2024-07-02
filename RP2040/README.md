@@ -76,7 +76,7 @@ For these displays install the library u8g2 by olikraus.
 ![3_I2C_Displays](pictures/3_I2C_Displays.png)
 Three I2C-Displays. Driver SSD1306 (left), SSD1306 (middle), SSD1309 (right).
 
-**Pay attention** to the VCC and GND pins, which is reversed on the right display !
+**Pay attention** to the VCC and GND pins, which are reversed on the right display !
 
 ![GMG12864](pictures/GMG12864.png)
 SPI display GMG12864-06D
