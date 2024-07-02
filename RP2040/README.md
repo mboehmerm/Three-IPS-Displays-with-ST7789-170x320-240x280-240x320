@@ -1,6 +1,6 @@
 # Seven displays and YD RP2040.
 
-Seven cheap Aliexpress displays, tested with an YD RP2040 about 2-3€, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43 .
+Seven cheap Aliexpress displays, tested with a YD RP2040, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43 .
 
 Board Package : Raspberry Pi Pico/RP2040 by Earle F. Philhower, III, v3.93
 
@@ -19,7 +19,20 @@ TFT_eSPI graphicstest
 
 Open up the Arduino IDE and go to File->Preferences.
 In the dialog that pops up, enter the following URL in the "Additional Boards Manager URLs" field:
+
 - https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
+
+Go to Tools->Boards->Board Manager in the IDE. Choose "Raspberry Pi Pico/RP2040" and select "Add".
+
+## RP2040 First use 
+
+When i got the RP2040 a RPI-RP2 drive showed up on windows but no com port. The solution for me was :
+
+Copy the [PicoBlink.ino.uf2](documents/PicoBlink.ino.uf2) file to the RPI-RP2 drive. After uploading the drive disappears and a com port shows up. The LED on the board is flashing. 
+
+Arduino IDE can upload programs now but while uploading the first program, the com port changes.  
+
+Found here : https://forums.raspberrypi.com/viewtopic.php?t=368305
 
 ## Connections for YD RP2040
 
@@ -67,7 +80,7 @@ SPI display GMG12864-06D
 - [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino)
 - [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino) with Backlight dimming ( only CMG12864-06D ).
 
-The backlight pin of the GMG12864 is connected with an 47 Ohm resistor, which draws about 12mA on the RP2040 pin and can make problems.
+The backlight pin of the GMG12864 is connected with an 47 Ohm resistor, which draws about 12mA on the RP2040 pin and can cause problems.
 
 Choose the driver in the test programs :
 
@@ -157,9 +170,19 @@ Don't forget the line "#define RP2040_PIO_SPI", which is necessary for Earle Phi
 #define SPI_FREQUENCY    70000000  // f/2  62.50MHz
 
 ```
+## RP2040 Factory Reset
+
+When testing the backlight and overclocking the RP2040 sometimes wasn't accessible any more. No  RPI-RP2 drive showed up and no com port appeared on windows. 
+
+Solution : Hold down BOOT button then press RESET button. The RPI-RP2 drive should appear. Copy [PicoBlink.ino.uf2](documents/PicoBlink.ino.uf2) file to the RPI-RP2 drive. It should upload and the drive will disappear: this is normal. The LED on your board may or may not be flashing. Arduino sketches should probably upload now. But while uploading the first program, the com port changed.  
+
+Similar solution found here : https://forums.raspberrypi.com/viewtopic.php?t=368305
+
+The folder [documents](documents) also contains the documentation for the YD RP2040 found here : http://124.222.62.86/yd-data/YD-RP2040/.
+
 ## Test programs
 
-All files can be found above in the folder Arduino.
+All files can be found above in the folder [Arduino](Arduino).
 
 Setup :
 - [Arduino\libraries\Setup407_ST7789_320x170.h](Arduino/libraries/Setup407_ST7789_320x170.h)
@@ -175,12 +198,23 @@ Benchmark IPS color displays :
 - [Arduino\RP2040_TFT_graphicstest_240x320.ino](Arduino/RP2040_TFT_graphicstest_240x320/RP2040_TFT_graphicstest_240x320.ino)
 - [Arduino\RP2040_TFT_graphicstest_PDQ.ino](Arduino/RP2040_TFT_graphicstest_PDQ/RP2040_TFT_graphicstest_PDQ.ino)
 
-Benchmark other displays :
+Benchmark monochrome displays :
 
 - [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino)
 - [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino)
 
-Original TFT_eSPI Examples :
+Original TFT_eSPI examples :
 - boing_ball.ino
 - Bouncy_Circles.ino
 - SpriteRotatingCube.ino
+
+## Links
+
+RP2040 Pico clone firmware
+https://forums.raspberrypi.com/viewtopic.php?t=368305
+
+Factory reset Pico no longer registers com port on windows https://forums.raspberrypi.com/viewtopic.php?t=350680
+
+Bricked MicroPython rescue firmware https://forums.raspberrypi.com/viewtopic.php?f=146&t=305432
+
+Raspberry Pi Pico factory reset https://forum.micropython.org/viewtopic.php?t=10838
