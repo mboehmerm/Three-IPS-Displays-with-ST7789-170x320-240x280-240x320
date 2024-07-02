@@ -6,7 +6,7 @@ Board Package : Raspberry Pi Pico/RP2040 by Earle F. Philhower, III, v3.93
 
 Arduino IDE Board : "VCC-GND YD RP2040"
 
-All three IPS displays worked stable with 62.5MHz (75MHz), if the RP2040 runs with 125MHz (150MHz). Higher than 150MHz didn't work or were not stable.
+All three IPS displays worked stable with 125MHz (SPI 62.5MHz). Overclocking runs with 150MHz (SPI 75MHz) on all three displays, 200MHz (SPI 100MHz) only with the display 240x280.
 
 ![3_benchmarks](pictures/3_benchmarks.png)
 TFT_eSPI graphicstest

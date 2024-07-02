@@ -61,7 +61,8 @@
 // #define SPI_FREQUENCY       25000000  // f/2  25.00MHz
 // #define SPI_FREQUENCY       32000000  // f/2  31.25MHz
 // #define SPI_FREQUENCY       42000000  // f/2  41.67MHz
-   #define SPI_FREQUENCY       70000000  // f/2  62.50MHz
+// #define SPI_FREQUENCY       70000000  // f/2  62.50MHz
+   #define SPI_FREQUENCY      100000000
 // #define SPI_FREQUENCY      125000000  // f/2 125.00MHz
 
 // #define SPI_READ_FREQUENCY  20000000
