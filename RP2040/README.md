@@ -176,7 +176,16 @@ When testing the backlight and overclocking the RP2040 sometimes wasn't accessib
 
 Solution : Hold down BOOT button then press RESET button. The RPI-RP2 drive should appear. Copy [PicoBlink.ino.uf2](documents/PicoBlink.ino.uf2) file to the RPI-RP2 drive. It should upload and the drive will disappear: this is normal. The LED on your board may or may not be flashing. Arduino sketches should probably upload now. But while uploading the first program, the com port changed.  
 
-Similar solution found here : https://forums.raspberrypi.com/viewtopic.php?t=368305
+Similar solution found here : 
+
+RP2040 Pico clone firmware https://forums.raspberrypi.com/viewtopic.php?t=368305
+
+Factory reset Pico no longer registers com port on windows https://forums.raspberrypi.com/viewtopic.php?t=350680
+
+Bricked MicroPython rescue firmware https://forums.raspberrypi.com/viewtopic.php?f=146&t=305432
+
+Raspberry Pi Pico factory reset https://forum.micropython.org/viewtopic.php?t=10838
+
 
 The folder [documents](documents) also contains the documentation for the YD RP2040 found here : http://124.222.62.86/yd-data/YD-RP2040/.
 
@@ -207,14 +216,3 @@ Original TFT_eSPI examples :
 - boing_ball.ino
 - Bouncy_Circles.ino
 - SpriteRotatingCube.ino
-
-## Links
-
-RP2040 Pico clone firmware
-https://forums.raspberrypi.com/viewtopic.php?t=368305
-
-Factory reset Pico no longer registers com port on windows https://forums.raspberrypi.com/viewtopic.php?t=350680
-
-Bricked MicroPython rescue firmware https://forums.raspberrypi.com/viewtopic.php?f=146&t=305432
-
-Raspberry Pi Pico factory reset https://forum.micropython.org/viewtopic.php?t=10838
