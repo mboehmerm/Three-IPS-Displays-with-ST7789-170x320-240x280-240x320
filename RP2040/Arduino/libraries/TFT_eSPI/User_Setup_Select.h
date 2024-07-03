@@ -49,6 +49,8 @@
 //#include <../Setup452_RP2040_ST7789_240x280.h>  // RP2040, ST7789
 //#include <../Setup453_RP2040_ST7789_240x320.h>  // RP2040, ST7789
 
+//#include <../Setup454_RP2040_ILI9488_Touch.h>   // RP2040, ili9488
+
 
 //#include <User_Setups/Setup1_ILI9341.h>  // Setup file for ESP8266 configured for my ILI9341
 //#include <User_Setups/Setup2_ST7735.h>   // Setup file for ESP8266 configured for my ST7735

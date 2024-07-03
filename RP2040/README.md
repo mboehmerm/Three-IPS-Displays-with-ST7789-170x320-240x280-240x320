@@ -224,3 +224,55 @@ Original TFT_eSPI examples :
 - boing_ball.ino
 - Bouncy_Circles.ino
 - SpriteRotatingCube.ino
+
+## Overclocking an additional display ili9488
+
+Goal was to find out, which is the maximum frequency the ili9488 display works stable. Overclocking and PIO SPI with Earle Philhower's RP2040 board package allows to test several SPI frequencies.
+
+|                        |         |        |          |        |        |        |          |     | 
+| :--------------------- | ------: | -----: | -------: | -----: | -----: | -----: | -------: | :-: | 
+|RP2040                  |    125  |   125  |     133  |   200  |   225  |   240  |     250  | MHz | 
+|SPI                     |   41,67 |  62,50 |    66,50 |  66,67 |  75,00 |  80,00 |    83,34 | MHz | 
+|Benchmark Time          |         |        |          |        |        |        |          |     |
+|HaD pushColor           |  991385 | 499217 |**468883**| 619425 | 550510 | 516086 |  495483  |  µs |
+|Screen fill             |  122907 |  61474 | **57763**|  76812 |  68277 |  64011 |   61450  |  µs |
+|Text                    |   18848 |  12250 |   11602  |  12002 |  10628 |   9862 |  **9548**|  µs |
+|Pixels                  |  631967 | 335160 |  314888  | 393710 | 350052 | 327912 |**314820**|  µs |
+|Lines                   |  539284 | 306844 |  288233  | 336136 | 298578 | 279823 |**268578**|  µs |
+|Horiz/Vert Lines        |   49965 |  25147 | **23613**|  31234 |  27763 |  26026 |   24992  |  µs |
+|Rectangles (outline)    |   27594 |  14001 | **13133**|  17253 |  15365 |  14403 |   13818  |  µs |
+|Rectangles (filled)     | 1497646 | 748896 |**703862**| 936047 | 832032 | 780038 |  748814  |  µs |
+|Circles (filled)        |  133280 |  69367 | **64902**|  83082 |  73793 |  69194 |   66403  |  µs |
+|Circles (outline)       |   58235 |  33090 |   30996  |  36297 |  32243 |  30206 | **28994**|  µs |
+|Triangles (outline)     |   31982 |  20649 |   19399  |  19976 |  17738 |  16622 | **15952**|  µs |
+|Triangles (filled)      |  473104 | 238287 |**223949**| 295703 | 262837 | 246391 |  236490  |  µs |
+|Rounded rects (outline) |   38961 |  21749 |   19741  |  23827 |  21189 |  19826 | **19029**|  µs |
+|Rounded rects (filled)  | 1493357 | 748021 |**702346**| 932549 | 828886 | 777132 |  746038  |  µs |
+
+- RP2040 175MHz and SPI 87,50MHz : RP2040 "bricked"
+- RP2040 150MHz and SPI 75,00MHz : many distortions
+
+- [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino)
+
+- [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino)
+
+# Connections for YD RP2040 and ili9488
+
+| GPIO      | TFT   | Description |
+| --------: | :---- | :---------- |
+|        19 | SDA   | MOSI        |
+|        18 | SCL   | CLK         |
+|        17 | CS    | CS          |
+|        22 | DC    | DC          |
+|        27 | RST   | Reset       |
+|           | BLK   | 3.3V        |
+|           | VCC   | 3.3V        |
+|           | GND   | GND         |
+
+Files :
+- [Arduino\libraries\Setup454_RP2040_ILI9488_Touch.h](Arduino/libraries/Setup454_RP2040_ILI9488_Touch.h) Setup for TFT_eSPI
+
+- [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino) Benchmark
+
+![RP2040_ili9488](pictures/RP2040_ili9488.jpg)
+TFT_eSPI graphicstest
