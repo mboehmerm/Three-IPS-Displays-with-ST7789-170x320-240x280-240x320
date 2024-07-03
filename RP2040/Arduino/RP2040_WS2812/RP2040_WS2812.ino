@@ -16,7 +16,8 @@ void setup()
   pixels.begin(); // This initializes the NeoPixel library.
   Serial.begin(115200);
 
-  while (! Serial);
+  //while (! Serial);
+  delay(500);
   
   // see FindOutSpiPins.ino
   Serial.print("MOSI: ");

@@ -31,7 +31,7 @@ unsigned long total = 0;
 unsigned long tn = 0;
 void setup() {
   Serial.begin(115200);
-  while (!Serial);
+  //while (!Serial);
   Serial.println(""); 
   Serial.println("Bodmer's TFT_eSPI library Test! espressif 3.0.1"); 
  
