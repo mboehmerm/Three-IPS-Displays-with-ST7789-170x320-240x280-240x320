@@ -225,7 +225,7 @@ Original TFT_eSPI examples :
 - Bouncy_Circles.ino
 - SpriteRotatingCube.ino
 
-## Overclocking an additional display ili9488
+# Overclocking test with an ili9488 display
 
 Goal was to find out, which is the maximum frequency the ili9488 display works stable. Overclocking and PIO SPI with Earle Philhower's RP2040 board package allows to test several SPI frequencies.
 
@@ -252,11 +252,13 @@ Goal was to find out, which is the maximum frequency the ili9488 display works s
 - RP2040 175MHz and SPI 87,50MHz : RP2040 "bricked"
 - RP2040 150MHz and SPI 75,00MHz : many distortions
 
-- [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino)
+Files :
+- [Arduino\libraries\Setup454_RP2040_ILI9488_Touch.h](Arduino/libraries/Setup454_RP2040_ILI9488_Touch.h) Setup for TFT_eSPI
 
-- [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino)
+- [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino) Benchmark
 
-# Connections for YD RP2040 and ili9488
+
+## Connections for YD RP2040 and ili9488
 
 | GPIO      | TFT   | Description |
 | --------: | :---- | :---------- |
@@ -268,11 +270,6 @@ Goal was to find out, which is the maximum frequency the ili9488 display works s
 |           | BLK   | 3.3V        |
 |           | VCC   | 3.3V        |
 |           | GND   | GND         |
-
-Files :
-- [Arduino\libraries\Setup454_RP2040_ILI9488_Touch.h](Arduino/libraries/Setup454_RP2040_ILI9488_Touch.h) Setup for TFT_eSPI
-
-- [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino) Benchmark
 
 ![RP2040_ili9488](pictures/RP2040_ili9488.jpg)
 TFT_eSPI graphicstest
