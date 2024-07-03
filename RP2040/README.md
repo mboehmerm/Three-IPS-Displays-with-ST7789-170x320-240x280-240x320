@@ -227,7 +227,7 @@ Original TFT_eSPI examples :
 
 # Overclocking test with an ili9488 display
 
-Goal was to find out, which is the maximum frequency the ili9488 display works stable. Overclocking and PIO SPI with Earle Philhower's RP2040 board package allows to test several SPI frequencies.
+Goal was to find out, which is the maximum frequency the ili9488 display works stable. Overclocking and PIO SPI with Earle Philhower's RP2040 board package and TFT_eSPI allows to test several SPI frequencies.
 
 |                        |         |        |          |        |        |        |          |     | 
 | :--------------------- | ------: | -----: | -------: | -----: | -----: | -----: | -------: | :-: | 
