@@ -235,6 +235,7 @@ The goal of this test was to find out, up to which frequency the ili9488 display
 | :--------------------- | ------: | -----: | -------: | -----: | -----: | -----: | -------: |-------: |-------: | :-: | 
 |CPU Frequency           |    125  |   125  |     133  |   200  |   225  |   240  |     250  |     240 |    240  | MHz | 
 |SPI Frequency           |   41,67 |  62,50 |    66,50 |  66,67 |  75,00 |  80,00 |    83,34 |   40,00 |  80,00  | MHz | 
+|Divider                 |   125/3 |  125/2 |    133/2 |  200/3 |  225/3 |  240/3 |    250/3 |    80/2 |   80/1  |     |
 |Benchmark               |         |        |          |        |        |        |          |         |         |     |
 |HaD pushColor           |  991385 | 499217 |**468883**| 619425 | 550510 | 516086 |  495483  |  860339 |  489737 |  µs |
 |Screen fill             |  122907 |  61474 | **57763**|  76812 |  68277 |  64011 |   61450  |  105218 |   58648 |  µs |
@@ -252,8 +253,8 @@ The goal of this test was to find out, up to which frequency the ili9488 display
 |Rounded rects (filled)  | 1493357 | 748021 |**702346**| 932549 | 828886 | 777132 |  746038  | 1290781 |  727830 |  µs |
 
 Problems :
-- RP2040 175MHz and SPI 87,50MHz : RP2040 "bricked"
 - RP2040 150MHz and SPI 75,00MHz : distortions
+- RP2040 175MHz and SPI 87,50MHz : RP2040 "bricked"
 - ESP32 S3 240MHz and SPI 80,00MHz : distortions
 
 Files :
@@ -262,7 +263,7 @@ Files :
 - [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino) Benchmark
 
 
-## Connections for YD RP2040 and ili9488
+### Connections for YD RP2040 and ili9488
 
 | GPIO      | TFT   | Description |
 | --------: | :---- | :---------- |
