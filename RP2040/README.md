@@ -1,6 +1,6 @@
 # Seven displays and YD RP2040.
 
-Seven plus one cheap Aliexpress displays, tested with a YD RP2040, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43 ( u8g2 2.34.22 ).
+Eight cheap Aliexpress displays, tested with a YD RP2040, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43 or u8g2 2.34.22
 
 **Board Package :** Raspberry Pi Pico/RP2040 by Earle F. Philhower, III, v3.93
 
@@ -26,15 +26,15 @@ In the dialog that pops up, enter the following URL in the "Additional Boards Ma
 
 Go to Tools->Boards->Board Manager in the IDE. Choose "Raspberry Pi Pico/RP2040" and select "Add".
 
-## RP2040 First use 
+## RP2040 First use ( and Unbrick )
 
 If the drive "RPI-RP2" doesn't show up, when you connect the RP2040, then press and hold down the BOOT button. Then press RESET. The RPI-RP2 drive should appear. This also works if the RP2040 board is **"bricked"**, i.e. if neither the com port nor the RPI-RP2 drive shows up, which happens more often when overclocking the RP2040 (see below).
 
-Copy the file [SOS.ino.uf2](documents/SOS.ino.uf2) to the RPI-RP2 drive. After uploading the drive disappears and a new com port shows up. The LED on the RP2040 board is now flashing SOS. 
+Copy the file [SOS.ino.uf2](documents/SOS.ino.uf2) to the RPI-RP2 drive. After uploading the drive disappears and a new COM port shows up. The LED on the RP2040 board is now flashing SOS. 
 
 This file is compiled for the "VCC-GND YD-RP2040" board, so you don't need to change the COM port later, like when using [PicoBlink.ino.uf2](documents/PicoBlink.ino.uf2) or [ flash_nuke. ino.uf2](documents/flash_nuke.ino.uf2), which you can download from the Internet.
 
-If you want to create your own “Blink.ino.uf2”, just compile/upload this program “Blink” using Arduino IDE. Then search for “Blink.ino.uf2” in your user folder and subfolders. 
+If you want to create your own “Blink.ino.uf2”, just compile/upload this program “Blink” using the Arduino IDE. Then search for “Blink.ino.uf2” in your user folder and subfolders. 
 - C:\Users\ **your username**\AppData\Local\Temp\arduino\sketches\ **path name**\Blink.ino.uf2"
 
 ## Links   
@@ -98,7 +98,9 @@ SPI display GMG12864-06D
 
 The backlight pin of the GMG12864 is connected to an 47 Ohm resistor, which draws about 12mA.
 
-First choose the driver in the test programs :
+First choose the driver in the file  :
+- [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino) or
+- [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino) ( with backlight dimming test. Only for GMG12864 ) :
 
 ```java
 // Enable only one of the four display drivers :
@@ -113,9 +115,7 @@ U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);     // 0.96" mini or 4 button
 //U8G2_ST7565_ERC12864_ALT_F_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 17, /* dc=*/ 22, /* reset=*/ U8X8_PIN_NONE); 
 //#define CONTRAST 75  //  Don't forget this for GMG12864  !!
 ```
-Now you can run the graphics test :
-- [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino)
-- [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino) with backlight dimming test only for GMG12864.
+Now you can upload the graphics test program.
 
 ## Configure the library TFT_eSPI
 
