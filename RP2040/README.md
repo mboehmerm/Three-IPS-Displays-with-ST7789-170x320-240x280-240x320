@@ -98,10 +98,7 @@ SPI display GMG12864-06D
 
 The backlight pin of the GMG12864 is connected to an 47 Ohm resistor, which draws about 12mA.
 
-- [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino)
-- [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino) with Backlight dimming ( only CMG12864-06D ).
-
-Choose the driver in the test programs :
+First choose the driver in the test programs :
 
 ```java
 // Enable only one of the four display drivers :
@@ -116,10 +113,13 @@ U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);     // 0.96" mini or 4 button
 //U8G2_ST7565_ERC12864_ALT_F_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 17, /* dc=*/ 22, /* reset=*/ U8X8_PIN_NONE); 
 //#define CONTRAST 75  //  Don't forget this for GMG12864  !!
 ```
+Now you can run the graphics test :
+- [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino)
+- [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino) with backlight dimming test only for GMG12864.
 
 ## Configure the library TFT_eSPI
 
-Edit the file [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h )
+Edit or copy the file [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h )
 
 ```java
 // Only **ONE** line below should be uncommented to define your setup.
@@ -133,14 +133,23 @@ Edit the file [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries
 
 //#include <../Setup454_RP2040_ILI9488_Touch.h>   // RP2040, ili9488
 ```
-Create the new files :
+Create or copy the new files :
 - [Arduino\libraries\Setup451_RP2040_ST7789_170x320.h](Arduino/libraries/Setup451_RP2040_ST7789_170x320.h)
 - [Arduino\libraries\Setup452_RP2040_ST7789_240x280.h](Arduino/libraries/Setup451_RP2040_ST7789_240x280.h)
 - [Arduino\libraries\Setup453_RP2040_ST7789_240x320.h](Arduino/libraries/Setup451_RP2040_ST7789_240x320.h)
+- [Arduino\libraries\Setup454_RP2040_ILI9488_Touch.h](Arduino/libraries/Setup454_RP2040_ILI9488_Touch.h) see below
 
-**Don't forget** the line "#define RP2040_PIO_SPI", which is necessary for Earle Philhower's RP2040 board package for frequencies except 125MHz!
 
-**Don't forget** the line "#define RP2040_PIO_SPI" which allows overclocking with the Earle Philhower's RP2040 board package, i.e. for frequencies other than 125 MHz.
+Now you can run the corresponding benchmark test :
+- [Arduino\RP2040_TFT_graphicstest_170x320.ino](Arduino/RP2040_TFT_graphicstest_170x320/RP2040_TFT_graphicstest_170x320.ino)
+- [Arduino\RP2040_TFT_graphicstest_240x280.ino](Arduino/RP2040_TFT_graphicstest_240x280/RP2040_TFT_graphicstest_240x280.ino)
+- [Arduino\RP2040_TFT_graphicstest_240x320.ino](Arduino/RP2040_TFT_graphicstest_240x320/RP2040_TFT_graphicstest_240x320.ino)
+- [Arduino\RP2040_TFT_graphicstest_PDQ.ino](Arduino/RP2040_TFT_graphicstest_PDQ/RP2040_TFT_graphicstest_PDQ.ino) for display 240x320
+- [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino) see below
+
+### Display Configuration file
+
+The line "#define RP2040_PIO_SPI" allows **overclocking** with the Earle Philhower's RP2040 board package and frequencies other than 125 MHz.
 
 
 ```java
@@ -243,12 +252,6 @@ RP2040 "bricked" :
 - RP2040 CPU 275MHz SPI 137,50MHz RP2040 "bricked"
 - RP2040 CPU 300MHz SPI 150,00MHz RP2040 "bricked"
 
-Files :
-- [Arduino\libraries\Setup454_RP2040_ILI9488_Touch.h](Arduino/libraries/Setup454_RP2040_ILI9488_Touch.h) Setup for TFT_eSPI
-
-- [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino) Benchmark
-
-
 ### Connections for YD RP2040 and ili9488
 
 | GPIO      | TFT   | Description |
@@ -276,13 +279,13 @@ Setup :
 - [Arduino\libraries\Setup451_RP2040_ST7789_170x320.h](Arduino/libraries/Setup451_RP2040_ST7789_170x320.h)
 - [Arduino\libraries\Setup452_RP2040_ST7789_240x280.h](Arduino/libraries/Setup452_RP2040_ST7789_240x280.h) 
 - [Arduino\libraries\Setup453_RP2040_ST7789_240x320.h](Arduino/libraries/Setup453_RP2040_ST7789_240x320.h) 
-- [Arduino\libraries\Setup454_RP2040_ILI9488_Touch.h](Arduino/libraries/Setup454_RP2040_ILI9488_Touch.h) Setup for TFT_eSPI
+- [Arduino\libraries\Setup454_RP2040_ILI9488_Touch.h](Arduino/libraries/Setup454_RP2040_ILI9488_Touch.h) 
+
+Setup for TFT_eSPI
 - [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h )
 - [Arduino\RP2040_WS2812.ino](Arduino/RP2040_WS2812/RP2040_WS2812.ino) 
 
-
 Benchmark IPS color displays and ili9488 :
-
 - [Arduino\RP2040_TFT_graphicstest_170x320.ino](Arduino/RP2040_TFT_graphicstest_170x320/RP2040_TFT_graphicstest_170x320.ino)
 - [Arduino\RP2040_TFT_graphicstest_240x280.ino](Arduino/RP2040_TFT_graphicstest_240x280/RP2040_TFT_graphicstest_240x280.ino)
 - [Arduino\RP2040_TFT_graphicstest_240x320.ino](Arduino/RP2040_TFT_graphicstest_240x320/RP2040_TFT_graphicstest_240x320.ino)
@@ -290,7 +293,6 @@ Benchmark IPS color displays and ili9488 :
 - [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino)
 
 Benchmark monochrome displays :
-
 - [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino)
 - [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino)
 
