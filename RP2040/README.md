@@ -1,14 +1,14 @@
 # Seven displays and YD RP2040.
 
-Seven cheap Aliexpress displays, tested with a YD RP2040, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43 ( u8g2 2.34.22 ).
+Seven plus one cheap Aliexpress displays, tested with a YD RP2040, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43 ( u8g2 2.34.22 ).
 
 **Board Package :** Raspberry Pi Pico/RP2040 by Earle F. Philhower, III, v3.93
 
 **Arduino IDE Board :** "VCC-GND YD RP2040"
 
-All three IPS displays worked stable with 125MHz (SPI 62.5MHz). Overclocking runs with 150MHz (SPI 75MHz) on all three displays.
+All three IPS displays worked stable at 125MHz (SPI 62.5MHz). **Overclocking** runs at 150MHz (SPI 75MHz) on all three displays.
 
-200MHz (SPI 100MHz) and 250 MHz (SPI 125MHz) worked only with the display 240x280 and i had to connect the RESET pin of the display to pin 27 (for example), not to pin RUN. 
+200MHz (SPI 100MHz) and 250 MHz (SPI 125MHz) worked only with the display 240x280 and i had to connect the RESET pin of the display to pin 27 (for example), not to pin RUN. Later i reversed this and soldered a **2,2nF capacitor** between RUN and GND. Multiple test are done with an ili9488 display (see below). 
 
 ![3_benchmarks](pictures/3_benchmarks.png)
 TFT_eSPI graphicstest
@@ -28,13 +28,28 @@ Go to Tools->Boards->Board Manager in the IDE. Choose "Raspberry Pi Pico/RP2040"
 
 ## RP2040 First use 
 
-When i got the RP2040 a RPI-RP2 drive showed up on windows but no com port. The solution i found was :
+If the drive "RPI-RP2" doesn't show up, when you connect the RP2040, then press and hold down the BOOT button. Then press RESET. The RPI-RP2 drive should appear. This also works if the RP2040 board is **"bricked"**, i.e. if neither the com port nor the RPI-RP2 drive shows up, which happens more often when overclocking the RP2040 (see below).
 
-Copy the [PicoBlink.ino.uf2](documents/PicoBlink.ino.uf2) file to the RPI-RP2 drive. After uploading the drive disappears and a com port shows up. The LED on the board is flashing. 
+Copy the file [SOS.ino.uf2](documents/SOS.ino.uf2) to the RPI-RP2 drive. After uploading the drive disappears and a new com port shows up. The LED on the RP2040 board is flashing SOS. This file is compiled for the board "VCC-GND YD-RP2040", so you do not need to change the COM port later.
 
-Arduino IDE can upload programs now but while uploading the first program, the com port changes.  
+This file is compiled for the "VCC-GND YD-RP2040" board, so you don't need to change the COM port later, like when using [PicoBlink.ino.uf2](documents/PicoBlink.ino.uf2) or [ flash_nuke. ino.uf2](documents/flash_nuke.ino.uf2), which you can download from the Internet.
 
-Found here : https://forums.raspberrypi.com/viewtopic.php?t=368305
+If you want to create your own “Blink.ino.uf2”, just compile/upload this program “Blink” using Arduino IDE. Then search for “Blink.ino.uf2” in your user folder and subfolders. 
+- C:\Users\ **your username**\AppData\Local\Temp\arduino\sketches\ **path name**\Blink.ino.uf2"
+
+## Links   
+
+RP2040 Pico clone firmware https://forums.raspberrypi.com/viewtopic.php?t=368305
+
+Factory reset Pico no longer registers com port on windows https://forums.raspberrypi.com/viewtopic.php?t=350680
+
+Bricked MicroPython rescue firmware https://forums.raspberrypi.com/viewtopic.php?f=146&t=305432
+
+Raspberry Pi Pico factory reset https://forum.micropython.org/viewtopic.php?t=10838
+
+
+The folder [documents](documents) also contains the documentation for the YD RP2040 found here : http://124.222.62.86/yd-data/YD-RP2040/.
+
 
 ## Connections for YD RP2040
 
@@ -53,7 +68,7 @@ Found here : https://forums.raspberrypi.com/viewtopic.php?t=368305
 |           | VCC   |           | 3.3V                 |
 |           | GND   |           | GND                  |
 
-**RESET pin :** It's more stable to use the pin 27 (for example) than the pin RUN.
+**RESET pin:** It is more stable to use a 2.2nF capacitor between RUN and GND or connect the RST pin to the pin 27 for example (see picture ili9488 below).
 
 ![RGB_Pinout](pictures/RGB_Pinout.png)
 
@@ -74,17 +89,17 @@ LED_BUILTIN: 25
 For these displays install the library u8g2 by olikraus.
 
 ![3_I2C_Displays](pictures/3_I2C_Displays.png)
-Three I2C-Displays. Driver SSD1306 (left), SSD1306 (middle), SSD1309 (right).
+Three I2C-Displays. Driver : SSD1306 (left), SSD1306 (middle), SSD1309 (right).
 
-**Pay attention** to the VCC and GND pins, which are reversed on the right display !
+**Pay attention** to the VCC and GND pins being swapped on the right display !!!
 
 ![GMG12864](pictures/GMG12864.png)
 SPI display GMG12864-06D
 
+The backlight pin of the GMG12864 is connected to an 47 Ohm resistor, which draws about 12mA.
+
 - [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino)
 - [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino) with Backlight dimming ( only CMG12864-06D ).
-
-The backlight pin of the GMG12864 is connected with an 47 Ohm resistor, which draws about 12mA on the RP2040 pin and can cause problems.
 
 Choose the driver in the test programs :
 
@@ -115,26 +130,30 @@ Edit the file [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries
 #include <../Setup451_RP2040_ST7789_170x320.h>  // RP2040, ST7789
 //#include <../Setup452_RP2040_ST7789_240x280.h>  // RP2040, ST7789
 //#include <../Setup453_RP2040_ST7789_240x320.h>  // RP2040, ST7789
+
+//#include <../Setup454_RP2040_ILI9488_Touch.h>   // RP2040, ili9488
 ```
 Create the new files :
 - [Arduino\libraries\Setup451_RP2040_ST7789_170x320.h](Arduino/libraries/Setup451_RP2040_ST7789_170x320.h)
 - [Arduino\libraries\Setup452_RP2040_ST7789_240x280.h](Arduino/libraries/Setup451_RP2040_ST7789_240x280.h)
 - [Arduino\libraries\Setup453_RP2040_ST7789_240x320.h](Arduino/libraries/Setup451_RP2040_ST7789_240x320.h)
 
-**Don't forget** the line "#define RP2040_PIO_SPI", which is necessary for Earle Philhower's RP2040 board package !
+**Don't forget** the line "#define RP2040_PIO_SPI", which is necessary for Earle Philhower's RP2040 board package for frequencies except 125MHz!
+
+**Don't forget** the line "#define RP2040_PIO_SPI" which allows overclocking with the Earle Philhower's RP2040 board package, i.e. for frequencies other than 125 MHz.
 
 
 ```java
 #define USER_SETUP_ID 451
 
 // Driver
-#define ST7789_DRIVER            // Configure all registers
+#define ST7789_DRIVER               // Configure all registers
 #define TFT_WIDTH  170
 #define TFT_HEIGHT 320
 #define TFT_INVERSION_ON
 #define TFT_BACKLIGHT_ON 1
 
-//#define TFT_RGB_ORDER TFT_BGR  // !!! Only for Display 240x320 !!!
+//#define TFT_RGB_ORDER TFT_BGR     // !!! Only for Display 240x320 !!!
 
 // The PIO can only be user with Earle Philhower's RP2040 board package:
 // https://github.com/earlephilhower/arduino-pico
@@ -143,8 +162,8 @@ Create the new files :
 // PIO SPI is "write only" and the TFT_eSPI touch functions are not supported.
 // A touch screen could be used with a third party library on different SPI pins.
 
-// This invokes the PIO based SPI interface for the RP2040 processor.
-#define RP2040_PIO_SPI  // Black screen if you forget this line
+// This invokes the PIO based SPI interface for the RP2040 processor :
+#define RP2040_PIO_SPI   // Faster with all frequencies other than 125MHz, but no touch functions.
 
 //Pins RP2040
 #define TFT_BL     -1   // LED back-light  // 26
@@ -154,7 +173,7 @@ Create the new files :
 #define TFT_CS     17 
 #define TFT_DC     22
 #define TFT_RST    -1   // Set TFT_RST to -1 if display RESET is connected to RP2040 board RUN
-//#define TFT_RST    27   // For overclocking, RESET was connected to pin 27  
+//#define TFT_RST    27   // For overclocking, RESET can be connected to pin 27  
 
 // Fonts
 #define LOAD_GLCD
@@ -174,88 +193,55 @@ Create the new files :
 // #define SPI_FREQUENCY  32000000  // 125/4 =  31.25MHz
 // #define SPI_FREQUENCY  42000000  // 125/3 =  41.67MHz
 // #define SPI_FREQUENCY  70000000  // 125/2 =  62.50MHz
-// #define SPI_FREQUENCY 100000000  // 200/2 = 125.00MHz  Overclocking
+// #define SPI_FREQUENCY 100000000  // 200/2 = 100.00MHz  Overclocking
    #define SPI_FREQUENCY 125000000  // 250/2 = 125.00MHz  Overclocking
 
 ```
-## RP2040 Factory Reset
-
-When testing the backlight and overclocking the RP2040 sometimes wasn't accessible any more. No  RPI-RP2 drive showed up and no com port appeared on windows. 
-
-Solution : Hold down BOOT button then press RESET button when the RP2040 is connected. The RPI-RP2 drive should appear. Copy [PicoBlink.ino.uf2](documents/PicoBlink.ino.uf2) file to the RPI-RP2 drive. After upload and the drive will disappear. The LED on the board starts flashing. Arduino sketches should upload now. But while uploading the first Arduino program, the com port changes. 
-
-Similar solutions can be found here : 
-
-RP2040 Pico clone firmware https://forums.raspberrypi.com/viewtopic.php?t=368305
-
-Factory reset Pico no longer registers com port on windows https://forums.raspberrypi.com/viewtopic.php?t=350680
-
-Bricked MicroPython rescue firmware https://forums.raspberrypi.com/viewtopic.php?f=146&t=305432
-
-Raspberry Pi Pico factory reset https://forum.micropython.org/viewtopic.php?t=10838
-
-
-The folder [documents](documents) also contains the documentation for the YD RP2040 found here : http://124.222.62.86/yd-data/YD-RP2040/.
-
-## Test programs
-
-All files can be found above in the folder [Arduino](Arduino).
-
-Setup :
-- [Arduino\libraries\Setup407_ST7789_320x170.h](Arduino/libraries/Setup407_ST7789_320x170.h)
-- [Arduino\libraries\Setup408_ST7789_280x240.h](Arduino/libraries/Setup408_ST7789_280x240.h) 
-- [Arduino\libraries\Setup409_ST7789_320x240.h](Arduino/libraries/Setup409_ST7789_320x240.h) 
-- [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h )
-- [Arduino\RP2040_WS2812.ino](Arduino/RP2040_WS2812/RP2040_WS2812.ino) 
-
-Benchmark IPS color displays :
-
-- [Arduino\RP2040_TFT_graphicstest_170x320.ino](Arduino/RP2040_TFT_graphicstest_170x320/RP2040_TFT_graphicstest_170x320.ino)
-- [Arduino\RP2040_TFT_graphicstest_240x280.ino](Arduino/RP2040_TFT_graphicstest_240x280/RP2040_TFT_graphicstest_240x280.ino)
-- [Arduino\RP2040_TFT_graphicstest_240x320.ino](Arduino/RP2040_TFT_graphicstest_240x320/RP2040_TFT_graphicstest_240x320.ino)
-- [Arduino\RP2040_TFT_graphicstest_PDQ.ino](Arduino/RP2040_TFT_graphicstest_PDQ/RP2040_TFT_graphicstest_PDQ.ino)
-
-Benchmark monochrome displays :
-
-- [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino)
-- [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino)
-
-Original TFT_eSPI examples :
-- boing_ball.ino
-- Bouncy_Circles.ino
-- SpriteRotatingCube.ino
-
 # Overclocking test with an ili9488 display
 
-The display ili9488 works stable with an ESP32 S3 with 40MHz, but has problems with 80MHz.
+This ili9488 display works stable with an ESP32 S3 at 40MHz, but has problems at 80MHz.
 
-The goal of this test was to find out, up to which frequency the ili9488 display works stable. Overclocking and PIO SPI with Earle Philhower's RP2040 board package and TFT_eSPI allows to test several SPI frequencies.
+The aim of this test was to find out up to which frequency the ili9488 display works stable. Overclocking and PIO SPI with Earle Philhower's RP2040 board package and TFT_eSPI allows testing multiple SPI frequencies.
 
-|CPU                     |  RP2040 | RP2040 |   RP2040 | RP2040 | RP2040 | RP2040 |   RP2040 | ESP32 S3| ESP32 S3|     | 
-| :--------------------- | ------: | -----: | -------: | -----: | -----: | -----: | -------: |-------: |-------: | :-: | 
-|CPU Frequency           |    125  |   125  |     133  |   200  |   225  |   240  |     250  |     240 |    240  | MHz | 
-|Divider                 |   125/3 |  125/2 |    133/2 |  200/3 |  225/3 |  240/3 |    250/3 |    80/2 |   80/1  |     |
-|SPI Frequency           |   41,67 |  62,50 |    66,50 |  66,67 |  75,00 |  80,00 |    83,34 |   40,00 |  80,00  | MHz | 
-|Benchmark               |         |        |          |        |        |        |          |         |         |     |
-|HaD pushColor           |  991385 | 499217 |**468883**| 619425 | 550510 | 516086 |  495483  |  860339 |  489737 |  µs |
-|Screen fill             |  122907 |  61474 | **57763**|  76812 |  68277 |  64011 |   61450  |  105218 |   58648 |  µs |
-|Text                    |   18848 |  12250 |   11602  |  12002 |  10628 |   9862 |  **9548**|   35456 |   30643 |  µs |
-|Pixels                  |  631967 | 335160 |  314888  | 393710 | 350052 | 327912 |**314820**| 1519622 | 1383868 |  µs |
-|Lines                   |  539284 | 306844 |  288233  | 336136 | 298578 | 279823 |**268578**| 1309770 | 1128234 |  µs |
-|Horiz/Vert Lines        |   49965 |  25147 | **23613**|  31234 |  27763 |  26026 |   24992  |   44977 |   26368 |  µs |
-|Rectangles (outline)    |   27594 |  14001 | **13133**|  17253 |  15365 |  14403 |   13818  |   25298 |   15088 |  µs |
-|Rectangles (filled)     | 1497646 | 748896 |**703862**| 936047 | 832032 | 780038 |  748814  | 1282645 | 715384  |  µs |
-|Circles (filled)        |  133280 |  69367 | **64902**|  83082 |  73793 |  69194 |   66403  |  168811 |  121517 |  µs |
-|Circles (outline)       |   58235 |  33090 |   30996  |  36297 |  32243 |  30206 | **28994**|  125492 |  108983 |  µs |
-|Triangles (outline)     |   31982 |  20649 |   19399  |  19976 |  17738 |  16622 | **15952**|   62570 |   52203 |  µs |
-|Triangles (filled)      |  473104 | 238287 |**223949**| 295703 | 262837 | 246391 |  236490  |  439671 |  263084 |  µs |
-|Rounded rects (outline) |   38961 |  21749 |   19741  |  23827 |  21189 |  19826 | **19029**|   58080 |   45067 |  µs |
-|Rounded rects (filled)  | 1493357 | 748021 |**702346**| 932549 | 828886 | 777132 |  746038  | 1290781 |  727830 |  µs |
+Because of the problems with the RUN pin, I finally soldered a small **capacitor (2.2nF)** between RUN and GND (see picture). This solved many overclocking problems and allowed the RUN pin of the RP2040 to be connected to the RESET pin of the display.
 
-Problems :
-- RP2040 150MHz and SPI 75,00MHz : distortions
-- RP2040 175MHz and SPI 87,50MHz : RP2040 "bricked"
-- ESP32 S3 240MHz and SPI 80,00MHz : distortions
+The RUN pin is very "sensible". Measuring this pin with a multimeter will reset the RP2040. A capacitor 2,2nF or higher solves this problem. 
+
+
+|CPU                     |  RP2040 | RP2040 |   RP2040 | RP2040 | RP2040 | RP2040 |   RP2040 |  RP2040 | ESP32 S3| ESP32 S3|     | 
+| :--------------------- | ------: | -----: | -------: | -----: | -----: | -----: | -------: |-------: |-------: |-------: | :-: | 
+|CPU Frequency           |    125  |   125  |     133  |   200  |   225  |   240  |     250  |     250 |    240  |    240  | MHz | 
+|Divider                 |   125/3 |  125/2 |    133/2 |  200/3 |  225/3 |  240/3 |    250/3 |   250/2 |    80/2 |   80/1  | MHz |
+|SPI Frequency           |   41,67 |  62,50 |    66,50 |  66,67 |  75,00 |  80,00 |    83,34 |  125,00 |   40,00 |  80,00  | MHz | 
+|Benchmark               |         |        |          |        |        |        |          |         |         |         |     |
+|HaD pushColor           |  991385 | 499217 |**468883**| 619425 | 550510 | 516086 |  495483  |  249323 |  860339 |  489737 |  µs |
+|Screen fill             |  122907 |  61474 | **57763**|  76812 |  68277 |  64011 |   61450  |   30735 |  105218 |   58648 |  µs |
+|Text                    |   18848 |  12250 |   11602  |  12002 |  10628 |   9862 |  **9548**|    6043 |   35456 |   30643 |  µs |
+|Pixels                  |  631967 | 335160 |  314888  | 393710 | 350052 | 327912 |**314820**|  166839 | 1519622 | 1383868 |  µs |
+|Lines                   |  539284 | 306844 |  288233  | 336136 | 298578 | 279823 |**268578**|  152695 | 1309770 | 1128234 |  µs |
+|Horiz/Vert Lines        |   49965 |  25147 | **23613**|  31234 |  27763 |  26026 |   24992  |   12561 |   44977 |   26368 |  µs |
+|Rectangles (outline)    |   27594 |  14001 | **13133**|  17253 |  15365 |  14403 |   13818  |    6987 |   25298 |   15088 |  µs |
+|Rectangles (filled)     | 1497646 | 748896 |**703862**| 936047 | 832032 | 780038 |  748814  |  374448 | 1282645 | 715384  |  µs |
+|Circles (filled)        |  133280 |  69367 | **64902**|  83082 |  73793 |  69194 |   66403  |   34394 |  168811 |  121517 |  µs |
+|Circles (outline)       |   58235 |  33090 |   30996  |  36297 |  32243 |  30206 | **28994**|   16421 |  125492 |  108983 |  µs |
+|Triangles (outline)     |   31982 |  20649 |   19399  |  19976 |  17738 |  16622 | **15952**|   10272 |   62570 |   52203 |  µs |
+|Triangles (filled)      |  473104 | 238287 |**223949**| 295703 | 262837 | 246391 |  236490  |  119019 |  439671 |  263084 |  µs |
+|Rounded rects (outline) |   38961 |  21749 |   19741  |  23827 |  21189 |  19826 | **19029**|   10506 |   58080 |   45067 |  µs |
+|Rounded rects (filled)  | 1493357 | 748021 |**702346**| 932549 | 828886 | 777132 |  746038  |  373279 | 1290781 |  727830 |  µs |
+|Picture ok?             |      ok |     ok |       ok |     ok |     ok |     ok |       ok |**errors**|     ok |**errors**|  µs |
+
+Distortions :
+- RP2040 CPU 150MHz SPI  75,00MHz many distortions
+- RP2040 CPU 200MHz SPI 100,00MHz many distortions
+- RP2040 CPU 225MHz SPI 112,50MHz some distortions
+- RP2040 CPU 240MHz SPI 120,00MHz some distortions
+- RP2040 CPU 250MHz SPI 125,00MHz some distortions
+- ESP32 S3 240MHz and SPI 80,00MHz many distortions
+
+RP2040 "bricked" :
+- RP2040 CPU 175MHz SPI  87,50MHz RP2040 "bricked"
+- RP2040 CPU 275MHz SPI 137,50MHz RP2040 "bricked"
+- RP2040 CPU 300MHz SPI 150,00MHz RP2040 "bricked"
 
 Files :
 - [Arduino\libraries\Setup454_RP2040_ILI9488_Touch.h](Arduino/libraries/Setup454_RP2040_ILI9488_Touch.h) Setup for TFT_eSPI
@@ -277,7 +263,38 @@ Files :
 |           | GND   | GND         |
 
 ![RP2040_ili9488](pictures/RP2040_ili9488.jpg)
-TFT_eSPI graphicstest
+RP2040 with capacitor 2,2nF and ili9488. Benchmark : [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino)
 
 ![ili9488_back](pictures/ili9488_back.png)
-TFT_eSPI graphicstest
+ili9488 back view
+
+## Test programs
+
+All files can be found above in the folder [Arduino](Arduino).
+
+Setup :
+- [Arduino\libraries\Setup451_RP2040_ST7789_170x320.h](Arduino/libraries/Setup451_RP2040_ST7789_170x320.h)
+- [Arduino\libraries\Setup452_RP2040_ST7789_240x280.h](Arduino/libraries/Setup452_RP2040_ST7789_240x280.h) 
+- [Arduino\libraries\Setup453_RP2040_ST7789_240x320.h](Arduino/libraries/Setup453_RP2040_ST7789_240x320.h) 
+- [Arduino\libraries\Setup454_RP2040_ILI9488_Touch.h](Arduino/libraries/Setup454_RP2040_ILI9488_Touch.h) Setup for TFT_eSPI
+- [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h )
+- [Arduino\RP2040_WS2812.ino](Arduino/RP2040_WS2812/RP2040_WS2812.ino) 
+
+
+Benchmark IPS color displays and ili9488 :
+
+- [Arduino\RP2040_TFT_graphicstest_170x320.ino](Arduino/RP2040_TFT_graphicstest_170x320/RP2040_TFT_graphicstest_170x320.ino)
+- [Arduino\RP2040_TFT_graphicstest_240x280.ino](Arduino/RP2040_TFT_graphicstest_240x280/RP2040_TFT_graphicstest_240x280.ino)
+- [Arduino\RP2040_TFT_graphicstest_240x320.ino](Arduino/RP2040_TFT_graphicstest_240x320/RP2040_TFT_graphicstest_240x320.ino)
+- [Arduino\RP2040_TFT_graphicstest_PDQ.ino](Arduino/RP2040_TFT_graphicstest_PDQ/RP2040_TFT_graphicstest_PDQ.ino) for display 240x320
+- [Arduino\RP2040_TFT_graphicstest_PDQ_ili9488.ino](Arduino/RP2040_TFT_graphicstest_PDQ_ili9488/RP2040_TFT_graphicstest_PDQ_ili9488.ino)
+
+Benchmark monochrome displays :
+
+- [Arduino\RP2040_u8g2_Displays_Graphics_Test.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test/RP2040_u8g2_Displays_Graphics_Test.ino)
+- [Arduino\RP2040_u8g2_Displays_Graphics_Test_BL.ino](Arduino/RP2040_u8g2_Displays_Graphics_Test_BL/RP2040_u8g2_Displays_Graphics_Test_BL.ino)
+
+Original TFT_eSPI examples :
+- boing_ball.ino
+- Bouncy_Circles.ino
+- SpriteRotatingCube.ino

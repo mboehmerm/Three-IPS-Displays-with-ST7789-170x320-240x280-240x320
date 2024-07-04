@@ -15,7 +15,7 @@
 
 // This invokes the PIO based SPI interface for the RP2040 processor.
 
-#define RP2040_PIO_SPI  // Black screen if you forget this line
+#define RP2040_PIO_SPI  // Faster with all frequencies except 125MHz, but no touch functions.
 
 // Pins RP2040
 #define TFT_BL     -1   // LED back-light  // 26
@@ -24,8 +24,8 @@
 #define TFT_SCLK   18
 #define TFT_CS     17 
 #define TFT_DC     22
-//#define TFT_RST    -1 // Set TFT_RST to -1 if display RESET is connected to RP2040 board RUN
-#define TFT_RST    27   // For overclocking, RESET was connected to pin 27  
+#define TFT_RST    -1   // Set TFT_RST to -1 if display RESET is connected to RP2040 board RUN
+//#define TFT_RST    27 // For overclocking, RESET was connected to pin 27. Or capacitor 2,2nF between RUN and GND. 
 
 //#define TOUCH_CS   6    // Chip select pin (T_CS) of touch screen. Not supported for RP2040 ?!
 
@@ -50,7 +50,7 @@
 // #define SPI_FREQUENCY  32000000  // 125/4 =  31.25MHz
 // #define SPI_FREQUENCY  42000000  // 125/3 =  41.67MHz
 // #define SPI_FREQUENCY  75000000  // 125/2 =  62.50MHz
-   #define SPI_FREQUENCY  85000000  // 200/2 = 125.00MHz  Overclocking
+   #define SPI_FREQUENCY 100000000  // 200/2 = 100.00MHz  Overclocking
 // #define SPI_FREQUENCY 125000000  // 250/2 = 125.00MHz  Overclocking
 
  
