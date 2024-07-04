@@ -8,7 +8,7 @@ Seven plus one cheap Aliexpress displays, tested with a YD RP2040, Arduino IDE 2
 
 All three IPS displays worked stable at 125MHz (SPI 62.5MHz). **Overclocking** runs at 150MHz (SPI 75MHz) on all three displays.
 
-200MHz (SPI 100MHz) and 250 MHz (SPI 125MHz) worked only with the display 240x280 and i had to connect the RESET pin of the display to pin 27 (for example), not to pin RUN. Later i reversed this and soldered a **2,2nF capacitor** between RUN and GND. Multiple test are done with an ili9488 display (see below). 
+200MHz (SPI 100MHz) and 250 MHz (SPI 125MHz) worked only with the display 240x280 and i had to connect the RESET pin of the display to pin 27 (for example), not to pin RUN. Later i reversed this and soldered a **2,2nF capacitor** between RUN and GND. Multiple overclocking tests are done with an ili9488 display (see below). 
 
 ![3_benchmarks](pictures/3_benchmarks.png)
 TFT_eSPI graphicstest
@@ -30,7 +30,7 @@ Go to Tools->Boards->Board Manager in the IDE. Choose "Raspberry Pi Pico/RP2040"
 
 If the drive "RPI-RP2" doesn't show up, when you connect the RP2040, then press and hold down the BOOT button. Then press RESET. The RPI-RP2 drive should appear. This also works if the RP2040 board is **"bricked"**, i.e. if neither the com port nor the RPI-RP2 drive shows up, which happens more often when overclocking the RP2040 (see below).
 
-Copy the file [SOS.ino.uf2](documents/SOS.ino.uf2) to the RPI-RP2 drive. After uploading the drive disappears and a new com port shows up. The LED on the RP2040 board is flashing SOS. This file is compiled for the board "VCC-GND YD-RP2040", so you do not need to change the COM port later.
+Copy the file [SOS.ino.uf2](documents/SOS.ino.uf2) to the RPI-RP2 drive. After uploading the drive disappears and a new com port shows up. The LED on the RP2040 board is now flashing SOS. 
 
 This file is compiled for the "VCC-GND YD-RP2040" board, so you don't need to change the COM port later, like when using [PicoBlink.ino.uf2](documents/PicoBlink.ino.uf2) or [ flash_nuke. ino.uf2](documents/flash_nuke.ino.uf2), which you can download from the Internet.
 
