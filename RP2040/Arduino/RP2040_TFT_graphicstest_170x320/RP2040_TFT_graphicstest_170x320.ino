@@ -30,7 +30,7 @@ unsigned long total = 0;
 unsigned long tn = 0;
 void setup() {
   Serial.begin(115200);
-  //while (!Serial);
+  while (!Serial);
   Serial.println(""); Serial.println("");
   Serial.println("Bodmer's TFT_eSPI library Test!"); 
  
@@ -861,28 +861,48 @@ uint32_t testFilledRoundRects()
 }
 /*
 
-RP2040 CPU 200MHz SPI 100MHz ( 125MHz in Setup) Unstable and Distortions
+RP2040 175MHz, SPI  87,50MHz RP2040 "bricked"
+RP2040 200MHz, SPI 100,00MHz Distortions and errors
+RP2040 275MHz, SPI  91,67MHz RP2040 "bricked"
 
+
+RP2040 250MHz, SPI 83,33MHz
 Benchmark                Time (microseconds)
-HaD pushColor            57763
-Screen fill              9265
-Text                     6422
-Pixels                   68512
-Lines                    69162
-Horiz/Vert Lines         3936
-Rectangles (outline)     1856
-Rectangles (filled)      48949
-Circles (filled)         10911
-Circles (outline)        6999
-Triangles (outline)      3627
-Triangles (filled)       16999
-Rounded rects (outline)  3697
-Rounded rects (filled)   49326
+HaD pushColor            90871
+Screen fill              14803
+Text                     7905
+Pixels                   103880
+Lines                    88737
+Horiz/Vert Lines         6178
+Rectangles (outline)     2782
+Rectangles (filled)      78263
+Circles (filled)         16581
+Circles (outline)        9253
+Triangles (outline)      4222
+Triangles (filled)       26723
+Rounded rects (outline)  4834
+Rounded rects (filled)   78802
 Done!
 
-RP2040 CPU 175MHz SPI 87.5MHz ( 125MHz in Setup) "Bricks" the RP2040
+RP2040 240MHz, SPI 80,00MHz
+Benchmark                Time (microseconds)
+HaD pushColor            94613
+Screen fill              15420
+Text                     8270
+Pixels                   108282
+Lines                    92437
+Horiz/Vert Lines         6429
+Rectangles (outline)     2894
+Rectangles (filled)      81524
+Circles (filled)         17270
+Circles (outline)        9645
+Triangles (outline)      4396
+Triangles (filled)       27859
+Rounded rects (outline)  5028
+Rounded rects (filled)   82079
+Done!
 
-RP2040 CPU 150MHz SPI 75MHz ( 125MHz in Setup)
+RP2040 150MHz SPI 75MHz
 Benchmark                Time (microseconds)
 HaD pushColor            76919
 Screen fill              12349
@@ -900,7 +920,26 @@ Rounded rects (outline)  4724
 Rounded rects (filled)   65802
 Done!
 
-RP2040 CPU 125MHz SPI 62.5MHz
+RP2040 133MHz SPI 66.67MHz
+Bodmer's TFT_eSPI library Test!
+Benchmark                Time (microseconds)
+HaD pushColor            86882
+Screen fill              13918
+Text                     9913
+Pixels                   103337
+Lines                    104303
+Horiz/Vert Lines         5896
+Rectangles (outline)     2728
+Rectangles (filled)      73593
+Circles (filled)         16425
+Circles (outline)        10520
+Triangles (outline)      5517
+Triangles (filled)       25882
+Rounded rects (outline)  5570
+Rounded rects (filled)   74398
+Done!
+
+RP2040 125MHz SPI 62.50MHz
 Benchmark                Time (microseconds)
 HaD pushColor            92232
 Screen fill              14818
@@ -918,23 +957,6 @@ Rounded rects (outline)  6092
 Rounded rects (filled)   78908
 Done!
 
-RP2040 CPU 125MHz SPI 25MHz
-Benchmark                Time (microseconds)
-HaD pushColor            271209
-Screen fill              44409
-Text                     21831
-Pixels                   309997
-Lines                    254755
-Horiz/Vert Lines         18399
-Rectangles (outline)     8211
-Rectangles (filled)      234720
-Circles (filled)         49082
-Circles (outline)        26369
-Triangles (outline)      11173
-Triangles (filled)       79429
-Rounded rects (outline)  14095
-Rounded rects (filled)   235865
-Done!
 
 ESP32 S3 SPI 40/80MHz
 Benchmark                Time (microseconds)
