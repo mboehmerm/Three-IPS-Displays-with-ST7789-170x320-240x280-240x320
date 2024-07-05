@@ -1,4 +1,4 @@
-# Seven displays and YD RP2040.
+# Eigth displays and YD RP2040.
 
 Eight cheap Aliexpress displays, tested with a YD RP2040, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43 or u8g2 2.34.22
 
@@ -6,9 +6,10 @@ Eight cheap Aliexpress displays, tested with a YD RP2040, Arduino IDE 2.3.2 and 
 
 **Arduino IDE Board :** "VCC-GND YD RP2040"
 
-All three IPS displays worked stable at 125MHz (SPI 62.5MHz). **Overclocking** runs at 150MHz (SPI 75MHz) on all three displays.
+All three IPS displays worked stable at 125MHz (SPI 62.5MHz). **Overclocking** worked at 150MHz (SPI 75MHz) and 240MHz (SPI 80MHz) on all three displays. 
 
-200MHz (SPI 100MHz) and 250 MHz (SPI 125MHz) worked only with the display 240x280 and i had to connect the RESET pin of the display to pin 27 (for example), not to pin RUN. Later i reversed this and soldered a **2,2nF capacitor** between RUN and GND. Multiple overclocking tests are done with an ili9488 display (see below). 
+
+200 MHz (SPI 100 MHz) and 250 MHz (SPI 125 MHz) only worked with the middle display (240 x 280, ST7789v3) and I had to connect the display's RESET pin to  pin 27, not with the pin RUN. Later I changed this back and soldered a **2.2nF capacitor** between RUN and  instead. Several overclocking tests are performed using an ili9488 display (more information below).
 
 ![3_benchmarks](pictures/3_benchmarks.png)
 TFT_eSPI graphicstest
@@ -16,6 +17,8 @@ TFT_eSPI graphicstest
 - [Arduino\RP2040_TFT_graphicstest_170x320.ino](Arduino/RP2040_TFT_graphicstest_170x320/RP2040_TFT_graphicstest_170x320.ino)
 - [Arduino\RP2040_TFT_graphicstest_240x280.ino](Arduino/RP2040_TFT_graphicstest_240x280/RP2040_TFT_graphicstest_240x280.ino)
 - [Arduino\RP2040_TFT_graphicstest_240x320.ino](Arduino/RP2040_TFT_graphicstest_240x320/RP2040_TFT_graphicstest_240x320.ino)
+
+The programs contains information, which display works with which frequency.
 
 ## Install Earle Philhower's RP2040 board package 
 
@@ -208,14 +211,17 @@ The line "#define RP2040_PIO_SPI" allows **overclocking** with the Earle Philhow
 ```
 # Overclocking test with an ili9488 display
 
-This ili9488 display works stable with an ESP32 S3 at 40MHz, but has problems at 80MHz.
+This ili9488 display works stable with an ESP32 S3 at 40MHz, but has issues at 80MHz.
 
 The aim of this test was to find out up to which frequency the ili9488 display works stable. Overclocking and PIO SPI with Earle Philhower's RP2040 board package and TFT_eSPI allows testing multiple SPI frequencies.
 
-Because of the problems with the RUN pin, I finally soldered a small **capacitor (2.2nF)** between RUN and GND (see picture). This solved many overclocking problems and allowed the RUN pin of the RP2040 to be connected to the RESET pin of the display.
+The RUN pin is very "sensible". Measuring this pin with a multimeter will reset the RP2040. 
 
-The RUN pin is very "sensible". Measuring this pin with a multimeter will reset the RP2040. A capacitor 2,2nF or higher solves this problem. 
+Because of the problems with the RUN pin, I finally soldered a small **capacitor (2.2nF)** between RUN and GND (see picture). This solved many overclocking problems and allowes the RUN pin of the RP2040 to be connected to the RESET pin of the display.
 
+However, it can also be helpful to also connect the display's RST pin to pin 27 instead of RUN.
+
+Overclocking table :
 
 |CPU                     |  RP2040 | RP2040 |   RP2040 | RP2040 | RP2040 | RP2040 |   RP2040 |  RP2040 | ESP32 S3| ESP32 S3|     | 
 | :--------------------- | ------: | -----: | -------: | -----: | -----: | -----: | -------: |-------: |-------: |-------: | :-: | 
@@ -239,13 +245,13 @@ The RUN pin is very "sensible". Measuring this pin with a multimeter will reset 
 |Rounded rects (filled)  | 1493357 | 748021 |**702346**| 932549 | 828886 | 777132 |  746038  |  373279 | 1290781 |  727830 |  µs |
 |Picture ok?             |      ok |     ok |       ok |     ok |     ok |     ok |       ok |**errors**|     ok |**errors**|  µs |
 
-Distortions :
-- RP2040 CPU 150MHz SPI  75,00MHz many distortions
-- RP2040 CPU 200MHz SPI 100,00MHz many distortions
-- RP2040 CPU 225MHz SPI 112,50MHz some distortions
-- RP2040 CPU 240MHz SPI 120,00MHz some distortions
-- RP2040 CPU 250MHz SPI 125,00MHz some distortions
-- ESP32 S3 240MHz and SPI 80,00MHz many distortions
+Distortions or errors :
+- RP2040 150MHz, SPI  75,00MHz many errors
+- RP2040 200MHz, SPI 100,00MHz many errors
+- RP2040 225MHz, SPI 112,50MHz some errors
+- RP2040 240MHz, SPI 120,00MHz some errors
+- RP2040 250MHz, SPI 125,00MHz some errors
+- ESP32-S3 240MHz, SPI 80,00MHz many errors
 
 RP2040 "bricked" :
 - RP2040 CPU 175MHz SPI  87,50MHz RP2040 "bricked"
