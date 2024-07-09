@@ -22,11 +22,11 @@ Add this line to the TFT_eSPI configuration file :
 
 There are two options tested :
 1. Downgrade the ESP32 board package to version 2.0.14 . This is the latest version with no changes required.
-2. For ESP32 board package version 3.0.2, two files need to be modified: **TFT_eSPI_ESP32_C3.h** and the ESP32 package file **soc.h** for ESP32-C3.
+2. For ESP32 board package version 3.0.2, two files need to be modified: [TFT_eSPI_ESP32_C3.h](Arduino/libraries/TFT_eSPI/Processors/TFT_eSPI_ESP32_C3.h) and the ESP32 package file [soc.h](AppData/Local/Arduino15/packages/esp32/esp32-arduino-libs/idf-release_v5.1-bd2b9390ef/esp32c3/include/soc/esp32c3/include/soc/soc.h) for ESP32-C3.
 
 Downgrading is easy, so let's look at the second option :
 
-Edit the file
+Edit the file [TFT_eSPI_ESP32_C3.h](Arduino/libraries/TFT_eSPI/Processors/TFT_eSPI_ESP32_C3.h)
 > C:\Users\<username>\Documents\Arduino\libraries\TFT_eSPI\Processors\TFT_eSPI_ESP32_C3.h
 
 and replace line 71
@@ -43,7 +43,7 @@ with
 #endif
 ```
 
-The second file is
+Edit the second file [soc.h](AppData/Local/Arduino15/packages/esp32/esp32-arduino-libs/idf-release_v5.1-bd2b9390ef/esp32c3/include/soc/esp32c3/include/soc/soc.h)
 >  C:\Users\<username>\AppData\Local\Arduino15\packages\esp32\tools\esp32-arduino-libs\idf-release_v5.1-bd2b9390ef\esp32c3\include\soc\esp32c3\include\soc\soc.h
 
 Replace
@@ -86,6 +86,8 @@ Edit: The changes done for the other SOCs are imho wrong too. Only ESP32 looks c
 |           | VCC   | 3.3V                 |
 |           | GND   | GND                  |
 
+![pictures/Pinout_ESP32-C3.png](pictures/Pinout_ESP32-C3.png)
+Pinout Tasmota Core ESP32-C3
 
 ## Configuring the TFT_eSPI
 
@@ -103,13 +105,13 @@ Edit or copy the setup file [Setup421_C3_ST7789_170x320.h](Arduino/libraries/Set
 //#define TFT_RGB_ORDER TFT_BGR  // only for display 240x320 
 //#define TFT_INVERSION_ON       // only for display 240x320
 
-// Pins ESP32 S3
-#define TFT_CS    10    // 10 or 34 (FSPI CS0) 
-#define TFT_MOSI  11    // 11 or 35 (FSPI D) 
-#define TFT_SCLK  12    // 12 or 36 (FSPI CLK)
-#define TFT_MISO  13    // 13 or 37 (FSPI Q)
-#define TFT_DC     7    // Data Command control pin
-#define TFT_RST   -1    // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
+// Pins ESP32 C3
+#define TFT_CS    10
+#define TFT_MOSI  11
+#define TFT_SCLK  12
+#define TFT_MISO  13
+#define TFT_DC     7
+#define TFT_RST   -1  // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
 
 // Fonts
 #define LOAD_GLCD
@@ -124,7 +126,7 @@ Edit or copy the setup file [Setup421_C3_ST7789_170x320.h](Arduino/libraries/Set
 #define SMOOTH_FONT
 
 // FSPI / VSPI port (SPI2) used unless following defined. HSPI port is (SPI3) on S3.
-//#define USE_HSPI_PORT   // For ESP32 S3 esp32 board package > 2.0.14
+//#define USE_HSPI_PORT   // For ESP32 S3 and esp32 board package > 2.0.14
 
 // Other options
 //#define SPI_FREQUENCY  27000000  // 80/3 MHz
@@ -133,3 +135,11 @@ Edit or copy the setup file [Setup421_C3_ST7789_170x320.h](Arduino/libraries/Set
 ```
 
 Edit or copy the file [User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h)
+
+## Test programs
+
+All files can be found above in the folder Arduino.
+
+- [Arduino/ESP32_C3_TFT_graphicstest_170x320.ino](Arduino/ESP32_C3_TFT_graphicstest_170x320/ESP32_C3_TFT_graphicstest_170x320.ino) 
+- [Arduino/ESP32_C3_TFT_graphicstest_240x280.ino](Arduino/ESP32_C3_TFT_graphicstest_240x280/ESP32_C3_TFT_graphicstest_240x280.ino)
+- [Arduino/ESP32_C3_TFT_graphicstest_240x320.ino](Arduino/ESP32_C3_TFT_graphicstest_240x320/ESP32_C3_TFT_graphicstest_240x320.ino)

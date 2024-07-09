@@ -27,19 +27,19 @@ Back
 
 ![graphicstest](pictures/graphicstest.png)
 
-- [Arduino\TFT_graphicstest_170x320.ino](Arduino/TFT_graphicstest_170x320/TFT_graphicstest_170x320.ino) ( modified )
-- [Arduino\TFT_graphicstest_240x280.ino](Arduino/TFT_graphicstest_240x280/TFT_graphicstest_240x280.ino) ( modified )
-- [Arduino\TFT_graphicstest_240x320.ino](Arduino/TFT_graphicstest_240x320/TFT_graphicstest_240x320.ino) ( modified )
+- [Arduino/TFT_graphicstest_170x320.ino](Arduino/TFT_graphicstest_170x320/TFT_graphicstest_170x320.ino) ( modified )
+- [Arduino/TFT_graphicstest_240x280.ino](Arduino/TFT_graphicstest_240x280/TFT_graphicstest_240x280.ino) ( modified )
+- [Arduino/TFT_graphicstest_240x320.ino](Arduino/TFT_graphicstest_240x320/TFT_graphicstest_240x320.ino) ( modified )
 
 ![Bouncy_Circles](pictures/dma_tests.jpg)
 
-[Arduino\Bouncy_Circles.ino](Arduino/Bouncy_Circles/Bouncy_Circles.ino) and [Arduino\SpriteRotatingCube.ino](Arduino/SpriteRotatingCube/SpriteRotatingCube.ino) and [Arduino\boing_ball.ino](Arduino/boing_ball/boing_ball.ino) ( not modified )
+[Arduino/Bouncy_Circles.ino](Arduino/Bouncy_Circles/Bouncy_Circles.ino) and [Arduino/SpriteRotatingCube.ino](Arduino/SpriteRotatingCube/SpriteRotatingCube.ino) and [Arduino/boing_ball.ino](Arduino/boing_ball/boing_ball.ino) ( not modified )
 
 ![show_pictures](pictures/show_pictures.jpg)
 
-- [Arduino\show_pictures_170x320.ino](Arduino/show_pictures_170x320/show_pictures_170x320.ino)  
-- [Arduino\show_pictures_240x280.ino](Arduino/show_pictures_240x280/show_pictures_240x280.ino)  
-- [Arduino\show_pictures_240x320.ino](Arduino/show_pictures_240x320/show_pictures_240x320.ino)  
+- [Arduino/show_pictures_170x320.ino](Arduino/show_pictures_170x320/show_pictures_170x320.ino)  
+- [Arduino/show_pictures_240x280.ino](Arduino/show_pictures_240x280/show_pictures_240x280.ino)  
+- [Arduino/show_pictures_240x320.ino](Arduino/show_pictures_240x320/show_pictures_240x320.ino)  
 
 
 ## Connections for Wemos Lolin32 lite 
@@ -57,7 +57,7 @@ Back
 
 ## Configure the library TFT_eSPI
 
-Edit the file [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h )
+Edit the file [Arduino/libraries/TFT_eSPI/User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h )
 
 ```java
 // Only **ONE** line below should be uncommented to define your setup.
@@ -117,20 +117,20 @@ Create the new files :
 All files can be found above in the folder Arduino.
 
 Setup :
-- [Arduino\libraries\Setup407_ST7789_320x170.h](Arduino/libraries/Setup407_ST7789_320x170.h)
-- [Arduino\libraries\Setup408_ST7789_280x240.h](Arduino/libraries/Setup408_ST7789_280x240.h) 
-- [Arduino\libraries\Setup409_ST7789_320x240.h](Arduino/libraries/Setup409_ST7789_320x240.h) 
-- [Arduino\libraries\TFT_eSPI\User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h )
+- [Arduino/libraries/Setup407_ST7789_320x170.h](Arduino/libraries/Setup407_ST7789_320x170.h)
+- [Arduino/libraries/Setup408_ST7789_280x240.h](Arduino/libraries/Setup408_ST7789_280x240.h) 
+- [Arduino/libraries/Setup409_ST7789_320x240.h](Arduino/libraries/Setup409_ST7789_320x240.h) 
+- [Arduino/libraries/TFT_eSPI/User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h )
 
 Benchmark :
-- [Arduino\TFT_graphicstest_170x320.ino](Arduino/TFT_graphicstest_170x320/TFT_graphicstest_170x320.ino) ( modified )
-- [Arduino\TFT_graphicstest_240x280.ino](Arduino/TFT_graphicstest_240x280/TFT_graphicstest_240x280.ino) ( modified )
-- [Arduino\TFT_graphicstest_240x320.ino](Arduino/TFT_graphicstest_240x320/TFT_graphicstest_240x320.ino) ( modified )
+- [Arduino/TFT_graphicstest_170x320.ino](Arduino/TFT_graphicstest_170x320/TFT_graphicstest_170x320.ino) ( modified )
+- [Arduino/TFT_graphicstest_240x280.ino](Arduino/TFT_graphicstest_240x280/TFT_graphicstest_240x280.ino) ( modified )
+- [Arduino/TFT_graphicstest_240x320.ino](Arduino/TFT_graphicstest_240x320/TFT_graphicstest_240x320.ino) ( modified )
 
 Show Pictures :
-- [Arduino\show_pictures_170x320.ino](Arduino/show_pictures_170x320/show_pictures_170x320.ino)  
-- [Arduino\show_pictures_240x280.ino](Arduino/show_pictures_240x280/show_pictures_240x280.ino)  
-- [Arduino\show_pictures_240x320.ino](Arduino/show_pictures_240x320/show_pictures_240x320.ino)  
+- [Arduino/show_pictures_170x320.ino](Arduino/show_pictures_170x320/show_pictures_170x320.ino)  
+- [Arduino/show_pictures_240x280.ino](Arduino/show_pictures_240x280/show_pictures_240x280.ino)  
+- [Arduino/show_pictures_240x320.ino](Arduino/show_pictures_240x320/show_pictures_240x320.ino)  
 
 Original TFT_eSPI Examples :
 - boing_ball.ino
