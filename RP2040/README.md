@@ -277,6 +277,10 @@ RP2040 with capacitor 2,2nF and ili9488. Benchmark : [Arduino\RP2040_TFT_graphic
 ![ili9488_back](pictures/ili9488_back.png)
 ili9488 back view
 
+Same test is done using a ESP32-S3. For versions greater than 2.0.14 of the esp32 board package add the following line to the TFT_eSPI configuration file. 
+
+> #define USE_HSPI_PORT
+
 ## Test programs
 
 All files can be found above in the folder [Arduino](Arduino).
