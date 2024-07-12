@@ -12,16 +12,22 @@ All three IPS displays worked stable at 80MHz.
 ![LuatOS-CORE-ESP32-C3.png](pictures/LuatOS-CORE-ESP32-C3.png)
 Tasmota Core ESP32-C3
 
-## ESP32-S3, TFT_eSPI 2.5.43 and esp32 board package 3.0.3
+## ESP32-S2, ESP32-S3, TFT_eSPI 2.5.43 and esp32 board package 3.0.3
 
-Add this line to the TFT_eSPI configuration file :
+Add or edit this line in the TFT_eSPI configuration file :
 
-> #define USE_HSPI_PORT
+> #define USE_HSPI_PORT // HSPI, Pins 10-13
+
+or comment this line for FSPI
+
+> //#define USE_HSPI_PORT // FSPI, Pins 34-37
+
+FSPI works only with ESP32-S2 .
 
 ## ESP32-C3, TFT_eSPI 2.5.43 and esp32 board package 3.0.3 (2.0.14)
 
 There are two options tested :
-1. Downgrade the ESP32 board package to version 2.0.14 . This is the latest version with no changes required.
+1. Downgrade the esp32 board package to version 2.0.14 . This is the latest version with no changes required.
 2. For ESP32 board package version 3.0.2, two files need to be modified: [TFT_eSPI_ESP32_C3.h](Arduino/libraries/TFT_eSPI/Processors/TFT_eSPI_ESP32_C3.h) and the ESP32 package file [soc.h](AppData/Local/Arduino15/packages/esp32/esp32-arduino-libs/idf-release_v5.1-bd2b9390ef/esp32c3/include/soc/esp32c3/include/soc/soc.h) for ESP32-C3.
 
 Downgrading is easy, so let's look at the second option :
