@@ -1,5 +1,4 @@
-# !!!! UNDER CONSTRUCTION !!!!
-# ESP32-C3 and esp32 board 3.0.2 package and ST7789 SPI displays
+# ESP32-C3 (S2, S3) and esp32 board 3.0.2 package and ST7789 SPI displays
 
 Cheap Aliexpress displays, tested with a Tasmota Core ESP32-C3, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43
 
@@ -12,17 +11,19 @@ All three IPS displays worked stable at 80MHz.
 ![LuatOS-CORE-ESP32-C3.png](pictures/LuatOS-CORE-ESP32-C3.png)
 Tasmota Core ESP32-C3
 
-## ESP32-S2, ESP32-S3, TFT_eSPI 2.5.43 and esp32 board package 3.0.3
+## [ESP32-S2](ESP32_S2) or [ESP32-S3](ESP32_S3), TFT_eSPI 2.5.43 and esp32 board package 3.0.3
 
-Add or edit this line in the TFT_eSPI configuration file :
+Add this line to the TFT_eSPI configuration file :
 
 > #define USE_HSPI_PORT // HSPI, Pins 10-13
 
-or comment this line for FSPI
+or comment this line for FSPI on ESP32-S2
 
 > //#define USE_HSPI_PORT // FSPI, Pins 34-37
 
-FSPI works only with ESP32-S2 .
+For the ESP32-S3 use this line
+
+> #define USE_FSPI_PORT // FSPI, Pins 34?-37
 
 ## ESP32-C3, TFT_eSPI 2.5.43 and esp32 board package 3.0.3 (2.0.14)
 

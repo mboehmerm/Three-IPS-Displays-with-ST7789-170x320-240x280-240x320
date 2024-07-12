@@ -39,16 +39,27 @@
 //#include <../Setup408_ST7789_280x240.h>         // ESP32 Lolin lite, 80MHz 
 //#include <../Setup409_ST7789_320x240.h>         // ESP32 Lolin lite, 80MHz 
 
+//#include <../Setup410_ST7789_320x170_C3.h>      // now Setup422, Setup file ST7789 ESP32 C3
+
 //#include <../Setup411_S3_ST7735_Touch.h>        // ESP32-S3, ST7735
 //#include <../Setup412_S3_ILI9341_Touch.h>       // ESP32-S3, ili9341
 
 //#include <../Setup413_S3_ILI9488_Touch.h>       // ESP32-S3, ili9488, 40MHz
 //#include <../Setup414_S3_ILI9488_Touch.h>       // ESP32-S3, ili9488, 80MHz
 
-//#include <../Setup421_C3_ST7789_170x320.h>      // ESP32-C3, ST7789, 80MHz
-//#include <../Setup422_C3_ST7789_240x280.h>      // ESP32-C3, ST7789, 80MHz
-#include <../Setup423_C3_ST7789_240x320.h>      // ESP32-C3, ST7789, 80MHz
+//#include <../Setup415_S3_ST7789_170x320.h>      // ESP32-S3, ST7789, 80MHz
+//#include <../Setup416_S3_ST7789_240x280.h>      // ESP32-S3, ST7789, 80MHz
+//#include <../Setup417_S3_ST7789_240x320.h>      // ESP32-S3, ST7789, 80MHz
 
+#include <../Setup421_C3_ST7789_170x320.h>      // ESP32-C3, ST7789, 80MHz
+//#include <../Setup422_C3_ST7789_240x280.h>      // ESP32-C3, ST7789, 80MHz
+//#include <../Setup423_C3_ST7789_240x320.h>      // ESP32-C3, ST7789, 80MHz
+
+//#include <../Setup441_S2_ST7789_170x320.h>      // ESP32-S2, ST7789, 80MHz, HSPI
+//#include <../Setup442_S2_ST7789_240x280.h>      // ESP32-S2, ST7789, 80MHz, HSPI
+//#include <../Setup443_S2_ST7789_240x320.h>      // ESP32-S2, ST7789, 80MHz, HSPI
+
+//#include <../Setup445_S2_ST7789_240x280.h>      // ESP32-S2, ST7789, 80MHz, FSPI
 
 //#include <../Setup451_RP2040_ST7789_170x320.h>  // RP2040, ST7789
 //#include <../Setup452_RP2040_ST7789_240x280.h>  // RP2040, ST7789
