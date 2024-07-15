@@ -1,4 +1,4 @@
-# ESP32-C3 (S2, S3) and esp32 board 3.0.2 package and ST7789 SPI displays
+# ESP32-C3 (S2, S3) and esp32 board package 3.0.2 and ST7789 SPI displays
 
 Cheap Aliexpress displays, tested with a Tasmota Core ESP32-C3, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43
 
@@ -63,7 +63,10 @@ with
 #define REG_SPI_BASE(i) (((i)==2) ? (DR_REG_SPI2_BASE) : (DR_REG_SPI0_BASE - ((i) * 0x1000)))
 ```
 
-That's all. Now the ST7789 display worked with my Tasmota ESP32-C3.
+That's all. Now the ST7789 display works with my Tasmota ESP32-C3.
+
+![LuatOS-CORE-ESP32-C3.png](pictures/C3.png)
+
 
 Solution for ESP32 C3 found here :
 - TFT_eSPI_ESP32_C3.h : https://github.com/Bodmer/TFT_eSPI/issues/3384#issuecomment-2200970244
