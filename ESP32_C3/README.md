@@ -53,22 +53,25 @@ with
 Edit the second file [soc.h](AppData/Local/Arduino15/packages/esp32/esp32-arduino-libs/idf-release_v5.1-bd2b9390ef/esp32c3/include/soc/esp32c3/include/soc/soc.h)
 >  C:\Users\<username>\AppData\Local\Arduino15\packages\esp32\tools\esp32-arduino-libs\idf-release_v5.1-bd2b9390ef\esp32c3\include\soc\esp32c3\include\soc\soc.h
 
-Replace
+Change
 ```
 #define REG_SPI_BASE(i) (((i)==2) ? (DR_REG_SPI2_BASE) : (0))   // only one GPSPI 
 ```
 
-with
+(back) to
+
 ```
 #define REG_SPI_BASE(i) (((i)==2) ? (DR_REG_SPI2_BASE) : (DR_REG_SPI0_BASE - ((i) * 0x1000)))
 ```
+
+as it was before in version 2.0.14 and exists similar in the soc.h of S2, S3, H2, C3 and C6 but not ESP32.
 
 That's all. Now the ST7789 display works with my Tasmota ESP32-C3.
 
 ![LuatOS-CORE-ESP32-C3.png](pictures/C3.png)
 
 
-Solution for ESP32 C3 found here :
+Solution for ESP32-C3 found here :
 - TFT_eSPI_ESP32_C3.h : https://github.com/Bodmer/TFT_eSPI/issues/3384#issuecomment-2200970244
 - soc.h for ESP32-C3 : https://github.com/espressif/arduino-esp32/issues/9618#issuecomment-2107459271
 
