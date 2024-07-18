@@ -26,14 +26,6 @@
 #define TFT_BL     -1     //  3 // LED back-light
 #define TFT_RST    -1     // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
 
-// ESP32-S2
-//#define TFT_CS     10   // 34  
-//#define TFT_MOSI   11   // 35 
-//#define TFT_SCLK   12   // 36
-//#define TFT_MISO   13   // 37 // Not connected
-//#define TFT_DC      7
-//#define TFT_BL     -1   //  5 // LED back-light
-//#define TFT_RST    -1   // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
 
 #define LOAD_GLCD   // Font 1. Original Adafruit 8 pixel font needs ~1820 bytes in FLASH
 #define LOAD_FONT2  // Font 2. Small 16 pixel high font, needs ~3534 bytes in FLASH, 96 characters

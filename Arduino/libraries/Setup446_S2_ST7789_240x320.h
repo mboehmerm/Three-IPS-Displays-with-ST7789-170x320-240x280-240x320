@@ -1,5 +1,5 @@
 // ST7789 170 x 320 display, Lolin S2 Mini
-#define USER_SETUP_ID 441
+#define USER_SETUP_ID 446
 
 #define ST7789_DRIVER     // Configure all registers
 //#define TFT_SDA_READ   // Display has a bidirectional SDA pin
@@ -17,11 +17,11 @@
 #define TFT_BACKLIGHT_ON 1
 
 
-// Lolin S2 Mini  HSPI    FSPI
-#define TFT_CS     12     // 34  
-#define TFT_MOSI   11     // 35 
-#define TFT_SCLK    7     // 36
-#define TFT_MISO    9     // 37 // Not connected
+// Lolin S2 Mini  FSPI  HSPI      FSPI 
+#define TFT_CS     34 // 12     // 34  
+#define TFT_MOSI   35 // 11     // 35 
+#define TFT_SCLK   36 //  7     // 36
+#define TFT_MISO   37 //  9     // 37 // Not connected
 #define TFT_DC      5
 #define TFT_BL     -1     //  3 // LED back-light
 #define TFT_RST    -1     // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
