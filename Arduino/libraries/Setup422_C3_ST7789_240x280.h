@@ -35,27 +35,6 @@
 
 #define SMOOTH_FONT 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Solution for Tasmota Luatos Core ESP32 C3 
-// Found :  https://github.com/espressif/arduino-esp32/issues/9618
-// 
-// 1. Edit C:\Users\username\Documents\Arduino\libraries\TFT_eSPI\Processors\TFT_eSPI_ESP32_C3.h and change
-//   #define SPI_PORT SPI2_HOST 
-// to
-//   #if ESP_ARDUINO_VERSION_MAJOR < 3
-//     #define SPI_PORT SPI2_HOST
-//   #else
-//     #define SPI_PORT 2
-//   #endif
-//
-// 2. Edit C:\Users\<username>\AppData\Local\Arduino15\packages\esp32\tools\esp32-arduino-libs\idf-release_v5.1-bd2b9390ef\esp32c3\include\soc\esp32c3\include\soc\soc.h
-// 
-// Replace
-//   #define REG_SPI_BASE(i) (((i)==2) ? (DR_REG_SPI2_BASE) : (0))   // only one GPSPI
-// with
-//   #define REG_SPI_BASE(i) (((i)==2) ? (DR_REG_SPI2_BASE) : (DR_REG_SPI0_BASE - ((i) * 0x1000)))
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 // Still necessary for ESP32 S3 
 // FSPI / VSPI port (SPI2) used unless following defined. HSPI port is (SPI3) on S3.
 //#define USE_HSPI_PORT
