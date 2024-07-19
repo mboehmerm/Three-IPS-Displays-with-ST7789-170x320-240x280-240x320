@@ -1,4 +1,4 @@
-# ESP32-C3 (S2, S3) and esp32 board package 3.0.2 and ST7789 SPI displays
+# ESP32-C3 ( S2, S3, C6, H2? ) and esp32 board package 3.0.3 and ST7789 SPI displays
 
 Cheap Aliexpress displays, tested with a Tasmota Core ESP32-C3 (or an ESP32-C3 Super Mini), Arduino IDE 2.3.2 and TFT_eSPI 2.5.43
 
