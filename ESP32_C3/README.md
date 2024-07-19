@@ -102,7 +102,7 @@ with
     #undef REG_SPI_BASE
   #endif
 
-  #define REG_SPI_BASE(i) (((i)==2) ? (DR_REG_SPI2_BASE) : (DR_REG_SPI0_BASE - ((i) * 0x1000))) // GPSPI2 and GPSPI3 
+  #define REG_SPI_BASE(i) (((i)==2) ? (DR_REG_SPI2_BASE) : (DR_REG_SPI0_BASE - ((i) * 0x1000)))  
 ```
 
 That's all. Now the ST7789 display works with my Tasmota ESP32-C3.
