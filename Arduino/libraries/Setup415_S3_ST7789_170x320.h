@@ -1,4 +1,4 @@
-// ST7789 170 x 320 display, ESP32-S3
+
 #define USER_SETUP_ID 415
 
 #define ST7789_DRIVER     // Configure all registers

@@ -1,5 +1,5 @@
-// ST7789 170 x 320 display with no chip select line
-#define USER_SETUP_ID 410
+
+#define USER_SETUP_ID 421
 
 #define ST7789_DRIVER     // Configure all registers
 //#define TFT_SDA_READ   // Display has a bidirectional SDA pin
