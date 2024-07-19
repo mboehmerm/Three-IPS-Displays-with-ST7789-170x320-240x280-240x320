@@ -13,7 +13,7 @@ With a few further changes it also runs on a ESP32-C6.
 ![LuatOS-CORE-ESP32-C3.png](pictures/LuatOS-CORE-ESP32-C3.png)
 Tasmota Core ESP32-C3
 
-## [ESP32-S2](ESP32_S2) or [ESP32-S3](ESP32_S3), TFT_eSPI 2.5.43 and esp32 board package 3.0.3
+## [ESP32-S2](../ESP32_S2) or [ESP32-S3](../ESP32_S3), TFT_eSPI 2.5.43 and esp32 board package 3.0.3
 
 Add this line to the TFT_eSPI configuration file :
 
@@ -196,3 +196,31 @@ All files can be found above in the folder Arduino.
 - [Arduino/ESP32_C3_TFT_graphicstest_170x320.ino](Arduino/ESP32_C3_TFT_graphicstest_170x320/ESP32_C3_TFT_graphicstest_170x320.ino) 
 - [Arduino/ESP32_C3_TFT_graphicstest_240x280.ino](Arduino/ESP32_C3_TFT_graphicstest_240x280/ESP32_C3_TFT_graphicstest_240x280.ino)
 - [Arduino/ESP32_C3_TFT_graphicstest_240x320.ino](Arduino/ESP32_C3_TFT_graphicstest_240x320/ESP32_C3_TFT_graphicstest_240x320.ino)
+
+## ESP32-C3 Super Mini
+
+All files can be found above in the folder [ESP32_C3_Super_Mini](../ESP32_C3_Super_Mini) .
+
+![ESP32_C3_Super_Mini](../ESP32_C3_Super_Mini/pictures/Super_Mini_Front.png)
+Arduino IDE Board : "Nologo ESP32C3 Super Mini" or "ESP32C3 Dev Module"
+
+![ESP32_C3_Super_Mini](../ESP32_C3_Super_Mini/pictures/Super_Mini.png)
+ESP32C3 Super Mini
+
+## ESP32-C6 (and ESP32-H2)
+
+All files can be found above in the folder [ESP32_C6](../ESP32_C6) .
+
+The ESP32-C6 is an upgraded ESP32-C3, so the code of the library TFT_eSPI works here too (but slower).
+
+Four files were modified to verify this :
+- [TFT_eSPI.h](../ESP32_C6/Arduino/libraries/TFT_eSPI/TFT_eSPI.h)
+- [TFT_eSPI.cpp](../ESP32_C6/Arduino/libraries/TFT_eSPI/TFT_eSPI.cpp)
+- [Processors/TFT_eSPI_ESP32_C3.h](../ESP32_C6/Arduino/libraries/TFT_eSPI/Processors/TFT_eSPI_ESP32_C3.h)
+- [Processors/TFT_eSPI_ESP32_C3.c](../ESP32_C6/Arduino/libraries/TFT_eSPI/Processors/TFT_eSPI_ESP32_C3.c)
+
+![ESP32_C6_Pinout](../ESP32_C6/pictures/nanoESP32-C6-Pinout_2.jpg)
+
+![ESP32_C3_Super_Mini](../ESP32_C6/pictures/ESP32-C6.png)
+Arduino IDE Board : "ESP32C6 Dev Module"
+
