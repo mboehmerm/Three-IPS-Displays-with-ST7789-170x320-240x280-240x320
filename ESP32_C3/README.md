@@ -1,12 +1,14 @@
 # ESP32-C3 (S2, S3) and esp32 board package 3.0.2 and ST7789 SPI displays
 
-Cheap Aliexpress displays, tested with a Tasmota Core ESP32-C3, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43
+Cheap Aliexpress displays, tested with a Tasmota Core ESP32-C3 (or an ESP32-C3 Super Mini), Arduino IDE 2.3.2 and TFT_eSPI 2.5.43
 
-**Board Package :** esp32 3.0.2 ( or esp32 2.0.14 )
+**Board Package :** esp32 3.0.3 ( or esp32 2.0.14 )
 
 **Arduino IDE Board :** ESP32-C3 Dev Module
 
 All three IPS displays worked stable at 80MHz.
+
+With a few further changes it also runs on a ESP32-C6.
 
 ![LuatOS-CORE-ESP32-C3.png](pictures/LuatOS-CORE-ESP32-C3.png)
 Tasmota Core ESP32-C3
@@ -27,11 +29,12 @@ For the ESP32-S3 use this line
 
 ## ESP32-C3, TFT_eSPI 2.5.43 and esp32 board package 3.0.3 (2.0.14)
 
-There are two options tested :
+There are three options tested :
 1. Downgrade the esp32 board package to version 2.0.14 . This is the latest version with no changes required.
-2. For ESP32 board package version 3.0.2, two files need to be modified: [TFT_eSPI_ESP32_C3.h](Arduino/libraries/TFT_eSPI/Processors/TFT_eSPI_ESP32_C3.h) and the ESP32 package file [soc.h](AppData/Local/Arduino15/packages/esp32/esp32-arduino-libs/idf-release_v5.1-bd2b9390ef/esp32c3/include/soc/esp32c3/include/soc/soc.h) for ESP32-C3.
+2. For ESP32 board package version 3.0.3, two files need to be modified: [TFT_eSPI_ESP32_C3.h](Arduino/libraries/TFT_eSPI/Processors/TFT_eSPI_ESP32_C3.h) and the ESP32 package file [soc.h](AppData/Local/Arduino15/packages/esp32/esp32-arduino-libs/idf-release_v5.1-bd2b9390ef/esp32c3/include/soc/esp32c3/include/soc/soc.h) for ESP32-C3.
+3. The third option requires only changes in [TFT_eSPI_ESP32_C3.h](Arduino/libraries/TFT_eSPI/Processors/TFT_eSPI_ESP32_C3.h)
 
-Downgrading is easy, so let's look at the second option :
+### Downgrading is easy, so let's look  at the second option, because it shows where the problems are :
 
 Edit the file [TFT_eSPI_ESP32_C3.h](Arduino/libraries/TFT_eSPI/Processors/TFT_eSPI_ESP32_C3.h)
 > C:\Users\<username>\Documents\Arduino\libraries\TFT_eSPI\Processors\TFT_eSPI_ESP32_C3.h
@@ -65,6 +68,42 @@ Change
 ```
 
 as it was before in version 2.0.14 and exists similar in the soc.h of S2, S3, H2, C3 and C6 but not ESP32.
+
+
+### The third option requires only changes in one file :
+
+Edit the file [TFT_eSPI_ESP32_C3.h](Arduino/libraries/TFT_eSPI/Processors/TFT_eSPI_ESP32_C3.h)
+> C:\Users\<username>\Documents\Arduino\libraries\TFT_eSPI\Processors\TFT_eSPI_ESP32_C3.h
+
+and replace line 71
+```
+ #define SPI_PORT SPI2_HOST 
+```
+
+with
+```
+#if ESP_ARDUINO_VERSION_MAJOR < 3
+  #define SPI_PORT SPI2_HOST
+#else
+  #define SPI_PORT 2
+#endif
+```
+
+Then replace 
+```
+  #ifndef REG_SPI_BASE
+    #define REG_SPI_BASE(i) DR_REG_SPI2_BASE
+  #endif
+```
+with
+
+```
+  #ifdef REG_SPI_BASE
+    #undef REG_SPI_BASE
+  #endif
+
+  #define REG_SPI_BASE(i) (((i)==2) ? (DR_REG_SPI2_BASE) : (DR_REG_SPI0_BASE - ((i) * 0x1000))) // GPSPI2 and GPSPI3 
+```
 
 That's all. Now the ST7789 display works with my Tasmota ESP32-C3.
 
@@ -119,12 +158,13 @@ Edit or copy the setup file [Setup421_C3_ST7789_170x320.h](Arduino/libraries/Set
 //#define TFT_INVERSION_ON       // only for display 240x320
 
 // Pins ESP32 C3
-#define TFT_CS    10
-#define TFT_MOSI  11
-#define TFT_SCLK  12
-#define TFT_MISO  13
-#define TFT_DC     7
+#define TFT_CS     7
+#define TFT_MOSI   6
+#define TFT_SCLK   4
+#define TFT_MISO   5
+#define TFT_DC    19
 #define TFT_RST   -1  // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
+//#define TFT_BL   18
 
 // Fonts
 #define LOAD_GLCD
