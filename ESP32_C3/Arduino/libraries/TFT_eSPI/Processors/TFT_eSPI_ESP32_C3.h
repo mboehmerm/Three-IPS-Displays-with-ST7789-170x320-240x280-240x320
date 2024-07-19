@@ -29,10 +29,18 @@
 
 // Fix IDF problems with ESP32C3
 #if CONFIG_IDF_TARGET_ESP32C3
+  /*
   // Fix ESP32C3 IDF bug for missing definition (VSPI/FSPI only tested at the moment)
   #ifndef REG_SPI_BASE
     #define REG_SPI_BASE(i) DR_REG_SPI2_BASE
   #endif
+  */
+
+  #ifdef REG_SPI_BASE		//?// ESP32-C3 + ESP32-C6 + ESP32-H2
+    #undef REG_SPI_BASE
+  #endif
+
+  #define REG_SPI_BASE(i) (((i)==2) ? (DR_REG_SPI2_BASE) : (DR_REG_SPI0_BASE - ((i) * 0x1000))) // GPSPI2 and GPSPI3 
 
   // Fix ESP32C3 IDF bug for name change
   #ifndef SPI_MOSI_DLEN_REG
