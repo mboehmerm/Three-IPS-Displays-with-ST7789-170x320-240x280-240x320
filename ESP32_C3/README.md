@@ -133,8 +133,8 @@ Edit: The changes done for the other SOCs are imho wrong too. Only ESP32 looks c
 |         5 | ---   | MISO  ( not used )   |
 |         4 | SCL   | SCLK                 |
 |        19 | DC    | DC                   |
-|        EN | RST   | Reset or PWM-Pin     |
-|        18 | BLK   | 3.3V  or PWM-Pin     |
+|        EN | RST   | Reset                |
+|        18 | BLK   | 3.3V or PWM-Pin      |
 |           | VCC   | 3.3V                 |
 |           | GND   | GND                  |
 
@@ -164,7 +164,7 @@ Edit or copy the setup file [Setup421_C3_ST7789_170x320.h](Arduino/libraries/Set
 #define TFT_MISO   5
 #define TFT_DC    19
 #define TFT_RST   -1  // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
-//#define TFT_BL   18
+//#define TFT_BL  18
 
 // Fonts
 #define LOAD_GLCD
