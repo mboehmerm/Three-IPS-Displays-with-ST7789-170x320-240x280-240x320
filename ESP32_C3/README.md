@@ -107,7 +107,7 @@ with
 
 That's all. Now the ST7789 display works with my Tasmota ESP32-C3.
 
-![LuatOS-CORE-ESP32-C3.png](pictures/C3.png)
+![LuatOS-CORE-ESP32-C3.png](pictures/c3.png)
 
 
 Solution for ESP32-C3 found here :
