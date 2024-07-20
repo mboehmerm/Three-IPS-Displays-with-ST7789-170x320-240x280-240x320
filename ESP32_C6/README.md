@@ -26,8 +26,8 @@ Arduino IDE Board : "ESP32C6 Dev Module"
 |        20 | ---   | MISO  ( not used )   |
 |        21 | SCL   | SCLK                 |
 |         9 | DC    | DC                   |
-|       RST | RST   | Reset or PWM-Pin     |
-|         2 | BLK   | 3.3V  or PWM-Pin     |
+|       RST | RST   | Reset                |
+|         2 | BLK   | 3.3V or PWM-Pin      |
 |           | VCC   | 3.3V                 |
 |           | GND   | GND                  |
 
