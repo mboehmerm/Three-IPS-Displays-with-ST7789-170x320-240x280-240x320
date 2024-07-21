@@ -1,8 +1,8 @@
 # !!! UNDER CONSTRUCTION !!!
 
-# ESP32-C6 ( and ESP32-H2 ? ) and esp32 board package 3.0.3 and ST7789 SPI displays
+# ESP32-C6 ( ESP32-H2 ? ) and esp32 board package 3.0.3 and ST7789 SPI displays
 
-Cheap Aliexpress displays, tested with an ESP32-C6, Arduino IDE 2.3.2 and TFT_eSPI 2.5.43
+Cheap Aliexpress displays, tested with an ESP32-C6, Arduino IDE 2.3.2 and a modified TFT_eSPI 2.5.43 .
 
 **Board Package :** esp32 3.0.3
 
@@ -71,8 +71,10 @@ Edit or copy the setup file [Setup431_C6_ST7789_170x320.h](Arduino/libraries/Set
 
 #define SMOOTH_FONT 
 
+//#define SPI_FREQUENCY  20000000
+//#define SPI_FREQUENCY  27000000  // same speed as with 20MHz
 //#define SPI_FREQUENCY  40000000
-#define SPI_FREQUENCY  80000000
+#define SPI_FREQUENCY  80000000    // same speed as with 40MHz
 
 //#define SPI_READ_FREQUENCY  20000000
 //#define SPI_TOUCH_FREQUENCY  2500000

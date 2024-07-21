@@ -22,7 +22,7 @@
 #define TFT_MISO   20
 #define TFT_SCLK   21  
 #define TFT_DC      9
-#define TFT_RST     3   // -1   // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
+#define TFT_RST    -1   // Set TFT_RST to -1 if display RESET is connected to ESP32 board EN
 //#define TFT_BL    2   // LED back-light  // TFT_BL -1 gibt Fehlermeldung bei verbose
 
 #define LOAD_GLCD   // Font 1. Original Adafruit 8 pixel font needs ~1820 bytes in FLASH
