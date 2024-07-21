@@ -13,16 +13,13 @@
  #########################################################################
  */
 
-//#include <../Setup424_C3_SM_ST7789_170x320.h>   // ESP32-C3 Super Mini, ST7789, 80MHz
-
-
-// Arduino IDE Board : Nologo ESP32C3 Super Mini     ( Tasmota : ESP32-C3 Dev Module )
-// USB CDC on Boot   : Enabled                       ( for Serial Monitor )   
-// Flash Mode        : QIO                           ( default, only Tasmota C3 needs DIO )
+//#include <../Setup425_C3_SM_ST7789_240x280.h>   // ESP32-C3 Super Mini, ST7789, 80MHz
 
 
 #include "SPI.h"
 #include "TFT_eSPI.h"
+
+//#include <../Setup410_ST7789_320x170_C3.h>      // new : Setup file ST7789 ESP32 C3
 
 // Use hardware SPI
 TFT_eSPI tft = TFT_eSPI();
@@ -35,21 +32,19 @@ unsigned long tn = 0;
 void setup() {
   Serial.begin(115200);
   //while (!Serial);
-  Serial.println(""); Serial.println("");
+  Serial.println(""); 
   Serial.println("Bodmer's TFT_eSPI library Test!"); 
- 
-  tft.init();
-  
+
+  tft.init(); 
+
   // Backlight PWM Pin
   pinMode(pwmPin, OUTPUT);
 
   tft.fillScreen(TFT_BLUE);
   tft.setTextColor(TFT_WHITE);
+  tft.setCursor(20, 130);
 	tft.setTextSize(2);
-  tft.setCursor(35, 130);
-  tft.print(F("Backlight"));
-  tft.setCursor(45, 170);
-  tft.print(F("Dimming"));
+  tft.print(F("Backlight Dimming"));
   
   delay(500);
 
@@ -66,7 +61,92 @@ void setup() {
 
 void loop(void)
 {
+  Serial.println("");
+  Serial.print(F("Processor : ")); 
+  #if defined(CONFIG_IDF_TARGET_ESP32S3)
+    Serial.println("ESP32-S3");
+  #elif defined(CONFIG_IDF_TARGET_ESP32S2)
+    Serial.println("ESP32-S2");
+  #elif defined(CONFIG_IDF_TARGET_ESP32C3)
+    Serial.println("ESP32-C3");  
+  #elif defined (ESP32)
+    Serial.println("ESP32");  
+  #elif defined (ARDUINO_ARCH_ESP8266)
+    Serial.println("ESP8266");  
+  #elif defined (STM32)
+    Serial.println("STM32");  
+  #elif defined(ARDUINO_ARCH_RP2040)
+    Serial.println("RP2040");  
+  #elif defined(__LGT8FX8P__)
+    Serial.println("LGT8FX");  
+  #else
+    Serial.println("Arduino");
+  #endif
 
+  Serial.print(F("ESP32     : ")); 
+  Serial.print(ESP_ARDUINO_VERSION_MAJOR); 
+  Serial.print("."); 
+  Serial.print(ESP_ARDUINO_VERSION_MINOR); 
+  Serial.print("."); 
+  Serial.print(ESP_ARDUINO_VERSION_PATCH); 
+  Serial.println("");
+
+  Serial.print(F("TFT_eSPI  : ")); 
+  Serial.println(TFT_ESPI_VERSION);
+  
+  Serial.print(F("SPI Write : ")); 
+  Serial.print(SPI_FREQUENCY/1000000);
+  Serial.println(F(" MHz")); 
+
+  #if defined(USE_HSPI_PORT)
+  Serial.println(F("#define USE_HSPI_PORT")); 
+  #elif defined(USE_VSPI_PORT)
+  Serial.println(F("#define USE_VSPI_PORT")); 
+  #elif defined(USE_FSPI_PORT)
+  Serial.println(F("#define USE_FSPI_PORT")); 
+  #else
+  Serial.println(F("no #define USE_xSPI_PORT")); 
+  #endif
+
+  Serial.print(F("MOSI ")); 
+  Serial.print(TFT_MOSI);
+  if (TFT_MOSI != MOSI) {
+    Serial.print(F("/")); 
+    Serial.print(MOSI);
+  }  
+
+  Serial.print(F(" - MISO ")); 
+  Serial.print(TFT_MISO);
+  if (TFT_MISO != MISO) {
+    Serial.print(F("/")); 
+    Serial.print(MISO);
+  }
+
+  Serial.print(F(" - SCLK ")); 
+  Serial.print(TFT_SCLK);
+  if (TFT_SCLK != SCK) {
+    Serial.print(F("/")); 
+    Serial.print(SCK);
+  }
+  Serial.print(F(" - CS  ")); 
+  Serial.print(TFT_CS);
+  if (TFT_CS != SS) {
+    Serial.print(F("/")); 
+    Serial.print(SS);
+  }
+
+  Serial.print(F(" - DC  ")); 
+  Serial.print(TFT_DC);
+
+  Serial.print(F(" - RST ")); 
+  Serial.print(TFT_RST);
+
+  #if defined(TOUCH_CS)
+    Serial.print(F(" - TOUCH_CS ")); 
+    Serial.println(TOUCH_CS);
+  #endif
+
+  Serial.println("");
 	Serial.println(F("Benchmark                Time (microseconds)"));
 
 	uint32_t usecHaD = testHaD();
@@ -155,9 +235,11 @@ void loop(void)
 	tft.setTextColor(TFT_MAGENTA);
 	tft.setTextSize(2);
 
+	tft.print(F("   "));
  	tft.println(F("TFT_eSPI test"));
 
 	tft.setTextSize(1);
+/*
 	tft.setTextColor(TFT_WHITE);
 	tft.println(F(""));
 	tft.setTextSize(1);
@@ -165,89 +247,217 @@ void loop(void)
 	tft.setTextColor(tft.color565(0x80, 0x80, 0x80));
 
 	tft.println(F(""));
-
+*/
 
 	tft.setTextColor(TFT_GREEN);
-	tft.println(F(" Benchmark      microseconds"));
+	tft.print(F("      "));
+	tft.println(F("Benchmark       microseconds"));
 	tft.println(F(""));
 	tft.setTextColor(TFT_YELLOW);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("HaD pushColor "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecHaD);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Screen fill   "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecFillScreen);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Text          "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecText);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Pixels        "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecPixels);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Lines         "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecLines);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Hor/Vert Line "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecFastLines);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Rectangles    "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecRects);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Rect.-filled  "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecFilledRects);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Circles       "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecCircles);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Circ.-filled  "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecFilledCircles);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Triangles     "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecTriangles);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Triang-filled "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecFilledTrangles);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Rounded rects "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usecRoundRects);
 
 	tft.setTextColor(TFT_CYAN); tft.setTextSize(1);
+	tft.print(F("      "));
 	tft.print(F("Round R.-fill "));
 	tft.setTextColor(TFT_YELLOW); tft.setTextSize(2);
 	printnice(usedFilledRoundRects);
 
 	tft.setTextSize(1);
-	tft.println(F(""));
+	//tft.println(F(""));
 	tft.setTextColor(TFT_GREEN); tft.setTextSize(1);
-	tft.print(F("Benchmark Complete!"));
+	tft.print(F("      "));
+	tft.println(F("Benchmark Complete!"));
+  //tft.println(F(""));
 
-	delay(60 * 1000L);
+	delay(10 * 1000L);
+
+  tft.fillScreen(TFT_BLACK);
+
+	tft.setCursor(0, 40);
+	tft.setTextColor(TFT_WHITE);
+	tft.setTextSize(2);
+
+  tft.print(F("Processor : ")); 
+  #if defined(CONFIG_IDF_TARGET_ESP32S3)
+    tft.println("ESP32-S3");
+  #elif defined(CONFIG_IDF_TARGET_ESP32S2)
+    tft.println("ESP32-S2");
+  #elif defined(CONFIG_IDF_TARGET_ESP32C3)
+    tft.println("ESP32-C3");  
+  #elif defined (ESP32)
+    tft.println("ESP32");  
+  #elif defined (ARDUINO_ARCH_ESP8266)
+    tft.println("ESP8266");  
+  #elif defined (STM32)
+    tft.println("STM32");  
+  #elif defined(ARDUINO_ARCH_RP2040)
+    tft.println("RP2040");  
+  #elif defined(__LGT8FX8P__)
+    tft.println("LGT8FX");  
+  #else
+    tft.println("Arduino");
+  #endif
+  tft.setCursor(tft.getCursorX(), tft.getCursorY()+4); 
+
+
+  tft.print(F("ESP32     : ")); 
+  tft.print(ESP_ARDUINO_VERSION_MAJOR); 
+  tft.print("."); 
+  tft.print(ESP_ARDUINO_VERSION_MINOR); 
+  tft.print("."); 
+  tft.print(ESP_ARDUINO_VERSION_PATCH); 
+  //tft.print(" 0x"); 
+  //tft.print(ESP_ARDUINO_VERSION,HEX); 
+  tft.println("");
+  tft.setCursor(tft.getCursorX(), tft.getCursorY()+2); 
+
+  tft.print(F("TFT_eSPI  : ")); 
+  tft.println(TFT_ESPI_VERSION);
+  tft.setCursor(tft.getCursorX(), tft.getCursorY()+2);
+  
+  tft.print(F("SPI Write : ")); 
+  tft.print(SPI_FREQUENCY/1000000);
+  tft.println(F(" MHz")); 
+  tft.setCursor(tft.getCursorX(), tft.getCursorY()+8);
+
+  tft.print(F("MOSI ")); 
+  tft.print(TFT_MOSI);
+  if (TFT_MOSI != MOSI) {
+    tft.print(F("/")); 
+    tft.print(MOSI);
+  }  
+  tft.print(F("  CS  ")); 
+  tft.print(TFT_CS);
+  if (TFT_CS != SS) {
+    tft.print(F("/")); 
+    tft.print(SS);
+  }
+  tft.println("");
+  tft.setCursor(tft.getCursorX(), tft.getCursorY()+2);
+
+  tft.print(F("MISO ")); 
+  tft.print(TFT_MISO);
+  if (TFT_MISO != MISO) {
+    tft.print(F("/")); 
+    tft.print(MISO);
+  }
+  tft.print(F("  DC  ")); 
+  tft.print(TFT_DC);
+  tft.println("");
+  tft.setCursor(tft.getCursorX(), tft.getCursorY()+2);
+
+  tft.print(F("SCLK ")); 
+  tft.print(TFT_SCLK);
+  if (TFT_SCLK != SCK) {
+    tft.print(F("/")); 
+    tft.print(SCK);
+  }
+  tft.print(F("  RST ")); 
+  tft.print(TFT_RST);
+  tft.println("");
+  tft.setCursor(tft.getCursorX(), tft.getCursorY()+2);
+
+/*
+  #if defined(TOUCH_CS)
+    tft.print(F("TOUCH_CS ")); 
+    tft.println(TOUCH_CS);
+  #endif
+*/
+  #if defined(USE_HSPI_PORT)
+  tft.println(F("#define USE_HSPI_PORT")); 
+  #elif defined(USE_VSPI_PORT)
+  tft.println(F("#define USE_VSPI_PORT")); 
+  #elif defined(USE_FSPI_PORT)
+  tft.println(F("#define USE_FSPI_PORT")); 
+  #else
+  tft.println(F("no USE_xSPI_PORT")); 
+  #endif
+
+  //tft.print(F("Arduino IDE: ")); 
+  //tft.println(ARDUINO);
+
+	//tft.setTextSize(1);
+  //tft.print(F("ESP IDF: ")); 
+  //tft.println(esp_get_idf_version());
+
+	delay(30000);
 }
 
 void printnice(int32_t v)
@@ -337,7 +547,7 @@ uint32_t testHaD()
   for (int i = 0; i < 0x10; i++)
   {
     //tft.setAddrWindow(0, 0, tft.width(), tft.height());
-     tft.setAddrWindow(21, 80, 128, 160); // for Display 170x320
+     tft.setAddrWindow(55, 59, 128, 160); // for Display 240x280
 
     uint16_t cnt = 0;
     uint16_t color = tft.color565((i << 4) | i, (i << 4) | i, (i << 4) | i);
@@ -364,8 +574,7 @@ uint32_t testHaD()
 
   tft.setTextColor(TFT_YELLOW);
   tft.setCursor(0, 225);
-  tft.print(F(" http://hackaday.io/"));
-  tft.print(F("    Xark"));
+  tft.println(F("http://hackaday.io/     Xark"));
 
   delay(3 * 1000L);
   
@@ -867,23 +1076,6 @@ uint32_t testFilledRoundRects()
 }
 /*
 
-Bodmer's TFT_eSPI library Test!
-Benchmark                Time (microseconds)
-HaD pushColor            80535
-Screen fill              11738
-Text                     15390
-Pixels                   195565
-Lines                    216352
-Horiz/Vert Lines         6083
-Rectangles (outline)     2874
-Rectangles (filled)      62326
-Circles (filled)         25614
-Circles (outline)        19816
-Triangles (outline)      9039
-Triangles (filled)       27740
-Rounded rects (outline)  8298
-Rounded rects (filled)   65361
-Done!
 
 */
 

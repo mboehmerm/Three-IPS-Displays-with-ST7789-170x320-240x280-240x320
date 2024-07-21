@@ -1,11 +1,11 @@
 
-#define USER_SETUP_ID 424
+#define USER_SETUP_ID 425
 
 #define ST7789_DRIVER     // Configure all registers
 //#define TFT_SDA_READ   // Display has a bidirectional SDA pin
 
-#define TFT_WIDTH  170
-#define TFT_HEIGHT 320
+#define TFT_WIDTH  240
+#define TFT_HEIGHT 280
 
 //#define CGRAM_OFFSET      // Library will add offsets required
 

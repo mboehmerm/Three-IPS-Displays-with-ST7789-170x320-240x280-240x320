@@ -13,47 +13,40 @@
  #########################################################################
  */
 
-//#include <../Setup424_C3_SM_ST7789_170x320.h>   // ESP32-C3 Super Mini, ST7789, 80MHz
-
-
-// Arduino IDE Board : Nologo ESP32C3 Super Mini     ( Tasmota : ESP32-C3 Dev Module )
-// USB CDC on Boot   : Enabled                       ( for Serial Monitor )   
-// Flash Mode        : QIO                           ( default, only Tasmota C3 needs DIO )
+//#include <../Setup426_C3_SM_ST7789_240x320.h>   // ESP32-C3 Super Mini, ST7789, 80MHz
 
 
 #include "SPI.h"
 #include "TFT_eSPI.h"
 
-// Use hardware SPI
-TFT_eSPI tft = TFT_eSPI();
-
 // Backlight Pin
 const int pwmPin = 1;
+
+// Use hardware SPI
+TFT_eSPI tft = TFT_eSPI();
 
 unsigned long total = 0;
 unsigned long tn = 0;
 void setup() {
   Serial.begin(115200);
-  //while (!Serial);
-  Serial.println(""); Serial.println("");
-  Serial.println("Bodmer's TFT_eSPI library Test!"); 
+  while (!Serial);
+  Serial.println(""); 
+  Serial.println("Bodmer's TFT_eSPI library Test! espressif 3.0.1"); 
  
-  tft.init();
+  tft.init(); 
   
   // Backlight PWM Pin
   pinMode(pwmPin, OUTPUT);
 
   tft.fillScreen(TFT_BLUE);
   tft.setTextColor(TFT_WHITE);
+  tft.setCursor(20, 150);
 	tft.setTextSize(2);
-  tft.setCursor(35, 130);
-  tft.print(F("Backlight"));
-  tft.setCursor(45, 170);
-  tft.print(F("Dimming"));
+  tft.print(F("Backlight Dimming"));
   
   delay(500);
-
-  for (int i=255; i>0; i--) {
+  
+    for (int i=255; i>0; i--) {
     analogWrite(pwmPin, i);
     delay(10);
     }
@@ -66,7 +59,7 @@ void setup() {
 
 void loop(void)
 {
-
+  Serial.println("");
 	Serial.println(F("Benchmark                Time (microseconds)"));
 
 	uint32_t usecHaD = testHaD();
@@ -245,7 +238,22 @@ void loop(void)
 	tft.setTextSize(1);
 	tft.println(F(""));
 	tft.setTextColor(TFT_GREEN); tft.setTextSize(1);
-	tft.print(F("Benchmark Complete!"));
+	tft.println(F("Benchmark Complete!"));
+  tft.println(F(""));
+
+  /** Major version number (X.x.x) */
+    // #define ESP_ARDUINO_VERSION_MAJOR 3  
+  /** Minor version number (x.X.x) */
+    // #define ESP_ARDUINO_VERSION_MINOR 0
+  /** Patch version number (x.x.X) */
+    // #define ESP_ARDUINO_VERSION_PATCH 2
+
+  tft.print(F("ESP32 Core ")); 
+  tft.print(ESP_ARDUINO_VERSION_MAJOR); 
+  tft.print("."); 
+  tft.print(ESP_ARDUINO_VERSION_MINOR); 
+  tft.print("."); 
+  tft.print(ESP_ARDUINO_VERSION_PATCH); 
 
 	delay(60 * 1000L);
 }
@@ -867,22 +875,21 @@ uint32_t testFilledRoundRects()
 }
 /*
 
-Bodmer's TFT_eSPI library Test!
 Benchmark                Time (microseconds)
-HaD pushColor            80535
-Screen fill              11738
-Text                     15390
-Pixels                   195565
-Lines                    216352
-Horiz/Vert Lines         6083
-Rectangles (outline)     2874
-Rectangles (filled)      62326
-Circles (filled)         25614
-Circles (outline)        19816
-Triangles (outline)      9039
-Triangles (filled)       27740
-Rounded rects (outline)  8298
-Rounded rects (filled)   65361
+HaD pushColor            80635
+Screen fill              16566
+Text                     15282
+Pixels                   272921
+Lines                    298289
+Horiz/Vert Lines         8221
+Rectangles (outline)     5351
+Rectangles (filled)      172288
+Circles (filled)         38377
+Circles (outline)        28191
+Triangles (outline)      17792
+Triangles (filled)       69782
+Rounded rects (outline)  14518
+Rounded rects (filled)   177871
 Done!
 
 */

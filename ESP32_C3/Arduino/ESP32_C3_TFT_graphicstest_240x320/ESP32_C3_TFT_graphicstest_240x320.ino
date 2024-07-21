@@ -20,8 +20,6 @@
 #include "SPI.h"
 #include "TFT_eSPI.h"
 
-#include <../Setup423_C3_ST7789_240x320.h>      // ESP32-C3, ST7789, 80MHz
-
 // Backlight Pin
 const int pwmPin = 18;
 

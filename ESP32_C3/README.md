@@ -6,6 +6,8 @@ Cheap Aliexpress displays, tested with a Tasmota Core ESP32-C3 (or an ESP32-C3 S
 
 **Arduino IDE Board :** ESP32-C3 Dev Module
 
+**Arduino IDE Flash Mode :** DIO !!! 
+
 All three IPS displays worked stable at 80MHz.
 
 With a few further changes it also runs on a [ESP32-C6](../ESP32_C6/README.md).
