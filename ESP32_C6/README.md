@@ -8,6 +8,8 @@ Cheap Aliexpress displays, tested with an ESP32-C6, Arduino IDE 2.3.2 and a modi
 
 **Arduino IDE Board :** ESP32-C6 Dev Module
 
+**USB CDC On Boot :** Enabled
+
 All three IPS displays worked stable at 80MHz.
 
 ![ESP32-C6.png](pictures/nanoESP32-C6-4.png)
