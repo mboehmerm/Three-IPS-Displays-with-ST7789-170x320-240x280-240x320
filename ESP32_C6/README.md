@@ -1,6 +1,6 @@
 # !!! UNDER CONSTRUCTION !!!
 
-# ESP32-C6 ( ESP32-H2 ? ) and esp32 board package 3.0.3 and ST7789 SPI displays
+# nanoESP32-C6 ( ESP32-H2 ? ) and esp32 board package 3.0.3 and ST7789 SPI displays
 
 Cheap Aliexpress displays, tested with an ESP32-C6, Arduino IDE 2.3.2 and a modified TFT_eSPI 2.5.43 .
 
