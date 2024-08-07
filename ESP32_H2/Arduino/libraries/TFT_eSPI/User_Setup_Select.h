@@ -35,7 +35,7 @@
 //#include <../Setup405_MZ61581.h>                // new : Setup file for  R61581 3.5" RPI Touch Display, 80MHz   
 //#include <../Setup406_LGT8_ST7735_Touch.h>      // new : Setup file for LGT8
 
-#include <../Setup407_ST7789_320x170.h>         // ESP32 Lolin lite, 80MHz 
+//#include <../Setup407_ST7789_320x170.h>         // ESP32 Lolin lite, 80MHz 
 //#include <../Setup408_ST7789_280x240.h>         // ESP32 Lolin lite, 80MHz 
 //#include <../Setup409_ST7789_320x240.h>         // ESP32 Lolin lite, 80MHz 
 
@@ -64,7 +64,7 @@
 //#include <../Setup433_C6_ST7789_240x320.h>      // ESP32-C6, ST7789, 80MHz
 
 //#include <../Setup434_H2_ST7789_170x320.h>      // ESP32-H2, ST7789, 80MHz
-//#include <../Setup435_H2_ST7789_240x280.h>      // ESP32-H2, ST7789, 80MHz
+#include <../Setup435_H2_ST7789_240x280.h>      // ESP32-H2, ST7789, 80MHz
 //#include <../Setup436_H2_ST7789_240x320.h>      // ESP32-H2, ST7789, 80MHz
 //#include <../Setup437_H2_ST7789_240x240.h>      // ESP32-H2, ST7789, 80MHz
 

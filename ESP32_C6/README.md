@@ -1,6 +1,8 @@
 # !!! UNDER CONSTRUCTION !!!
 
-# nanoESP32-C6 ( ESP32-H2 ? ) and esp32 board package 3.0.3 and ST7789 SPI displays
+# nanoESP32-C6 and esp32 board package 3.0.3 and ST7789 SPI displays
+
+Similar tests with an ESP32-H2 Super Mini can be found in the folder [ESP32_H2](ESP32_H2/README.md).
 
 Cheap Aliexpress displays, tested with an ESP32-C6, Arduino IDE 2.3.2 and a modified TFT_eSPI 2.5.43 .
 
@@ -19,7 +21,7 @@ nanoESP32-C6
 Arduino IDE Board : "ESP32C6 Dev Module"
 
 
-## Connections for nanoESP32-C6 and ST7789 IPS displays
+## Connections for nanoESP32-C6 and all ST7789 IPS displays
 
 | GPIO      | TFT   | Description          |
 | --------: | :---- | :------------------- |

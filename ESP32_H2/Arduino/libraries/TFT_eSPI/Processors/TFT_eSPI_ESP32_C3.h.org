@@ -1,6 +1,6 @@
         ////////////////////////////////////////////////////
         // TFT_eSPI driver functions for ESP32 processors //
-        ////////////////////////////////////////////////////
+        //////////////////////////////////////////////////// 
 
 // Temporarily a separate file to TFT_eSPI_ESP32.h until board package low level API stabilises
 
@@ -8,11 +8,10 @@
 #define _TFT_eSPI_ESP32H_
 
 #if !defined(DISABLE_ALL_LIBRARY_WARNINGS)
- //#warning >>>>------>> DMA is not supported on the ESP32 C3 (possible future update)	//?// ESP32-C6 + ESP32-H2
- #warning >>>>------>> DMA is not supported on the ESP32 C3, C6 + H2 (possible future update)
+ #warning >>>>------>> DMA is not supported on the ESP32 C3 (possible future update) 
 #endif
 
-// Processor ID reported by getSetup()
+// Processor ID reported by getSetup() 
 #define PROCESSOR_ID 0x32
 
 // Include processor specific header
@@ -20,14 +19,7 @@
 #include "driver/spi_master.h"
 #include "hal/gpio_ll.h"
 
-/*
 #if !defined(CONFIG_IDF_TARGET_ESP32C3) && !defined(CONFIG_IDF_TARGET_ESP32S2) && !defined(CONFIG_IDF_TARGET_ESP32)
-  #define CONFIG_IDF_TARGET_ESP32
-#endif
-*/
-
-//?// ESP32-C6 + ESP32-H2
-#if !defined(CONFIG_IDF_TARGET_ESP32H2) && !defined(CONFIG_IDF_TARGET_ESP32C6) && !defined(CONFIG_IDF_TARGET_ESP32C3) && !defined(CONFIG_IDF_TARGET_ESP32S2) && !defined(CONFIG_IDF_TARGET_ESP32)
   #define CONFIG_IDF_TARGET_ESP32
 #endif
 
@@ -36,80 +28,17 @@
 #endif
 
 // Fix IDF problems with ESP32C3
-//#if CONFIG_IDF_TARGET_ESP32C3
-#if CONFIG_IDF_TARGET_ESP32C3 || CONFIG_IDF_TARGET_ESP32C6	//?// ESP32-C6
-  /*
+#if CONFIG_IDF_TARGET_ESP32C3
   // Fix ESP32C3 IDF bug for missing definition (VSPI/FSPI only tested at the moment)
   #ifndef REG_SPI_BASE
     #define REG_SPI_BASE(i) DR_REG_SPI2_BASE
   #endif
-  */
-
-  #ifdef REG_SPI_BASE		//?// ESP32-C3 + ESP32-C6 + ESP32-H2
-    #undef REG_SPI_BASE
-  #endif
-
-  #define REG_SPI_BASE(i) (((i)==2) ? (DR_REG_SPI2_BASE) : (DR_REG_SPI0_BASE - ((i) * 0x1000))) // GPSPI2 and GPSPI3 
-
-  //#if CONFIG_IDF_TARGET_ESP32C6         //?// Speedlimit ESP32-C6 40MHz why ?
-  //  #undef APB_CLK_FREQ
-  //  #define APB_CLK_FREQ ( 80*1000000 )
-  //#endif
 
   // Fix ESP32C3 IDF bug for name change
   #ifndef SPI_MOSI_DLEN_REG
     #define SPI_MOSI_DLEN_REG(x) SPI_MS_DLEN_REG(x)
   #endif
 #endif
-
-#if defined(CONFIG_IDF_TARGET_ESP32H2)  //?// ESP32-H2
-
-  #undef REG_SPI_BASE
-  #define REG_SPI_BASE(i) (((i)==2) ? (DR_REG_SPI2_BASE) : (DR_REG_SPI0_BASE - ((i) * 0x1000))) // GPSPI2 and GPSPI3 
-
-  #undef SPI_CMD_REG
-  #define SPI_CMD_REG(i) (REG_SPI_BASE(i) + 0x0)
-  #undef SPI_USER_REG
-  #define SPI_USER_REG(i) (REG_SPI_BASE(i) + 0x10)
-  #undef SPI_MS_DLEN_REG
-  #define SPI_MS_DLEN_REG(i) (REG_SPI_BASE(i) + 0x1c)
-  #ifndef SPI_MOSI_DLEN_REG
-    #define SPI_MOSI_DLEN_REG(x) SPI_MS_DLEN_REG(x)
-  #endif
-  #undef SPI_W0_REG
-  #define SPI_W0_REG(i) (REG_SPI_BASE(i) + 0x98)
-  #undef SPI_W1_REG
-  #define SPI_W1_REG(i) (REG_SPI_BASE(i) + 0x9c)
-  #undef SPI_W2_REG
-  #define SPI_W2_REG(i) (REG_SPI_BASE(i) + 0xa0)
-  #undef SPI_W3_REG
-  #define SPI_W3_REG(i) (REG_SPI_BASE(i) + 0xa4)
-  #undef SPI_W4_REG
-  #define SPI_W4_REG(i) (REG_SPI_BASE(i) + 0xa8)
-  #undef SPI_W5_REG
-  #define SPI_W5_REG(i) (REG_SPI_BASE(i) + 0xac)
-  #undef SPI_W6_REG
-  #define SPI_W6_REG(i) (REG_SPI_BASE(i) + 0xb0)
-  #undef SPI_W7_REG
-  #define SPI_W7_REG(i) (REG_SPI_BASE(i) + 0xb4)
-  #undef SPI_W8_REG
-  #define SPI_W8_REG(i) (REG_SPI_BASE(i) + 0xb8)
-  #undef SPI_W9_REG
-  #define SPI_W9_REG(i) (REG_SPI_BASE(i) + 0xbc)
-  #undef SPI_W100_REG
-  #define SPI_W10_REG(i) (REG_SPI_BASE(i) + 0xc0)
-  #undef SPI_W11_REG
-  #define SPI_W11_REG(i) (REG_SPI_BASE(i) + 0xc4)
-  #undef SPI_W12_REG
-  #define SPI_W12_REG(i) (REG_SPI_BASE(i) + 0xc8)
-  #undef SPI_W13_REG
-  #define SPI_W13_REG(i) (REG_SPI_BASE(i) + 0xcc)
-  #undef SPI_W14_REG
-  #define SPI_W14_REG(i) (REG_SPI_BASE(i) + 0xd0)
-  #undef SPI_W15_REG
-  #define SPI_W15_REG(i) (REG_SPI_BASE(i) + 0xd4)
-#endif
-
 
 // SUPPORT_TRANSACTIONS is mandatory for ESP32 so the hal mutex is toggled
 #if !defined (SUPPORT_TRANSACTIONS)
@@ -127,7 +56,7 @@ FSPI = 1, uses SPI2
 HSPI = 2, uses SPI3
 VSPI not defined so have made VSPI = HSPI
 
-ESP32 C3, C6, H2 : Only 1 SPI port available	//?// ESP32-C6 + ESP32-H2
+ESP32 C3: Only 1 SPI port available
 FSPI = 1, uses SPI2
 HSPI = 1, uses SPI2
 VSPI not defined so have made VSPI = HSPI
@@ -138,12 +67,8 @@ SPI2_HOST = 1
 SPI3_HOST = 2
 */
 
-// ESP32 specific SPI port selection - only SPI2_HOST available on C3 //?// and ESP32-C6 + ESP32-H2
-#if ESP_ARDUINO_VERSION_MAJOR < 3
-  #define SPI_PORT SPI2_HOST
-#else
-  #define SPI_PORT 2
-#endif
+// ESP32 specific SPI port selection - only SPI2_HOST available on C3
+#define SPI_PORT SPI2_HOST
 
 #ifdef RPI_DISPLAY_TYPE
   #define CMD_BITS (16-1)
@@ -388,8 +313,7 @@ SPI3_HOST = 2
       #define TFT_SCLK 18
     #endif
 
-    //#if defined(CONFIG_IDF_TARGET_ESP32C3) || defined(CONFIG_IDF_TARGET_ESP32S2)
-    #if defined(CONFIG_IDF_TARGET_ESP32C3) || defined(CONFIG_IDF_TARGET_ESP32C6) || defined(CONFIG_IDF_TARGET_ESP32H2) || defined(CONFIG_IDF_TARGET_ESP32S2)	//?// ESP32-C6 + ESP32-H2
+    #if defined(CONFIG_IDF_TARGET_ESP32C3) || defined(CONFIG_IDF_TARGET_ESP32S2)
       #if (TFT_MISO == -1)
         #undef TFT_MISO
         #define TFT_MISO TFT_MOSI
@@ -608,8 +532,7 @@ SPI3_HOST = 2
   #define tft_Write_32D(C) TFT_WRITE_BITS((uint16_t)((C)<<8 | (C)>>8)<<16 | (uint16_t)((C)<<8 | (C)>>8), 32)
 //*/
 //* Replacement slimmer macros
-  //#if !defined(CONFIG_IDF_TARGET_ESP32C3)
-  #if !defined(CONFIG_IDF_TARGET_ESP32C3) && !defined(CONFIG_IDF_TARGET_ESP32C6) && !defined(CONFIG_IDF_TARGET_ESP32H2)	//?// ESP32-C6 + ESP32-H2
+  #if !defined(CONFIG_IDF_TARGET_ESP32C3)
     #define TFT_WRITE_BITS(D, B) *_spi_mosi_dlen = B-1;  \
                                *_spi_w = D;              \
                                *_spi_cmd = SPI_USR;      \
@@ -629,8 +552,7 @@ SPI3_HOST = 2
   #define tft_Write_16(C) TFT_WRITE_BITS((C)<<8 | (C)>>8, 16)
 
   // Future option for transfer without wait
-  // #if !defined(CONFIG_IDF_TARGET_ESP32C3)
-  #if !defined(CONFIG_IDF_TARGET_ESP32C3) && !defined(CONFIG_IDF_TARGET_ESP32C6) && !defined(CONFIG_IDF_TARGET_ESP32H2)	//// ESP32-C6 + ESP32-H2
+  #if !defined(CONFIG_IDF_TARGET_ESP32C3)
     #define tft_Write_16N(C) *_spi_mosi_dlen = 16-1;    \
                            *_spi_w = ((C)<<8 | (C)>>8); \
                            *_spi_cmd = SPI_USR;
