@@ -6,7 +6,7 @@ Similar tests with an ESP32-H2 Super Mini can be found in the folder [ESP32_H2](
 
 Cheap Aliexpress displays, tested with an ESP32-C6, Arduino IDE 2.3.2 and a modified TFT_eSPI 2.5.43 .
 
-**Board Package :** esp32 3.0.3
+**Board Package :** esp32 3.0.3 (or 3.0.4)
 
 **Arduino IDE Board :** ESP32-C6 Dev Module
 
@@ -49,8 +49,8 @@ Edit or copy the setup file [Setup431_C6_ST7789_170x320.h](Arduino/libraries/Set
 // Driver
 #define ST7789_DRIVER     // Configure all registers
 
-#define TFT_WIDTH  170
-#define TFT_HEIGHT 320
+#define TFT_WIDTH  170    // 240 // 240 // 240
+#define TFT_HEIGHT 320    // 280 // 320 // 240
 
 //#define TFT_RGB_ORDER TFT_BGR  // only for display 240x320 
 //#define TFT_INVERSION_ON       // only for display 240x320

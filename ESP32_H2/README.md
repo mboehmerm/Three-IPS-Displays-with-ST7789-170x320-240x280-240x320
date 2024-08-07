@@ -36,7 +36,7 @@ Benchmark with the display 240x280
 |           | VCC   | 3.3V                 |
 |           | GND   | GND                  |
 
-![Pinout](pictures/Pinout4.jpg)
+![Pinout](pictures/Pinout5.jpg)
 Pinout ESP32-H2 Super Mini
 
 ## Configuring the TFT_eSPI
