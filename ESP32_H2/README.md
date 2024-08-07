@@ -10,6 +10,10 @@ Cheap Aliexpress displays, tested with an ESP32-H2 Super Mini, Arduino IDE 2.3.2
 
 **USB CDC On Boot :** Enabled
 
+**Upload problem :** 
+  - Method 1: Press and hold BOOT while connecting. 
+  - Method 2: Press and hold the BOOT button then press the RESET button.
+
 All four IPS displays worked stable at 80MHz (40MHz).
 
 ![ESP32-H2](pictures/Front_Back.jpg)
