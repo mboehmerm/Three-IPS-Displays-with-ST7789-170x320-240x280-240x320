@@ -35,7 +35,7 @@ are discussed here : [../ESP32_C3/README.md](../ESP32_C3/README.md)
 |           | VCC   | 3.3V                 |
 |           | GND   | GND                  |
 
-![ESP32_C3_Super_Mini](../ESP32_C3_Super_Mini/pictures/Super_Mini_Front.png)
+![ESP32_C3_Super_Mini](../ESP32_C3_Super_Mini/pictures/Super_Mini_Front_smal.png)
 Arduino IDE Board : "Nologo ESP32C3 Super Mini" or "ESP32C3 Dev Module", USB CDC On Boot : Enabled
 
 ## Configuring the TFT_eSPI
