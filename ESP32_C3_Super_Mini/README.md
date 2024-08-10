@@ -19,7 +19,10 @@ ESP32-C3 Super Mini
 
 ## Problems with esp32 board package 3.0.3 and TFT_eSPI 2.5.43
 
-are discussed here : [../ESP32_C3/README.md](../ESP32_C3/README.md)
+are discussed here :
+- [../ESP32_C3/README.md](../ESP32_C3/README.md)
+- [../ESP32_C6/README.md](../ESP32_C6/README.md)
+- [../ESP32_H2/README.md](../ESP32_H2/README.md) 
 
 ## Connections for ESP32-C3 Super Mini and ST7789 IPS displays
 
@@ -37,6 +40,11 @@ are discussed here : [../ESP32_C3/README.md](../ESP32_C3/README.md)
 
 ![ESP32_C3_Super_Mini](../ESP32_C3_Super_Mini/pictures/Super_Mini_Front_smal.png)
 Arduino IDE Board : "Nologo ESP32C3 Super Mini" or "ESP32C3 Dev Module", USB CDC On Boot : Enabled
+
+## Add Reset Pin for the ESP32-C3 Super Mini
+
+![ESP32_C3_Reset_Pin](../ESP32_C3_Super_Mini/pictures/Reset_Pin.png)
+
 
 ## Configuring the TFT_eSPI
 
