@@ -13,7 +13,7 @@ Cheap Aliexpress displays, tested with an ESP32-C3 Super Mini, Arduino IDE 2.3.2
 
 There is a [manual](documents/manual.pdf) for the ESP32-C3 Super Mini.
 
-![Super_Mini.png](pictures/Super_Mini.png)
+![Super_Mini.png](pictures/Super_Mini_smal.png)
 ESP32-C3 Super Mini
 
 
