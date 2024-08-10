@@ -10,7 +10,7 @@ Cheap Aliexpress displays, tested with a Tasmota Core ESP32-C3 (or an ESP32-C3 S
 
 All three IPS displays worked stable at 80MHz.
 
-With a few further changes it also runs on a [ESP32-C6](../ESP32_C6/README.md).
+With more changes it also runs on [ESP32-C6](../ESP32_C6/README.md) and [ESP32-H2](../ESP32_H2/README.md).
 
 ![LuatOS-CORE-ESP32-C3.png](pictures/LuatOS-CORE-ESP32-C3.png)
 Tasmota Core ESP32-C3
