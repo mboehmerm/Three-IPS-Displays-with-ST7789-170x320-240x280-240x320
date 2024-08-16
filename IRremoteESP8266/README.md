@@ -99,5 +99,3 @@ with
 ## Tested with
 
 - [Arduino/IRrecvDemo_ESP_Core_3.0.4.ino](Arduino/IRrecvDemo_ESP_Core_3.0.4/IRrecvDemo_ESP_Core_3.0.4.ino) 
-
-
