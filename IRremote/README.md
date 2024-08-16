@@ -42,84 +42,17 @@ C:\Users\<username>\Documents\Arduino\libraries\IRremote\src\private\IRTimer.hpp
 with this file :
 - [IRTimer.hpp](Arduino/libraries/IRremote/src/private/IRTimer.hpp)
 
-## The modified part of IRTimer.hpp starts at line 1449
+or download IRTimer.hpp from the [Bumped version to 4.4.1](https://github.com/Arduino-IRremote/Arduino-IRremote/commit/39136b65a295f992c2c25f8b251ba839ba93ef3d)
 
-The modified code is marked with //?//
+https://raw.githubusercontent.com/Arduino-IRremote/Arduino-IRremote/39136b65a295f992c2c25f8b251ba839ba93ef3d/src/private/IRTimer.hpp
 
-```java
-...
-
-#  if ESP_ARDUINO_VERSION < ESP_ARDUINO_VERSION_VAL(3, 0, 0)     //?//
-void timerEnableReceiveInterrupt() {
-    timerAlarmEnable(s50usTimer);
-}
-#  else                                                          //?//
-void timerEnableReceiveInterrupt() {                             //?//
-    timerRestart(s50usTimer);                                    //?//
-}                                                                //?//
-#  endif                                                         //?//
-
-#  if !defined(ESP_ARDUINO_VERSION)
-#define ESP_ARDUINO_VERSION 0
-#  endif
-#  if !defined(ESP_ARDUINO_VERSION_VAL)
-#define ESP_ARDUINO_VERSION_VAL(major, minor, patch) 202
-#  endif
-#  if ESP_ARDUINO_VERSION < ESP_ARDUINO_VERSION_VAL(2, 0, 2)
-void timerDisableReceiveInterrupt() {
-    if (s50usTimer != NULL) {
-        timerDetachInterrupt(s50usTimer);
-        timerEnd(s50usTimer);
-    }
-}
-#  elif ESP_ARDUINO_VERSION < ESP_ARDUINO_VERSION_VAL(3, 0, 0)   //?//
-void timerDisableReceiveInterrupt() {
-    if (s50usTimer != NULL) {
-        timerAlarmDisable(s50usTimer);
-    }
-}
-#  else                                                          //?//
-void timerDisableReceiveInterrupt() {                            //?//
-    timerStop(s50usTimer);                                       //?//
-}                                                                //?//
-#  endif                                                         //?//
-
-// Undefine ISR, because we register/call the plain function IRReceiveTimerInterruptHandler()
-#  if defined(ISR)
-#undef ISR
-#  endif
-
-#  if !defined(DISABLE_CODE_FOR_RECEIVER) // &IRReceiveTimerInterruptHandler is referenced, but not available
-
-#    if ESP_ARDUINO_VERSION < ESP_ARDUINO_VERSION_VAL(3, 0, 0)              //?//
-void timerConfigForReceive() {
-    // ESP32 has a proper API to setup timers, no weird chip macros needed
-    // simply call the readable API versions :)
-    // 3 timers, choose #1, 80 divider for microsecond precision @80MHz clock, count_up = true
-    if(s50usTimer == NULL) {
-        s50usTimer = timerBegin(1, 80, true);
-        timerAttachInterrupt(s50usTimer, &IRReceiveTimerInterruptHandler, false); // false -> level interrupt, true -> edge interrupt, but this is not supported :-(
-        timerAlarmWrite(s50usTimer, MICROS_PER_TICK, true);
-    }
-    // every 50 us, autoreload = true
-}
-#    else                                                                   //?//
-void timerConfigForReceive() {                                              //?//
-    if(s50usTimer == NULL) {                                                //?//
-        s50usTimer = timerBegin(1000000);                                   //?//
-        timerAttachInterrupt(s50usTimer, &IRReceiveTimerInterruptHandler);  //?//
-        timerAlarm(s50usTimer, MICROS_PER_TICK, true, 0);                   //?//
-    }                                                                       //?//
-}                                                                           //?//
-#    endif                                                                  //?//
-#  endif
-
-...
-
+and replace line 1454
+```
+timerStart(s50usTimer);" 
+```
+with
+```
+timerRestart(s50usTimer);" 
 ```
 
-## Tested with
-
-- [Arduino/IRremote_test_3_0_4.ino](Arduino/IRremote_test_3_0_4/IRremote_test_3_0_4.ino) 
-
-
+Otherwise i get the error message : "E (4118) gptimer: gptimer_start(348): timer is not enabled yet"
