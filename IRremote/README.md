@@ -19,7 +19,7 @@ Testing a modified IRremote library with an ESP32-C3 Super Mini.
 ESP32-C3 Super Mini with IR Receiver Module.
 
 ![ArduinoIDE](pictures/ArduinoIDE.jpg)
-Results in Arduino IDE 2.3.2
+Results in Arduino IDE 2.3.2 ( Error is fixed now ! )
 
 ## Connections for ESP32-C3 Super Mini and ST7789 IPS displays
 
@@ -35,24 +35,15 @@ Arduino IDE Board : "Nologo ESP32C3 Super Mini" or "ESP32C3 Dev Module", USB CDC
 
 ## Modifying the library IRremote version 4.4.0
 
-Install the library IRremote and replace 
+Install the library IRremote 4.4.0 and replace 
 ```
 C:\Users\<username>\Documents\Arduino\libraries\IRremote\src\private\IRTimer.hpp
 ```
 with this file :
 - [IRTimer.hpp](Arduino/libraries/IRremote/src/private/IRTimer.hpp)
 
-or download IRTimer.hpp from the [Bumped version to 4.4.1](https://github.com/Arduino-IRremote/Arduino-IRremote/commit/39136b65a295f992c2c25f8b251ba839ba93ef3d)
+or download this IRTimer.hpp from Commit [b737e83](https://github.com/Arduino-IRremote/Arduino-IRremote/blob/b737e8323a3b3e0fe8209cbfb8af566fb0c5e251)
 
-https://raw.githubusercontent.com/Arduino-IRremote/Arduino-IRremote/39136b65a295f992c2c25f8b251ba839ba93ef3d/src/private/IRTimer.hpp
+https://github.com/Arduino-IRremote/Arduino-IRremote/blob/b737e8323a3b3e0fe8209cbfb8af566fb0c5e251/src/private/IRTimer.hpp
 
-and replace line 1454
-```
-timerStart(s50usTimer);" 
-```
-with
-```
-timerRestart(s50usTimer);" 
-```
 
-Otherwise i get the error message : "E (4118) gptimer: gptimer_start(348): timer is not enabled yet"
