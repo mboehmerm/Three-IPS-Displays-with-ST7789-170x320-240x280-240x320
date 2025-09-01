@@ -51,7 +51,7 @@
 //#include <../Setup416_S3_ST7789_240x280.h>      // ESP32-S3, ST7789, 80MHz
 //#include <../Setup417_S3_ST7789_240x320.h>      // ESP32-S3, ST7789, 80MHz
 
-#include <../Setup421_C3_ST7789_170x320.h>      // ESP32-C3, ST7789, 80MHz
+//#include <../Setup421_C3_ST7789_170x320.h>      // ESP32-C3, ST7789, 80MHz
 //#include <../Setup422_C3_ST7789_240x280.h>      // ESP32-C3, ST7789, 80MHz
 //#include <../Setup423_C3_ST7789_240x320.h>      // ESP32-C3, ST7789, 80MHz
 
@@ -59,10 +59,16 @@
 //#include <../Setup425_C3_SM_ST7789_240x280.h>   // ESP32-C3 Super Mini, ST7789, 80MHz
 //#include <../Setup426_C3_SM_ST7789_240x320.h>   // ESP32-C3 Super Mini, ST7789, 80MHz
 
+#include <../Setup427_C3_ST7789_76x284.h>       // ESP32-C3, ST7789, 80MHz
+
 //#include <../Setup431_C6_ST7789_170x320.h>      // ESP32-C6, ST7789, 80MHz
 //#include <../Setup432_C6_ST7789_240x280.h>      // ESP32-C6, ST7789, 80MHz
 //#include <../Setup433_C6_ST7789_240x320.h>      // ESP32-C6, ST7789, 80MHz
 
+//#include <../Setup434_H2_ST7789_170x320.h>      // ESP32-H2, ST7789, 80MHz
+//#include <../Setup435_H2_ST7789_240x280.h>      // ESP32-H2, ST7789, 80MHz
+//#include <../Setup436_H2_ST7789_240x320.h>      // ESP32-H2, ST7789, 80MHz
+//#include <../Setup437_H2_ST7789_240x240.h>      // ESP32-H2, ST7789, 80MHz
 
 //#include <../Setup441_S2_ST7789_170x320.h>      // ESP32-S2, ST7789, 80MHz, HSPI
 //#include <../Setup442_S2_ST7789_240x280.h>      // ESP32-S2, ST7789, 80MHz, HSPI
@@ -75,6 +81,11 @@
 //#include <../Setup453_RP2040_ST7789_240x320.h>  // RP2040, ST7789
 
 //#include <../Setup454_RP2040_ILI9488_Touch.h>   // RP2040, ili9488
+
+//#include <../Setup461_C3_SM_ST7789_170x320.h>   // ESP32-C3 Super Mini, ST7789, IR_LED_Controller
+//#include <../Setup462_C3_SM_ST7789_240x280.h>   // ESP32-C3 Super Mini, ST7789, IR_LED_Controller
+//#include <../Setup463_C3_SM_ST7789_240x320.h>   // ESP32-C3 Super Mini, ST7789, IR_LED_Controller
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
