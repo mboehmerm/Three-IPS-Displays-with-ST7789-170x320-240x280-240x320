@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # MakerGO ESP32 C6 SuperMini, esp32 board package 3.3.11 and a ST7789 SPI display 76x284
 
 A similar test with an **ESP32-C5 DevKit V2.0** can be found in the folder [ESP32_C5](../ESP32_C5_DevKit_V2.0/README.md).
@@ -244,4 +243,3 @@ Before Compile/Verify the C6_Zigbee_On_Off_**Light**.ino (**ED** = End Device) :
 - Select Partition Scheme for Zigbee: `Tools -> Partition Scheme: Zigbee 4MB with spiffs`
 - Select the COM port: `Tools -> Port: xxx` where the `xxx` is the detected COM port.
 - **Optional**: Set debug level to verbose to see all logs from Zigbee stack: `Tools -> Core Debug Level: Verbose`.
->>>>>>> bbe7ee3594158ba10f390e09c823f07448471d5d
