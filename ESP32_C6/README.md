@@ -1,5 +1,3 @@
-# !!! UNDER CONSTRUCTION !!!
-
 # nanoESP32-C6 and esp32 board package 3.0.3 and ST7789 SPI displays
 
 Similar tests with an ESP32-H2 Super Mini can be found in the folder [ESP32_H2](ESP32_H2/README.md).
