@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # ESP32-C5 DevKit V2.0, esp32 board package 3.3.11 and some SPI displays (ST7789 or NV3007)
 
 A similar test with an **ESP32-P4 WT9932P4** can be found in the folder [ESP32_P4_WT9932P4](../ESP32_P4_WT9932P4/README.md).
@@ -212,4 +211,3 @@ static const uint8_t LED_BUILTIN = SOC_GPIO_PIN_COUNT + PIN_RGB_LED;
 ## Display controller NV3007
 
 The driver was found here : https://github.com/Bodmer/TFT_eSPI/issues/3851. The line "#define TFT_INIT_DELAY 0x80" had to be added to the "NV3007_Defines.h". Several files also needed to be modified for the driver to work correctly with the TFT_eSPI library.
->>>>>>> bbe7ee3594158ba10f390e09c823f07448471d5d

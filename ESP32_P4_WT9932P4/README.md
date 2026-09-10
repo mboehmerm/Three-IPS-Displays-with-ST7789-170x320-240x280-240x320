@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # ESP32-P4 WT9932P4-TINY, esp32 board package 3.3.11 and a NV3007 SPI display 142x428
 
 A similar test with an **ESP32-C5 DevKit V2.0** can be found in the folder [ESP32_C5](../ESP32_C5_DevKit_V2.0/README.md).
@@ -248,4 +247,3 @@ That seems to be different with the **ESP32-P4** and **ESP32-S31**.
 \** The [esp32-p4_datasheet_en.pdf](documents/esp32-p4_datasheet_en.pdf) shows additional pins.
 
 In this test with the WT9932P4-TINY the display runs at 80MHz although different pins were used (CS 26, MOSI 32, MISO 33, SCLK 36).
->>>>>>> bbe7ee3594158ba10f390e09c823f07448471d5d
