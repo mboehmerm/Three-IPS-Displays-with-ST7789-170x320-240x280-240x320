@@ -103,4 +103,4 @@ static const uint8_t LED_BUILTIN = SOC_GPIO_PIN_COUNT + PIN_RGB_LED;
 
 ## Display controller NV3007
 
-The driver was found here : https://github.com/Bodmer/TFT_eSPI/issues/3851. The line "#define TFT_INIT_DELAY 0x80" had to be added to the "NV3007_Defines.h". Several files also needed to be modified for the driver to work correctly in the TFT_eSPI library.
+The driver was found here : https://github.com/Bodmer/TFT_eSPI/issues/3851. The line "#define TFT_INIT_DELAY 0x80" had to be added to the "NV3007_Defines.h". Several files also needed to be modified for the driver to work correctly with the TFT_eSPI library.
