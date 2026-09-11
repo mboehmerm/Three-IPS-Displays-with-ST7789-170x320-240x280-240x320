@@ -9,7 +9,7 @@ All three displays work stable with 80MHz, even with a 50cm long cable between E
 
 Similar tests but with a RP2040 (ESP32-S2, S3, C3, C6, H2) and more displays can be found in the folders [RP2040](RP2040/README.md) , [ESP32_S2](ESP32_S2) , [ESP32_S3](ESP32_S3) , [ESP32_C3](ESP32_C3/README.md), [ESP32_C3_Super_Mini](ESP32_C3_Super_Mini) , [ESP32_C6](ESP32_C6/README.md) and [ESP32_H2](ESP32_H2/README.md).
 
-Similar tests with updated library files can be found in the folders [ESP32_C6_SuperMini](ESP32_C6_SuperMini/README.md), [**ESP32_C5_DevKit_V2.0**](ESP32_C5_DevKit_V2.0/README.md) and [**ESP32_P4_WT9932P4**](ESP32_P4_WT9932P4/README.md) ( includes nv3007 display driver ).
+Similar tests with updated library files can be found in the folders [ESP32_C6_SuperMini](ESP32_C6_SuperMini/README.md), [**ESP32_C5_DevKit_V2.0**](ESP32_C5_DevKit_V2.0/README.md) and [**ESP32_P4_WT9932P4**](ESP32_P4_WT9932P4/README.md) ( includes **nv3007** display driver ).
 
 A quick test of the display 76x284 is [here](ESP32_C3/Arduino/README.md)
 
