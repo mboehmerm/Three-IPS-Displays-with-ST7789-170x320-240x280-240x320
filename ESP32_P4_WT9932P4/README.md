@@ -1,4 +1,4 @@
-# ESP32-P4 WT9932P4-TINY, esp32 board package 3.3.11 and a NV3007 SPI display 142x428
+# ESP32-P4 Wireless-Tag WT9932P4-TINY and SPI display NV3007 142x428
 
 A similar test with an **ESP32-C5 DevKit V2.0** can be found in the folder [ESP32_C5](../ESP32_C5_DevKit_V2.0/README.md).
 
@@ -12,7 +12,7 @@ A cheap Aliexpress display, tested with an ESP32-P4 WT9932P4-TINY, Arduino IDE 2
 
 **Chip Variant :** "Before v3.00" (default , "v3.00 or newer" crashed)
 
-**Upload Mode :** "UART0 / Hardware CDC" (Necessary for serial monitor on FUSB)
+**Upload Mode :** "UART0 / Hardware CDC" (default)
 
 **USB Mode :** "Hardware CDC and JTAG" (Necessary for serial monitor on FUSB)
 
@@ -22,7 +22,7 @@ A cheap Aliexpress display, tested with an ESP32-P4 WT9932P4-TINY, Arduino IDE 2
 Wireless-Tag ESP32-P4 WT9932P4-TINY
 
 ![WT9932P4-TINY.jpg](pictures/WT9932P4-TINY_Chip02.jpg)
-The "E" in the manufacturing code "FEF0" of the ESP32-P4 stands for [Chip Revision v1.3](https://docs.espressif.com/projects/esp-chip-errata/en/latest/esp32p4/01-chip-identification/index.html) )
+The "E" in the manufacturing code "FEF0" of the ESP32-P4 stands for [Chip Revision v1.3](https://docs.espressif.com/projects/esp-chip-errata/en/latest/esp32p4/01-chip-identification/index.html) while "NRW32" stands for 32MB in-package PSRAM.
 
 ![P4_142x428.jpg](pictures/P4_142x428.jpg)
 ESP32-P4 WT9932P4-TINY with Display **NV3007** 142x428
@@ -53,7 +53,7 @@ The "ESP32P4 Dev Module" seems to be the best choice for the **WT9932P4-TINY** f
 
 The **Chip Variant** must be "Before v3.00".
 
-Don't forget to change **USB CDC On Boot**, **Upload Mode** and **USB Mode** or the serial monitor output goes to the HUSB connector of the board.
+Don't forget to change **USB CDC On Boot** and **USB Mode** or the serial monitor output can go to the HUSB connector of the board.
 
 There are no pin definitions for the RGB LED in the "ESP32P4 Dev Module". Adding them manually didn't help, so instead of digitalWrite() i had to use rgbLedWrite() or neopixelWrite() (  [ESP32_P4_WT9932P4_Pins.ino](Arduino/ESP32_P4_WT9932P4_Pins/ESP32_P4_WT9932P4_Pins.ino) ) or use the Adafruit library ( [ESP32_P4_WT9932P4_NeoPixel.ino](Arduino/ESP32_P4_WT9932P4_NeoPixel/ESP32_P4_WT9932P4_NeoPixel.ino) ).
 
