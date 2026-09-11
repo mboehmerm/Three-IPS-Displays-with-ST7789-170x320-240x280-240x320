@@ -18,7 +18,10 @@ A cheap Aliexpress display, tested with an ESP32-P4 WT9932P4-TINY, Arduino IDE 2
 
 **For uploading programs connect the Board to the FUSB connector.**  
 
-![WT9932P4-TINY.jpg](pictures/WT9932P4-TINY_G.jpg)
+![WT9932P4-TINY.jpg](pictures/WT9932P4-TINY.jpg)
+Wireless-Tag ESP32-P4 WT9932P4-TINY
+
+![WT9932P4-TINY.jpg](pictures/WT9932P4-TINY_Chip02.jpg)
 Wireless-Tag ESP32-P4 WT9932P4-TINY
 
 ![P4_142x428.jpg](pictures/P4_142x428.jpg)
@@ -46,7 +49,7 @@ Tools Menu ESP32P4 Dev Module
 
 # Choosing the Arduino IDE Board and the options in the tools menu
 
-The "ESP32P4 Dev Module" seems to be the best choice for the **WT9932P4-TINY** from wireless-tag as long as there is no correct board definition. It is the only one, that supports PSRAM and has partition schemes up to 32MB (256Mb).
+The "ESP32P4 Dev Module" seems to be the best choice for the **WT9932P4-TINY** from wireless-tag as long as there is no correct board definition. It is the only one, that supports PSRAM.
 
 The **Chip Variant** must be "Before v3.00".
 
