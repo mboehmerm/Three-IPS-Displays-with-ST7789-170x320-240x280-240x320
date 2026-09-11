@@ -124,3 +124,4 @@ That seems to be different with the **ESP32-P4** and **ESP32-S31**.
 
 \** The [esp32-p4_datasheet_en.pdf](documents/esp32-p4_datasheet_en.pdf) shows additional pins.
 
+In this test the display worked with 80MHz although different pins were used (CS 26, MOSI 32, MISO 33, SCLK 36).
