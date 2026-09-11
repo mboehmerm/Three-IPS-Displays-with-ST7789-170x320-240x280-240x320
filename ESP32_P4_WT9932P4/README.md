@@ -22,7 +22,7 @@ A cheap Aliexpress display, tested with an ESP32-P4 WT9932P4-TINY, Arduino IDE 2
 Wireless-Tag ESP32-P4 WT9932P4-TINY
 
 ![WT9932P4-TINY.jpg](pictures/WT9932P4-TINY_Chip02.jpg)
-The "E" in the manufactoring code "FEF0" stands for Chip Revision v1.3
+The "E" in the manufacturing code "FEF0" of the ESP32-P4 stands for [Chip Revision v1.3](https://docs.espressif.com/projects/esp-chip-errata/en/latest/esp32p4/01-chip-identification/index.html) )
 
 ![P4_142x428.jpg](pictures/P4_142x428.jpg)
 ESP32-P4 WT9932P4-TINY with Display **NV3007** 142x428
