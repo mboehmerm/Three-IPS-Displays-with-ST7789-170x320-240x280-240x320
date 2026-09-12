@@ -68,7 +68,7 @@
   #endif
 #endif
 
-//?// ESP32 C2,C5,C61,P4,S31 Only tested with ESP32-C5 !!!
+//?// ESP32 C2,C5,C61,P4,S31 Only tested with ESP32-C5 and ESP32-P4 !!!
 
 #if CONFIG_IDF_TARGET_ESP32C2 || CONFIG_IDF_TARGET_ESP32C5 || CONFIG_IDF_TARGET_ESP32P4 || CONFIG_IDF_TARGET_ESP32C61 || CONFIG_IDF_TARGET_ESP32S31
 
@@ -76,7 +76,16 @@
     #undef REG_SPI_BASE
   #endif
 
-  #define REG_SPI_BASE(i) (DR_REG_SPI2_BASE)
+  //#define REG_SPI_BASE(i) (DR_REG_SPI2_BASE)
+
+  #if (defined(CONFIG_IDF_TARGET_ESP32P4) || defined(CONFIG_IDF_TARGET_ESP32S31)) && defined(USE_HSPI_PORT)
+    #define REG_SPI_BASE(i) (DR_REG_SPI3_BASE)
+    // Arduino IDE : File/Preferences.../Compiler Warnings "All" to see warnings
+	#warning >>>>---->> TFT_eSPI uses SPI3
+  #else
+    #define REG_SPI_BASE(i) (DR_REG_SPI2_BASE)
+	//#warning >>>>---->> TFT_eSPI uses SPI2
+  #endif
 
   #ifndef SPI_MOSI_DLEN_REG
     #define SPI_MOSI_DLEN_REG(i) SPI_MS_DLEN_REG(i)
@@ -166,7 +175,11 @@ SPI3_HOST = 2
 #if ESP_ARDUINO_VERSION_MAJOR < 3
   #define SPI_PORT SPI2_HOST
 #else
-  #define SPI_PORT 2
+  #if (defined(CONFIG_IDF_TARGET_ESP32P4) || defined(CONFIG_IDF_TARGET_ESP32S31)) && defined(USE_HSPI_PORT)
+    #define SPI_PORT 3
+  #else	
+    #define SPI_PORT 2
+  #endif
 #endif
 
 #ifdef RPI_DISPLAY_TYPE

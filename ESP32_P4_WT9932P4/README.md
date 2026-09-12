@@ -63,7 +63,18 @@ Copy or replace all files from the [libraries](Arduino/libraries/) directory, in
 
 The file [TFT_eSPI.zip](Arduino/TFT_eSPI.zip) contains the complete library files of the TFT_eSPI library, including all configuration files i have.
 
-These files also support the NV3007 display, [ESP32-C5](../ESP32_C5_DevKit_V2.0/README.md) and [ESP32-P4](../ESP32_P4_WT9932P4/README.md).
+These files also support the NV3007 display, [ESP32-C5](../ESP32_C5_DevKit_V2.0/README.md) and support SPI3 on ESP32-P4.
+
+## Configuring the TFT_eSPI
+
+The configuration is done in the files 
+- [Arduino/libraries/Setup482_P4_NV3007_142x428.h](Arduino/libraries/Setup482_P4_NV3007_142x428.h) or 
+- [Arduino/libraries/Setup483_P4_NV3007_142x428_SPI3.h](Arduino/libraries/Setup483_P4_NV3007_142x428_SPI3.h)  if you want to use SPI3.
+
+Choose the correct configuration file in 
+- [Arduino/libraries/TFT_eSPI/User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h)
+
+No changes necessary in [Arduino/ESP32_P4_TFT_graphicstest_142x428](Arduino/ESP32_P4_TFT_graphicstest_142x428/ESP32_P4_TFT_graphicstest_142x428.ino)
 
 ## Test programs
 
@@ -107,7 +118,7 @@ The table indicates that the SPI bus operates at a frequency of 80 MHz ("#define
 - Increases the input delay of the MISO signal, which makes MISO setup time violations more likely. If SPI needs to operate at high speeds, use dedicated IO_MUX pins.
 - Allows signals with clock frequencies only up to 40MHz, as opposed to 80MHz if IO_MUX pins are used.
 
-That seems to be different with the **ESP32-P4** and **ESP32-S31**.
+This seems to be different with the **ESP32-P4** and **ESP32-S31**. Both SPI2 and SPI3 are capable of operating at 80MHz.
 
 | Pin \ ESP32 |   C6*|C5,C3,C2*|  C61*|   H2*|S3,S2*|   P4*|  P4**|  S31*|ESP32*|  ESP32*|
 | :---------- | ---: |    ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |   ---: |
@@ -124,4 +135,4 @@ That seems to be different with the **ESP32-P4** and **ESP32-S31**.
 
 \** The [esp32-p4_datasheet_en.pdf](documents/esp32-p4_datasheet_en.pdf) shows additional pins.
 
-In this test the display worked with 80MHz although different pins were used (CS 26, MOSI 32, MISO 33, SCLK 36).
+In this test the display worked with both SPI2 and SPI3 at 80MHz although different pins were used (CS 26, MOSI 32, MISO 33, SCLK 36).
