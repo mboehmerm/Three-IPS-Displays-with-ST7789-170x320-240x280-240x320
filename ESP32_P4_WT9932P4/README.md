@@ -57,22 +57,22 @@ The **Chip Variant** must be "Before v3.00".
 
 Don't forget to change **USB CDC On Boot** and **USB Mode** or the serial monitor output can go to the HUSB connector of the board.
 
-There are no pin definitions for the RGB LED in the "ESP32P4 Dev Module". Adding them manually didn't help, so instead of digitalWrite() i had to use rgbLedWrite() or neopixelWrite() (  [ESP32_P4_WT9932P4_Pins.ino](Arduino/ESP32_P4_WT9932P4_Pins/ESP32_P4_WT9932P4_Pins.ino) ) or use the Adafruit library ( [ESP32_P4_WT9932P4_NeoPixel.ino](Arduino/ESP32_P4_WT9932P4_NeoPixel/ESP32_P4_WT9932P4_NeoPixel.ino) ).
+There are no pin definitions for the RGB LED in the "ESP32P4 Dev Module". Adding them manually didn't help, so instead of digitalWrite() i had to use rgbLedWrite() or neopixelWrite() (  [ESP32_P4_WT9932P4_Pins.ino](Arduino/ESP32_P4_WT9932P4_Pins/ESP32_P4_WT9932P4_Pins.ino) ) or use the Adafruit NeoPixel library ( [ESP32_P4_WT9932P4_NeoPixel.ino](Arduino/ESP32_P4_WT9932P4_NeoPixel/ESP32_P4_WT9932P4_NeoPixel.ino) ).
 
-## Modifying and configuring the TFT_eSPI
+## Modifying and configuring TFT_eSPI ( and LovyanGFX )
 
-Copy or replace all files from the [libraries](Arduino/libraries/) directory, including its subdirectories. These are only the modified ( or added ) files of ( to ) the original TFT_eSPI 2.5.43 library, needed for the test programs.
+Copy or replace all files from the [libraries](Arduino/libraries/) directory, including its subdirectories. These are only the modified ( or added ) files of ( to ) the original TFT_eSPI 2.5.43 library ( and LovyanGFX ), needed for the test programs.
 
 The file [TFT_eSPI.zip](Arduino/TFT_eSPI.zip) contains the complete library files of the TFT_eSPI library, including all configuration files i have.
 
-These files also support the NV3007 display, [ESP32-C5](../ESP32_C5_DevKit_V2.0/README.md) and support SPI3 on ESP32-P4.
+These files also support the NV3007 display, [ESP32-C5](../ESP32_C5_DevKit_V2.0/README.md) and SPI3 for ESP32-P4.
 
 ## Configuring TFT_eSPI
 
 The configuration is done in the files 
 - [Arduino/libraries/Setup482_P4_NV3007_142x428.h](Arduino/libraries/Setup482_P4_NV3007_142x428.h) or 
 - [Arduino/libraries/Setup483_P4_NV3007_142x428_SPI3.h](Arduino/libraries/Setup483_P4_NV3007_142x428_SPI3.h)  if you want to use SPI3 or
-- [Arduino/libraries/Setup484_P4_ST7789_320x172.h](Arduino/libraries/Setup484_P4_ST7789_320x172.h) if yau want to use TFT_eSPI or LovyanGFX.
+- [Arduino/libraries/Setup484_P4_ST7789_320x172.h](Arduino/libraries/Setup484_P4_ST7789_320x172.h)
 
 Choose the correct configuration file in 
 - [Arduino/libraries/TFT_eSPI/User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h)
@@ -81,10 +81,17 @@ No changes necessary in [Arduino/ESP32_P4_TFT_graphicstest_142x428](Arduino/ESP3
 
 ## Test programs
 
-All files can be found above in the folder [Arduino](Arduino/). The program  ESP32_P4_Lovyan_graphicstest_172x320 works with LovyanGFX and TFT_eSPI.
+All files can be found above in the folder [Arduino](Arduino/). 
 
 - [Arduino/ESP32_P4_TFT_graphicstest_142x428](Arduino/ESP32_P4_TFT_graphicstest_142x428/ESP32_P4_TFT_graphicstest_142x428.ino) 
+
+These two programs work both with LovyanGFX **or** TFT_eSPI :
+
+- [Arduino/ESP32_P4_Lovyan_graphicstest_142x428](Arduino/ESP32_P4_Lovyan_graphicstest_142x428/ESP32_P4_Lovyan_graphicstest_142x428.ino) 
 - [Arduino/ESP32_P4_Lovyan_graphicstest_172x320](Arduino/ESP32_P4_Lovyan_graphicstest_172x320/ESP32_P4_Lovyan_graphicstest_172x320.ino) 
+
+Test board default pins or NeoPixel RGB-LED :
+
 - [Arduino/ESP32_P4_WT9932P4_Pins.ino](Arduino/ESP32_P4_WT9932P4_Pins/ESP32_P4_WT9932P4_Pins.ino)
 - [Arduino/ESP32_P4_WT9932P4_NeoPixel](Arduino/ESP32_P4_WT9932P4_NeoPixel/ESP32_P4_WT9932P4_NeoPixel.ino) 
 
