@@ -2,7 +2,7 @@
 
 A similar test with an **ESP32-C5 DevKit V2.0** can be found in the folder [ESP32_C5](../ESP32_C5_DevKit_V2.0/README.md).
 
-A cheap Aliexpress display, tested with an ESP32-P4 WT9932P4-TINY, Arduino IDE 2.3.10 and a modified TFT_eSPI 2.5.43 .
+A cheap Aliexpress display, tested with an ESP32-P4 WT9932P4-TINY, Arduino IDE 2.3.10 and a modified TFT_eSPI 2.5.43 library.
 
 **Board Package :** esp32 3.3.11
 
@@ -51,7 +51,7 @@ Tools Menu ESP32P4 Dev Module
 
 # Choosing the Arduino IDE Board and the options in the tools menu
 
-The "ESP32P4 Dev Module" seems to be the best choice for the **WT9932P4-TINY** from wireless-tag as long as there is no correct board definition. It is the only one, that supports PSRAM.
+The "ESP32P4 Dev Module" seems to be the best choice for the **WT9932P4-TINY** from wireless-tag as long as there is no correct board definition. It has many options and supports PSRAM.
 
 The **Chip Variant** must be "Before v3.00".
 
@@ -77,11 +77,11 @@ The configuration is done in the files
 Choose the correct configuration file in 
 - [Arduino/libraries/TFT_eSPI/User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h)
 
-No changes necessary in [Arduino/ESP32_P4_TFT_graphicstest_142x428](Arduino/ESP32_P4_TFT_graphicstest_142x428/ESP32_P4_TFT_graphicstest_142x428.ino)
-
 ## Test programs
 
 All files can be found above in the folder [Arduino](Arduino/). 
+
+This program works only with the TFT_eSPI library :
 
 - [Arduino/ESP32_P4_TFT_graphicstest_142x428](Arduino/ESP32_P4_TFT_graphicstest_142x428/ESP32_P4_TFT_graphicstest_142x428.ino) 
 
@@ -146,4 +146,4 @@ This seems to be different with the **ESP32-P4** and **ESP32-S31**. Both SPI2 an
 
 \** The [esp32-p4_datasheet_en.pdf](documents/esp32-p4_datasheet_en.pdf) shows additional pins.
 
-In this test the display worked with both SPI2 and SPI3 at 80MHz although different pins were used (CS 26, MOSI 32, MISO 33, SCLK 36).
+In this test the displays worked with both **SPI2** and **SPI3** at 80MHz although different pins were used (CS 26, MOSI 32, ~~MISO 33~~, SCLK 36).
