@@ -95,7 +95,7 @@ Test board default pins or NeoPixel RGB-LED :
 - [Arduino/ESP32_P4_WT9932P4_Pins.ino](Arduino/ESP32_P4_WT9932P4_Pins/ESP32_P4_WT9932P4_Pins.ino)
 - [Arduino/ESP32_P4_WT9932P4_NeoPixel](Arduino/ESP32_P4_WT9932P4_NeoPixel/ESP32_P4_WT9932P4_NeoPixel.ino) 
 
-## Speed comparison 
+## Speed comparison display NV3007
  
 The table indicates that the SPI bus operates at a frequency of 80 MHz ("#define SPI_FREQUENCY  80000000") or 40MHz ("#define SPI_FREQUENCY  40000000").
 
