@@ -26,6 +26,8 @@ The "E" in the manufacturing code "FEF0" stands for [Chip Revision v1.3](https:/
 
 ![P4_142x428.jpg](pictures/P4_142x428.jpg)
 ESP32-P4 WT9932P4-TINY with Display **NV3007** 142x428
+![P4_172x320.jpg](pictures/P4_172x320.jpg)
+ESP32-P4 WT9932P4-TINY with Display **ST7789** 172x320
 
 ## Connections for ESP32 C6 SuperMini and ST7789 displays
 
@@ -65,11 +67,12 @@ The file [TFT_eSPI.zip](Arduino/TFT_eSPI.zip) contains the complete library file
 
 These files also support the NV3007 display, [ESP32-C5](../ESP32_C5_DevKit_V2.0/README.md) and support SPI3 on ESP32-P4.
 
-## Configuring the TFT_eSPI
+## Configuring TFT_eSPI
 
 The configuration is done in the files 
 - [Arduino/libraries/Setup482_P4_NV3007_142x428.h](Arduino/libraries/Setup482_P4_NV3007_142x428.h) or 
-- [Arduino/libraries/Setup483_P4_NV3007_142x428_SPI3.h](Arduino/libraries/Setup483_P4_NV3007_142x428_SPI3.h)  if you want to use SPI3.
+- [Arduino/libraries/Setup483_P4_NV3007_142x428_SPI3.h](Arduino/libraries/Setup483_P4_NV3007_142x428_SPI3.h)  if you want to use SPI3 or
+- [Arduino/libraries/Setup484_P4_ST7789_320x172.h](Arduino/libraries/Setup484_P4_ST7789_320x172.h) if yau want to use TFT_eSPI or LovyanGFX.
 
 Choose the correct configuration file in 
 - [Arduino/libraries/TFT_eSPI/User_Setup_Select.h](Arduino/libraries/TFT_eSPI/User_Setup_Select.h)
@@ -78,9 +81,10 @@ No changes necessary in [Arduino/ESP32_P4_TFT_graphicstest_142x428](Arduino/ESP3
 
 ## Test programs
 
-All files can be found above in the folder [Arduino](Arduino/).
+All files can be found above in the folder [Arduino](Arduino/). The program  ESP32_P4_Lovyan_graphicstest_172x320 works with LovyanGFX and TFT_eSPI.
 
 - [Arduino/ESP32_P4_TFT_graphicstest_142x428](Arduino/ESP32_P4_TFT_graphicstest_142x428/ESP32_P4_TFT_graphicstest_142x428.ino) 
+- [Arduino/ESP32_P4_Lovyan_graphicstest_172x320](Arduino/ESP32_P4_Lovyan_graphicstest_172x320/ESP32_P4_Lovyan_graphicstest_172x320.ino) 
 - [Arduino/ESP32_P4_WT9932P4_Pins.ino](Arduino/ESP32_P4_WT9932P4_Pins/ESP32_P4_WT9932P4_Pins.ino)
 - [Arduino/ESP32_P4_WT9932P4_NeoPixel](Arduino/ESP32_P4_WT9932P4_NeoPixel/ESP32_P4_WT9932P4_NeoPixel.ino) 
 
