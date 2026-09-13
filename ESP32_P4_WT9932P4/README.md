@@ -137,7 +137,7 @@ The table indicates that the SPI bus can operate at a frequency of 80MHz ("#defi
 
 This seems to be different with the **ESP32-P4** and **ESP32-S31**. Both SPI2 and SPI3 are capable of operating at 80MHz.
 
-| Pin    |Pin \ ESP32|   C6*|C5,C3,C2*|  C61*|   H2*|S3,S2*|ESP32*|  ESP32*|  S31*|   P4*|  P4**| P4***|   P4***|
+| Pin    | Pin\ESP32 |   C6*|C5,C3,C2*|  C61*|   H2*|S3,S2*|ESP32*|  ESP32*|  S31*|   P4*|  P4**| P4***|   P4***|
 | :----- | :-------- | ---: |    ---: | ---: | ---: | ---: | ---: |   ---: | ---: | ---: | ---: | ---: | -----: |
 | CS     | SPI_CS    |   16 |      10 |    8 |    1 |   10 |   15 |      5 |  N/A |   7* | 28** |   26 |     26 |
 | SCLK   | SPI_CK    |    6 |       6 |    6 |    4 |   12 |   14 |     18 |  N/A |   9* | 30** |   36 |     36 |
