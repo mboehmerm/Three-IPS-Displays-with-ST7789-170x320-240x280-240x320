@@ -90,14 +90,20 @@ These two programs work both with LovyanGFX **or** TFT_eSPI :
 - [Arduino/ESP32_P4_Lovyan_graphicstest_142x428](Arduino/ESP32_P4_Lovyan_graphicstest_142x428/ESP32_P4_Lovyan_graphicstest_142x428.ino) 
 - [Arduino/ESP32_P4_Lovyan_graphicstest_172x320](Arduino/ESP32_P4_Lovyan_graphicstest_172x320/ESP32_P4_Lovyan_graphicstest_172x320.ino) 
 
-Test board default pins or NeoPixel RGB-LED :
+Testing board default pins or NeoPixel RGB-LED :
 
-- [Arduino/ESP32_P4_WT9932P4_Pins.ino](Arduino/ESP32_P4_WT9932P4_Pins/ESP32_P4_WT9932P4_Pins.ino)
-- [Arduino/ESP32_P4_WT9932P4_NeoPixel](Arduino/ESP32_P4_WT9932P4_NeoPixel/ESP32_P4_WT9932P4_NeoPixel.ino) 
+- [Arduino/ESP32_P4_Memory_Information.ino](Arduino/ESP32_P4_Memory_Information/ESP32_P4_Memory_Information.ino)
+- [Arduino/ESP32_P4_WT9932P4_NeoPixel.ino](Arduino/ESP32_P4_WT9932P4_NeoPixel/ESP32_P4_WT9932P4_NeoPixel.ino) 
+
+Testing RAM, PSRAM and Flash Memory :
+
+- [Arduino/ESP32_P4_Memory_Information.ino](Arduino/ESP32_P4_Memory_Information/ESP32_P4_Memory_Information.ino)
+- [Arduino/ESP32_P4_PSRAM_Size.ino](Arduino/ESP32_P4_PSRAM_Size/ESP32_P4_PSRAM_Size.ino)
+- [Arduino/ESP32_P4_PSRAM_Speed_Test.ino](Arduino/ESP32_P4_PSRAM_Speed_Test/ESP32_P4_PSRAM_Speed_Test.ino) 
 
 ## Speed comparison display NV3007
  
-The table indicates that the SPI bus operates at a frequency of 80 MHz ("#define SPI_FREQUENCY  80000000") or 40MHz ("#define SPI_FREQUENCY  40000000").
+The table indicates that the SPI bus can operate at a frequency of 80MHz ("#define SPI_FREQUENCY  80000000") or 40MHz ("#define SPI_FREQUENCY  40000000").
 
 |                        | ESP32-P4 | ESP32-P4 | ESP32-C5 |
 | :--------------------- | -------: | -------: | -------: |
@@ -131,19 +137,19 @@ The table indicates that the SPI bus operates at a frequency of 80 MHz ("#define
 
 This seems to be different with the **ESP32-P4** and **ESP32-S31**. Both SPI2 and SPI3 are capable of operating at 80MHz.
 
-| Pin \ ESP32 |   C6*|C5,C3,C2*|  C61*|   H2*|S3,S2*|   P4*|  P4**|  S31*|ESP32*|  ESP32*|
-| :---------- | ---: |    ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |   ---: |
-| CS          |   16 |      10 |    8 |    1 |   10 |   7* | 28** |  N/A |   15 |      5 |
-| SCLK        |    6 |       6 |    6 |    4 |   12 |   9* | 30** |  N/A |   14 |     18 |
-| MISO        |    2 |       2 |    2 |    0 |   13 |  10* | 31** |  N/A |   12 |     19 |
-| MOSI        |    7 |       7 |    7 |    5 |   11 |   8* | 29** |  N/A |   13 |     23 |
-| QUADWP      |    5 |       5 |    4 |    2 |   14 |  11* | 33** |  N/A |   11 |     22 |
-| QUADHD      |    4 |       4 |    3 |    3 |    9 |   6* | 32** |  N/A |    6 |     21 |
-|-------------|      |         |      |      |      |      |      |      |      |        |
-| SPI Bus     | SPI2 |    SPI2 | SPI2 | SPI2 | SPI2 | SPI2 | SPI2 | SPI2 | SPI2 |**SPI3**|
+| Pin \ ESP32 |   C6*|C5,C3,C2*|  C61*|   H2*|S3,S2*|ESP32*|  ESP32*|  S31*|   P4*|  P4**| P4***|   P4***|
+| :---------- | ---: |    ---: | ---: | ---: | ---: | ---: |   ---: | ---: | ---: | ---: | ---: | -----: |
+| CS          |   16 |      10 |    8 |    1 |   10 |   15 |      5 |  N/A |   7* | 28** |   26 |     26 |
+| SCLK        |    6 |       6 |    6 |    4 |   12 |   14 |     18 |  N/A |   9* | 30** |   36 |     36 |
+| MISO        |    2 |       2 |    2 |    0 |   13 |   12 |     19 |  N/A |  10* | 31** |  (33)|    (33)|
+| MOSI        |    7 |       7 |    7 |    5 |   11 |   13 |     23 |  N/A |   8* | 29** |   32 |     32 |
+| QUADWP      |    5 |       5 |    4 |    2 |   14 |   11 |     22 |  N/A |  11* | 33** |   -- |     -- |
+| QUADHD      |    4 |       4 |    3 |    3 |    9 |    6 |     21 |  N/A |   6* | 32** |   -- |     -- |
+|-------------|      |         |      |      |      |      |        |      |      |      |      |        |
+| SPI Bus     | SPI2 |    SPI2 | SPI2 | SPI2 | SPI2 | SPI2 |**SPI3**| SPI2 | SPI2 | SPI2 | SPI2 |**SPI3**|
 
 \* Found in the Espressif online documentation https://docs.espressif.com/projects/esp-idf/en/v6.1/esp32p4/api-reference/peripherals/spi_master.html.
 
-\** The [esp32-p4_datasheet_en.pdf](documents/esp32-p4_datasheet_en.pdf) shows additional pins.
+\** The [esp32-p4_datasheet_en.pdf](documents/esp32-p4_datasheet_en.pdf) shows also this pins.
 
-In this test the displays worked with both **SPI2** and **SPI3** at 80MHz although different pins were used (CS 26, MOSI 32, ~~MISO 33~~, SCLK 36).
+\*** In this test the displays worked with both **SPI2** and **SPI3** at 80MHz although different pins were used (CS 26, SCLK 36, MOSI 32, not used : MISO 33).

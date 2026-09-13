@@ -1,4 +1,14 @@
 /*
+
+Arduino IDE Board  : "ESP32P4 Dev Module"
+USB CDC On Boot    : "Enabled"
+Chip Variant       : "Before v3.00"
+PSRAM              : "Enabled"
+Upload Mode        : "UART0 / Hardware CDC"
+USB Mode           : "Hardware CDC and JTAG"
+
+----------------------------------------------------
+
 PSRAM Found! Total size: 33554432 bytes
 Free PSRAM before alloc: 33551856 bytes
 Starting PSRAM Write Test (1 MB)...
