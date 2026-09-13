@@ -137,19 +137,19 @@ The table indicates that the SPI bus can operate at a frequency of 80MHz ("#defi
 
 This seems to be different with the **ESP32-P4** and **ESP32-S31**. Both SPI2 and SPI3 are capable of operating at 80MHz.
 
-| Pin \ ESP32 |   C6*|C5,C3,C2*|  C61*|   H2*|S3,S2*|ESP32*|  ESP32*|  S31*|   P4*|  P4**| P4***|   P4***|
-| :---------- | ---: |    ---: | ---: | ---: | ---: | ---: |   ---: | ---: | ---: | ---: | ---: | -----: |
-| CS          |   16 |      10 |    8 |    1 |   10 |   15 |      5 |  N/A |   7* | 28** |   26 |     26 |
-| SCLK        |    6 |       6 |    6 |    4 |   12 |   14 |     18 |  N/A |   9* | 30** |   36 |     36 |
-| MISO        |    2 |       2 |    2 |    0 |   13 |   12 |     19 |  N/A |  10* | 31** |  (33)|    (33)|
-| MOSI        |    7 |       7 |    7 |    5 |   11 |   13 |     23 |  N/A |   8* | 29** |   32 |     32 |
-| QUADWP      |    5 |       5 |    4 |    2 |   14 |   11 |     22 |  N/A |  11* | 33** |   -- |     -- |
-| QUADHD      |    4 |       4 |    3 |    3 |    9 |    6 |     21 |  N/A |   6* | 32** |   -- |     -- |
-|-------------|      |         |      |      |      |      |        |      |      |      |      |        |
-| SPI Bus     | SPI2 |    SPI2 | SPI2 | SPI2 | SPI2 | SPI2 |**SPI3**| SPI2 | SPI2 | SPI2 | SPI2 |**SPI3**|
+| Pin    |Pin \ ESP32|   C6*|C5,C3,C2*|  C61*|   H2*|S3,S2*|ESP32*|  ESP32*|  S31*|   P4*|  P4**| P4***|   P4***|
+| :----- | :-------- | ---: |    ---: | ---: | ---: | ---: | ---: |   ---: | ---: | ---: | ---: | ---: | -----: |
+| CS     | SPI_CS    |   16 |      10 |    8 |    1 |   10 |   15 |      5 |  N/A |   7* | 28** |   26 |     26 |
+| SCLK   | SPI_CK    |    6 |       6 |    6 |    4 |   12 |   14 |     18 |  N/A |   9* | 30** |   36 |     36 |
+| MISO   | SPI_Q     |    2 |       2 |    2 |    0 |   13 |   12 |     19 |  N/A |  10* | 31** |  (33)|    (33)|
+| MOSI   | SPI_D     |    7 |       7 |    7 |    5 |   11 |   13 |     23 |  N/A |   8* | 29** |   32 |     32 |
+| QUADWP | SPI_WP    |    5 |       5 |    4 |    2 |   14 |   11 |     22 |  N/A |  11* | 33** |   -- |     -- |
+| QUADHD | SPI_HOLD  |    4 |       4 |    3 |    3 |    9 |    6 |     21 |  N/A |   6* | 32** |   -- |     -- |
+|--------|-----------|      |         |      |      |      |      |        |      |      |      |      |        |
+|        | SPI Bus   | SPI2 |    SPI2 | SPI2 | SPI2 | SPI2 | SPI2 |**SPI3**| SPI2 | SPI2 | SPI2 | SPI2 |**SPI3**|
 
 \* Found in the Espressif online documentation https://docs.espressif.com/projects/esp-idf/en/v6.1/esp32p4/api-reference/peripherals/spi_master.html.
 
-\** The [esp32-p4_datasheet_en.pdf](documents/esp32-p4_datasheet_en.pdf) shows also this pins.
+\** The datasheets of [ESP32-P4](documents/esp32-p4_datasheet_en.pdf) , [ESP32-P4 v1.3](documents/esp32-p4-chip-revision-v1.3_datasheet_en.pdf) and [ESP32-S31](documents/esp32-s31_datasheet_en.pdf) show additional pins.
 
 \*** In this test the displays worked with both **SPI2** and **SPI3** at 80MHz although different pins were used (CS 26, SCLK 36, MOSI 32, not used : MISO 33).
