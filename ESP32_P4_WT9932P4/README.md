@@ -59,6 +59,10 @@ Don't forget to change **USB CDC On Boot** and **USB Mode** or the serial monito
 
 There are no pin definitions for the RGB LED in the "ESP32P4 Dev Module". Adding them manually didn't help, so instead of digitalWrite() i had to use rgbLedWrite() or neopixelWrite() (  [ESP32_P4_WT9932P4_Pins.ino](Arduino/ESP32_P4_WT9932P4_Pins/ESP32_P4_WT9932P4_Pins.ino) ) or use the Adafruit NeoPixel library ( [ESP32_P4_WT9932P4_NeoPixel.ino](Arduino/ESP32_P4_WT9932P4_NeoPixel/ESP32_P4_WT9932P4_NeoPixel.ino) ).
 
+Or we add a [new board defintion](new_board_definition/README.md) and variant for the Wireless-Tag WT9932P4-TINY. 
+
+![New_Board_Definition.jpg](pictures/New_Board_Definition.jpg)
+
 ## Modifying and configuring TFT_eSPI ( and LovyanGFX )
 
 Copy or replace all files from the [libraries](Arduino/libraries/) directory, including its subdirectories. These are only the modified ( or added ) files of ( to ) the original TFT_eSPI 2.5.43 library ( and LovyanGFX ), needed for the test programs.
