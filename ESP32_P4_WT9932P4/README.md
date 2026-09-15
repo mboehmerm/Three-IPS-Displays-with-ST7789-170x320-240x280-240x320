@@ -2,7 +2,7 @@
 
 A similar test with an **ESP32-C5 DevKit V2.0** can be found in the folder [ESP32_C5](../ESP32_C5_DevKit_V2.0/README.md).
 
-A cheap Aliexpress display, tested with an ESP32-P4 WT9932P4-TINY, Arduino IDE 2.3.10 and a modified TFT_eSPI 2.5.43 library.
+A cheap Aliexpress display, tested with an ESP32-P4 WT9932P4-TINY, Arduino IDE 2.3.10, a modified TFT_eSPI 2.5.43 library and and a modified LovyanGFX 1.2.29 library.
 
 **Board Package :** esp32 3.3.11
 
@@ -63,9 +63,16 @@ Or we add a [new board defintion](new_board_definition/README.md) and variant fo
 
 ![New_Board_Definition.jpg](pictures/New_Board_Definition.jpg)
 
-## Modifying and configuring TFT_eSPI ( and LovyanGFX )
+## Modifying and configuring TFT_eSPI 2.5.43 ( and LovyanGFX 1.2.29 )
 
-Copy or replace all files from the [libraries](Arduino/libraries/) directory, including its subdirectories. These are only the modified ( or added ) files of ( to ) the original TFT_eSPI 2.5.43 library ( and LovyanGFX ), needed for the test programs.
+**Don't** copy the library files if you have a newer version of the libraries
+
+- TFT_eSPI 2.5.43    ( no updates expected  ) 
+- LovyanGFX 1.2.29   ( espially v1_init.hpp )
+
+Then you have to edit the existing files.
+
+Copy or replace all files from the [libraries](Arduino/libraries/) directory, including its subdirectories. These are only the modified ( or added ) files of ( to ) the original TFT_eSPI 2.5.43 library ( and LovyanGFX 1.2.29 ), needed for the test programs.
 
 The file [TFT_eSPI.zip](Arduino/TFT_eSPI.zip) contains the complete library files of the TFT_eSPI library, including all configuration files i have.
 
