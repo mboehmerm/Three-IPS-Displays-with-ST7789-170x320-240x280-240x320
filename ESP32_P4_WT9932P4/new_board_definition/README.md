@@ -28,7 +28,7 @@ You can see the differences if you compare [boards.txt](boards.txt) and [boards.
 
 All changes are done (or moved to) after "esp32p4_core_board" and before "aventen_s3_sync".
 
-```java
+```cs
 ## ...
 esp32p4_core_board.menu.EraseFlash.all.upload.erase_cmd=-e
 
@@ -117,7 +117,7 @@ aventen_s3_sync.name=Aventen S3 Sync
 
 With the new board "ESP32 WT9932P4-TINY" we can use digitalWrite() for the RGB-LED.
 
-```java
+```cpp
   digitalWrite(LED_BUILTIN, HIGH);
 ```  
 
@@ -125,7 +125,7 @@ This can be seen in [ESP32_P4_WT9932P4_Pins.ino](Arduino/ESP32_P4_WT9932P4_Pins/
 
 This works because of the changes in "pins_arduino.h" :
 
-```java
+```cpp
 #define PIN_RGB_LED 51
 
 // BUILTIN_LED can be used in new Arduino API digitalWrite() like in Blink.ino
