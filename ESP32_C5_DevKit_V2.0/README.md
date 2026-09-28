@@ -87,7 +87,7 @@ In the test with an [ESP32_P4_WT9932P4](../ESP32_P4_WT9932P4/README.md) the disp
 
 **RGB_BUILTIN** is defined in AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\variants\esp32c5\pins_arduino.h :
 
-```
+```cpp
 #define PIN_RGB_LED 27
 
 // BUILTIN_LED can be used in new Arduino API digitalWrite() like in Blink.ino
