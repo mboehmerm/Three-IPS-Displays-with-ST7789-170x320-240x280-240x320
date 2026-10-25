@@ -1,0 +1,178 @@
+//=============================================================
+//LCD Initial
+
+void lcd_Initial(void)
+{ 
+  	CS=1;
+	delayms(5);
+	RES=0;
+	delayms(10);
+	RES=1;
+	delayms(50);  
+
+	Write_Cmd(0x01);
+	delayms(10);
+
+	Write_Cmd(0xDF);
+	Write_Cmd_Data(0x98);
+	Write_Cmd_Data(0x53);
+
+	Write_Cmd(0xDE);
+	Write_Cmd_Data(0x00);
+
+	Write_Cmd(0xB2);
+	Write_Cmd_Data(0x25);
+
+	Write_Cmd(0xB7);
+	Write_Cmd_Data(0x00);
+	Write_Cmd_Data(0x29);//VGMP 4.5V
+	Write_Cmd_Data(0x00);
+	Write_Cmd_Data(0x51);//VGSP 4.5V
+
+	Write_Cmd(0xBB);
+	Write_Cmd_Data(0x4F);
+	Write_Cmd_Data(0x1A);
+	Write_Cmd_Data(0x55);
+	Write_Cmd_Data(0x73);
+	Write_Cmd_Data(0x63);//240110
+	Write_Cmd_Data(0xF0);
+
+	Write_Cmd(0xC0);
+	Write_Cmd_Data(0x44);
+	Write_Cmd_Data(0xA4);
+
+	Write_Cmd(0xC1);
+	Write_Cmd_Data(0x12);
+
+	Write_Cmd(0xC3);
+	Write_Cmd_Data(0x7D);
+	Write_Cmd_Data(0x07);
+	Write_Cmd_Data(0x14);
+	Write_Cmd_Data(0x06);
+	Write_Cmd_Data(0xC8);
+	Write_Cmd_Data(0x71);
+	Write_Cmd_Data(0x6C);
+	Write_Cmd_Data(0x77);
+
+	Write_Cmd(0xC4);
+	Write_Cmd_Data(0x00);//00=60Hz 04=53Hz 08=42Hz
+	Write_Cmd_Data(0x00);
+	Write_Cmd_Data(0x94);//LN=296  Line
+	Write_Cmd_Data(0x79);
+	Write_Cmd_Data(0x25);
+	Write_Cmd_Data(0x0A);
+	Write_Cmd_Data(0x16);
+	Write_Cmd_Data(0x79);
+	Write_Cmd_Data(0x25);
+	Write_Cmd_Data(0x0A);
+	Write_Cmd_Data(0x16);
+	Write_Cmd_Data(0x82);
+
+//SET_R_GAMMA Fit VOP4.5 G2.5 20231116
+	Write_Cmd(0xC8);	//G2.0	//G2.2
+	Write_Cmd_Data(0x3F);	//0x3F	//0x3F
+	Write_Cmd_Data(0x32);	//0x34	//0x33
+	Write_Cmd_Data(0x2A);	//0x2D	//0x2B
+	Write_Cmd_Data(0x22);	//0x26	//0x25
+	Write_Cmd_Data(0x26);	//0x2B	//0x29
+	Write_Cmd_Data(0x25);	//0x2B	//0x28
+	Write_Cmd_Data(0x1E);	//0x25	//0x22
+	Write_Cmd_Data(0x1E);	//0x24	//0x21
+	Write_Cmd_Data(0x1C);	//0x23	//0x20
+	Write_Cmd_Data(0x1C);	//0x22	//0x1F
+	Write_Cmd_Data(0x19);	//0x20	//0x1E
+	Write_Cmd_Data(0x0E);	//0x17	//0x14
+	Write_Cmd_Data(0x09);	//0x14	//0x0F
+	Write_Cmd_Data(0x02);	//0x0E	//0x0A
+	Write_Cmd_Data(0x06);	//0x06	//0x06
+	Write_Cmd_Data(0x00);	//0x00	//0x00
+	Write_Cmd_Data(0x3F);	//0x3F	//0x3F
+	Write_Cmd_Data(0x32);	//0x34	//0x33
+	Write_Cmd_Data(0x2A);	//0x2D	//0x2B
+	Write_Cmd_Data(0x22);	//0x26	//0x25
+	Write_Cmd_Data(0x26);	//0x2B	//0x29
+	Write_Cmd_Data(0x25);	//0x2B	//0x28
+	Write_Cmd_Data(0x1E);	//0x25	//0x22
+	Write_Cmd_Data(0x1E);	//0x24	//0x21
+	Write_Cmd_Data(0x1C);	//0x23	//0x20
+	Write_Cmd_Data(0x1C);	//0x22	//0x1F
+	Write_Cmd_Data(0x19);	//0x20	//0x1E
+	Write_Cmd_Data(0x0E);	//0x17	//0x14
+	Write_Cmd_Data(0x09);	//0x14	//0x0F
+	Write_Cmd_Data(0x02);	//0x0E	//0x0A
+	Write_Cmd_Data(0x06);	//0x06	//0x06
+	Write_Cmd_Data(0x00);	//0x00	//0x00
+
+
+	Write_Cmd(0xD0);
+	Write_Cmd_Data(0x04);
+	Write_Cmd_Data(0x06);
+	Write_Cmd_Data(0x6B);
+	Write_Cmd_Data(0x0F);
+	Write_Cmd_Data(0x00);
+
+	Write_Cmd(0xD7);
+	Write_Cmd_Data(0x00);
+	Write_Cmd_Data(0x30);
+
+	Write_Cmd(0xE6);
+	Write_Cmd_Data(0x10);//240110
+
+	Write_Cmd(0xDE);
+	Write_Cmd_Data(0x01);
+
+	Write_Cmd(0xB7);
+	Write_Cmd_Data(0x03);
+	Write_Cmd_Data(0x13);
+	Write_Cmd_Data(0xEF);
+	Write_Cmd_Data(0x35);
+	Write_Cmd_Data(0x35);
+
+	Write_Cmd(0xC1);
+	Write_Cmd_Data(0x14);
+	Write_Cmd_Data(0x15);
+	Write_Cmd_Data(0xC0);
+
+	Write_Cmd(0xC2);
+	Write_Cmd_Data(0x06);
+	Write_Cmd_Data(0x3A);
+
+	Write_Cmd(0xC4);
+	Write_Cmd_Data(0x72);
+	Write_Cmd_Data(0x12);
+
+	Write_Cmd(0xBE);
+	Write_Cmd_Data(0x00);
+
+	Write_Cmd(0xDE);
+	Write_Cmd_Data(0x00);
+
+	Write_Cmd(0x35);
+	Write_Cmd_Data(0x00);
+
+	Write_Cmd(0x36);
+	Write_Cmd_Data(0x00);
+
+	Write_Cmd(0x3A);
+	Write_Cmd_Data(0x05);//0x06=RGB666  0x05=RGB565
+
+	Write_Cmd(0x2A);
+	Write_Cmd_Data(0x00);
+	Write_Cmd_Data(0x00);//Start_X=00
+	Write_Cmd_Data(0x00);
+	Write_Cmd_Data(0xEF);//End_X=239
+
+	Write_Cmd(0x2B);
+	Write_Cmd_Data(0x00);
+	Write_Cmd_Data(0x00);//Start_Y=00
+	Write_Cmd_Data(0x01);
+	Write_Cmd_Data(0x27);//End_Y=295
+
+
+	Write_Cmd(0x11);
+	delayms(120);
+
+	Write_Cmd(0x29);
+	delayms(1);
+
+}
