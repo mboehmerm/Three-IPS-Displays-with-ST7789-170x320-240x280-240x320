@@ -11,6 +11,8 @@ Similar tests but with a RP2040 (ESP32-S2, S3, C3, C6, H2) and more displays can
 
 Similar tests with updated library files can be found in the folders [ESP32_C6_SuperMini](ESP32_C6_SuperMini/README.md), [**ESP32_C5_DevKit_V2.0**](ESP32_C5_DevKit_V2.0/README.md) and [**ESP32_P4_WT9932P4**](ESP32_P4_WT9932P4/README.md) ( includes **nv3007** display driver ).
 
+A test with the display JD9853 240x296 can be found [here](JD9853_240x296/README.md).
+
 A quick test of the display 76x284 is [here](ESP32_C3/Arduino/README.md)
 
 | Test               | 170x320 | 240x280 | 240x320 |
