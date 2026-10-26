@@ -61,5 +61,7 @@ Done!
 
 - [ESP32_C5_ST77916_360x360_Lovyan_graphicstest.ino](Arduino/ESP32_C5_ST77916_360x360_Lovyan_graphicstest/ESP32_C5_ST77916_360x360_Lovyan_graphicstest.ino)
 
+- [ESP32_C5_ST77916_360x360_Clock.ino](Arduino/ESP32_C5_ST77916_360x360_Clock/ESP32_C5_ST77916_360x360_Clock.ino)
+
 - [ESP32_C5_ST77916_360x360_SpriteRotatingCube.ino](Arduino/ESP32_C5_ST77916_360x360_SpriteRotatingCube/ESP32_C5_ST77916_360x360_SpriteRotatingCube.ino) ( works really fast but with artefacts )
 
