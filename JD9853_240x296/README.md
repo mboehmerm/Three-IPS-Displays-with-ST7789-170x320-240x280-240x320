@@ -23,9 +23,9 @@ Some DMA Examples for TFT_eSPI
 | GPIO C6  | GPIO C5  | TFT   | Description          |
 | -------: | -------: | :---- | :------------------- |
 |       16 |       10 | CS    | CS                   |
-|        5 |        5 | SDA   | MOSI                 |
-|        6 |        6 | ---   | MISO  ( not used )   |
-|        7 |        7 | SCL   | SCLK                 |
+|        7 |        7 | SDA   | MOSI                 |
+|        2 |        2 | ---   | MISO  ( not used )   |
+|        6 |        6 | SCL   | SCLK                 |
 |        5 |        5 | DC    | DC                   |
 |        4 |        4 | RST   | Reset                |
 |        3 |        3 | BLK   | Backlight PWM pin    |
