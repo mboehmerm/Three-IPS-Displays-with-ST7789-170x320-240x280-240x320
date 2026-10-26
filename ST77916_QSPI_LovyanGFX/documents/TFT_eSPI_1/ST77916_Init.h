@@ -1,0 +1,437 @@
+
+// This is the command sequence that initialises the ST7791 driver
+//
+
+#define TFT_INIT_DELAY 0
+
+/*{
+	delay(120);
+
+	writecommand(0x01); //Software reset
+	delay(120);
+
+	writecommand(0x11); //Sleep exit                                            
+	delay(120);
+
+	writecommand(0xF0); //Command Set control                                 
+	writedata(0xC3);    //Enable extension command 2 partI
+	
+	writecommand(0xF0); //Command Set control                                 
+	writedata(0x96);    //Enable extension command 2 partII
+	
+	writecommand(0x36); //Memory Data Access Control MX, MY, RGB mode                                    
+	writedata(0x48);    //X-Mirror, Top-Left to right-Buttom, RGB  
+	
+	writecommand(0x3A); //Interface Pixel Format                                    
+	writedata(0x55);    //Control interface color format set to 16
+	
+	
+	writecommand(0xB4); //Column inversion 
+	writedata(0x01);    //1-dot inversion
+
+	writecommand(0xB6); //Display Function Control
+	writedata(0x80);    //Bypass
+	writedata(0x02);    //Source Output Scan from S1 to S960, Gate Output scan from G1 to G480, scan cycle=2
+	writedata(0x3B);    //LCD Drive Line=8*(59+1)
+
+
+	writecommand(0xE8); //Display Output Ctrl Adjust
+	writedata(0x40);
+	writedata(0x8A);	
+	writedata(0x00);
+	writedata(0x00);
+	writedata(0x29);    //Source eqaulizing period time= 22.5 us
+	writedata(0x19);    //Timing for "Gate start"=25 (Tclk)
+	writedata(0xA5);    //Timing for "Gate End"=37 (Tclk), Gate driver EQ function ON
+	writedata(0x33);
+	
+	writecommand(0xC1); //Power control2                          
+	writedata(0x06);    //VAP(GVDD)=3.85+( vcom+vcom offset), VAN(GVCL)=-3.85+( vcom+vcom offset)
+	 
+	writecommand(0xC2); //Power control 3                                      
+	writedata(0xA7);    //Source driving current level=low, Gamma driving current level=High
+	 
+	writecommand(0xC5); //VCOM Control
+	writedata(0x18);    //VCOM=0.9
+
+	delay(120);
+	
+	//ST7796 Gamma Sequence
+	writecommand(0xE0); //Gamma"+"                                             
+	writedata(0xF0);
+	writedata(0x09); 
+	writedata(0x0b);
+	writedata(0x06); 
+	writedata(0x04);
+	writedata(0x15); 
+	writedata(0x2F);
+	writedata(0x54); 
+	writedata(0x42);
+	writedata(0x3C); 
+	writedata(0x17);
+	writedata(0x14);
+	writedata(0x18); 
+	writedata(0x1B); 
+	 
+	writecommand(0xE1); //Gamma"-"                                             
+	writedata(0xE0);
+	writedata(0x09); 
+	writedata(0x0B);
+	writedata(0x06); 
+	writedata(0x04);
+	writedata(0x03); 
+	writedata(0x2B);
+	writedata(0x43); 
+	writedata(0x42);
+	writedata(0x3B); 
+	writedata(0x16);
+	writedata(0x14);
+	writedata(0x17); 
+	writedata(0x1B);
+
+  delay(120);
+	
+	writecommand(0xF0); //Command Set control                                 
+	writedata(0x3C);    //Disable extension command 2 partI
+
+	writecommand(0xF0); //Command Set control                                 
+	writedata(0x69);    //Disable extension command 2 partII
+
+  end_tft_write();
+  delay(120);
+  begin_tft_write();
+
+	writecommand(0x29); //Display on                                          	
+} */
+
+/* static const uint8_t PROGMEM
+  st77916[] = {
+    8,
+    TFT_SLPOUT, TFT_INIT_DELAY, 255,
+    TFT_COLMOD, 1+TFT_INIT_DELAY, 0x55, 10,
+    TFT_MADCTL, 1, 0x00,
+    TFT_CASET, 4, 0x00, 0x00, 0x00, 0xF0,
+    TFT_PASET, 4, 0x00, 0x00, 0x00, 0xF0,
+    TFT_INVON, TFT_INIT_DELAY, 10,
+    TFT_NORON, TFT_INIT_DELAY, 10,
+    TFT_DISPON, TFT_INIT_DELAY, 255
+    };
+
+    commandList(st77916); */
+{
+
+delay(ST77916_RST_DELAY);
+WRITE_COMMAND(ST77916_SWRESET);
+delay(ST77916_RST_DELAY);
+
+
+
+WRITE_CMD_DATA8(0xF0, 0x08);
+WRITE_CMD_DATA8(0xF2, 0x08);
+WRITE_CMD_DATA8(0x9B, 0x51);
+WRITE_CMD_DATA8(0x86, 0x53);
+WRITE_CMD_DATA8(0xF2, 0x80);
+WRITE_CMD_DATA8(0xF0, 0x00);
+WRITE_CMD_DATA8(0xF0, 0x01);
+WRITE_CMD_DATA8(0xF1, 0x01);
+WRITE_CMD_DATA8(0xB0, 0x54);
+WRITE_CMD_DATA8(0xB1, 0x3F);
+WRITE_CMD_DATA8(0xB2, 0x2A);
+WRITE_CMD_DATA8(0xB4, 0x46);
+WRITE_CMD_DATA8(0xB5, 0x34);
+WRITE_CMD_DATA8(0xB6, 0xD5);
+WRITE_CMD_DATA8(0xB7, 0x30);
+WRITE_CMD_DATA8(0xBA, 0x00);
+WRITE_CMD_DATA8(0xBB, 0x08);
+WRITE_CMD_DATA8(0xBC, 0x08);
+WRITE_CMD_DATA8(0xBD, 0x00);
+WRITE_CMD_DATA8(0xC0, 0x80);
+WRITE_CMD_DATA8(0xC1, 0x10);
+WRITE_CMD_DATA8(0xC2, 0x37);
+WRITE_CMD_DATA8(0xC3, 0x80);
+WRITE_CMD_DATA8(0xC4, 0x10);
+WRITE_CMD_DATA8(0xC5, 0x37);
+WRITE_CMD_DATA8(0xC6, 0xA9);
+WRITE_CMD_DATA8(0xC7, 0x41);
+WRITE_CMD_DATA8(0xC8, 0x51);
+WRITE_CMD_DATA8(0xC9, 0xA9);
+WRITE_CMD_DATA8(0xCA, 0x41);
+WRITE_CMD_DATA8(0xCB, 0x51);
+WRITE_CMD_DATA8(0xD0, 0x91);
+WRITE_CMD_DATA8(0xD1, 0x68);
+WRITE_CMD_DATA8(0xD2, 0x69);
+
+WRITE_CMD_DATA16(0xF5, 0x00, 0xA5);
+
+WRITE_CMD_DATA8(0xDD, 0x3F);
+WRITE_CMD_DATA8(0xDE, 0x3F);
+WRITE_CMD_DATA8(0xF1, 0x10);
+WRITE_CMD_DATA8(0xF0, 0x00);
+WRITE_CMD_DATA8(0xF0, 0x02);
+
+WRITE_COMMAND(0xE0);
+WRITE_BYTES(14, 
+{0x70, 0x09, 0x12, 0x0C,
+0x0B, 0x27, 0x38, 0x54,
+0x4E, 0x19, 0x15, 0x15,
+0x2C, 0x2F});
+
+WRITE_COMMAND(0xE1);
+WRITE_BYTES(14, 
+{0x70, 0x08, 0x11, 0x0C,
+0x0B, 0x27, 0x38, 0x43,
+0x4C, 0x18, 0x14, 0x14,
+0x2B, 0x2D});
+
+WRITE_CMD_DATA8(0xF0, 0x10);
+WRITE_CMD_DATA8(0xF3, 0x10);
+WRITE_CMD_DATA8(0xE0, 0x08);
+WRITE_CMD_DATA8(0xE1, 0x00);
+WRITE_CMD_DATA8(0xE2, 0x00);
+WRITE_CMD_DATA8(0xE3, 0x00);
+WRITE_CMD_DATA8(0xE4, 0xE0);
+WRITE_CMD_DATA8(0xE5, 0x06);
+WRITE_CMD_DATA8(0xE6, 0x21);
+WRITE_CMD_DATA8(0xE7, 0x00);
+WRITE_CMD_DATA8(0xE8, 0x05);
+WRITE_CMD_DATA8(0xE9, 0x82);
+WRITE_CMD_DATA8(0xEA, 0xDF);
+WRITE_CMD_DATA8(0xEB, 0x89);
+WRITE_CMD_DATA8(0xEC, 0x20);
+WRITE_CMD_DATA8(0xED, 0x14);
+WRITE_CMD_DATA8(0xEE, 0xFF);
+WRITE_CMD_DATA8(0xEF, 0x00);
+WRITE_CMD_DATA8(0xF8, 0xFF);
+WRITE_CMD_DATA8(0xF9, 0x00);
+WRITE_CMD_DATA8(0xFA, 0x00);
+WRITE_CMD_DATA8(0xFB, 0x30);
+WRITE_CMD_DATA8(0xFC, 0x00);
+WRITE_CMD_DATA8(0xFD, 0x00);
+WRITE_CMD_DATA8(0xFE, 0x00);
+WRITE_CMD_DATA8(0xFF, 0x00);
+
+WRITE_CMD_DATA8(0x60, 0x42);
+WRITE_CMD_DATA8(0x61, 0xE0);
+WRITE_CMD_DATA8(0x62, 0x40);
+WRITE_CMD_DATA8(0x63, 0x40);
+WRITE_CMD_DATA8(0x64, 0x02);
+WRITE_CMD_DATA8(0x65, 0x00);
+WRITE_CMD_DATA8(0x66, 0x40);
+WRITE_CMD_DATA8(0x67, 0x03);
+WRITE_CMD_DATA8(0x68, 0x00);
+WRITE_CMD_DATA8(0x69, 0x00);
+WRITE_CMD_DATA8(0x6A, 0x00);
+WRITE_CMD_DATA8(0x6B, 0x00);
+
+WRITE_CMD_DATA8(0x70, 0x42);
+WRITE_CMD_DATA8(0x71, 0xE0);
+WRITE_CMD_DATA8(0x72, 0x40);
+WRITE_CMD_DATA8(0x73, 0x40);
+WRITE_CMD_DATA8(0x74, 0x02);
+WRITE_CMD_DATA8(0x75, 0x00);
+WRITE_CMD_DATA8(0x76, 0x40);
+WRITE_CMD_DATA8(0x77, 0x03);
+WRITE_CMD_DATA8(0x78, 0x00);
+WRITE_CMD_DATA8(0x79, 0x00);
+WRITE_CMD_DATA8(0x7A, 0x00);
+WRITE_CMD_DATA8(0x7B, 0x00);
+
+WRITE_CMD_DATA8(0x80, 0x48);
+WRITE_CMD_DATA8(0x81, 0x00);
+WRITE_CMD_DATA8(0x82, 0x05);
+WRITE_CMD_DATA8(0x83, 0x02);
+WRITE_CMD_DATA8(0x84, 0xDD);
+WRITE_CMD_DATA8(0x85, 0x00);
+WRITE_CMD_DATA8(0x86, 0x00);
+WRITE_CMD_DATA8(0x87, 0x00);
+WRITE_CMD_DATA8(0x88, 0x48);
+WRITE_CMD_DATA8(0x89, 0x00);
+WRITE_CMD_DATA8(0x8A, 0x07);
+WRITE_CMD_DATA8(0x8B, 0x02);
+WRITE_CMD_DATA8(0x8C, 0xDF);
+WRITE_CMD_DATA8(0x8D, 0x00);
+WRITE_CMD_DATA8(0x8E, 0x00);
+WRITE_CMD_DATA8(0x8F, 0x00);
+
+WRITE_CMD_DATA8(0x90, 0x48);
+WRITE_CMD_DATA8(0x91, 0x00);
+WRITE_CMD_DATA8(0x92, 0x09);
+WRITE_CMD_DATA8(0x93, 0x02);
+WRITE_CMD_DATA8(0x94, 0xE1);
+WRITE_CMD_DATA8(0x95, 0x00);
+WRITE_CMD_DATA8(0x96, 0x00);
+WRITE_CMD_DATA8(0x97, 0x00);
+WRITE_CMD_DATA8(0x98, 0x48);
+WRITE_CMD_DATA8(0x99, 0x00);
+WRITE_CMD_DATA8(0x9A, 0x0B);
+WRITE_CMD_DATA8(0x9B, 0x02);
+WRITE_CMD_DATA8(0x9C, 0xE3);
+WRITE_CMD_DATA8(0x9D, 0x00);
+WRITE_CMD_DATA8(0x9E, 0x00);
+WRITE_CMD_DATA8(0x9F, 0x00);
+
+WRITE_CMD_DATA8(0xA0, 0x48);
+WRITE_CMD_DATA8(0xA1, 0x00);
+WRITE_CMD_DATA8(0xA2, 0x04);
+WRITE_CMD_DATA8(0xA3, 0x02);
+WRITE_CMD_DATA8(0xA4, 0xDC);
+WRITE_CMD_DATA8(0xA5, 0x00);
+WRITE_CMD_DATA8(0xA6, 0x00);
+WRITE_CMD_DATA8(0xA7, 0x00);
+WRITE_CMD_DATA8(0xA8, 0x48);
+WRITE_CMD_DATA8(0xA9, 0x00);
+WRITE_CMD_DATA8(0xAA, 0x06);
+WRITE_CMD_DATA8(0xAB, 0x02);
+WRITE_CMD_DATA8(0xAC, 0xDE);
+WRITE_CMD_DATA8(0xAD, 0x00);
+WRITE_CMD_DATA8(0xAE, 0x00);
+WRITE_CMD_DATA8(0xAF, 0x00);
+
+WRITE_CMD_DATA8(0xB0, 0x48);
+WRITE_CMD_DATA8(0xB1, 0x00);
+WRITE_CMD_DATA8(0xB2, 0x08);
+WRITE_CMD_DATA8(0xB3, 0x02);
+WRITE_CMD_DATA8(0xB4, 0xE0);
+WRITE_CMD_DATA8(0xB5, 0x00);
+WRITE_CMD_DATA8(0xB6, 0x00);
+WRITE_CMD_DATA8(0xB7, 0x00);
+WRITE_CMD_DATA8(0xB8, 0x48);
+WRITE_CMD_DATA8(0xB9, 0x00);
+WRITE_CMD_DATA8(0xBA, 0x0A);
+WRITE_CMD_DATA8(0xBB, 0x02);
+WRITE_CMD_DATA8(0xBC, 0xE2);
+WRITE_CMD_DATA8(0xBD, 0x00);
+WRITE_CMD_DATA8(0xBE, 0x00);
+WRITE_CMD_DATA8(0xBF, 0x00);
+
+WRITE_CMD_DATA8(0xC0, 0x12);
+WRITE_CMD_DATA8(0xC1, 0xAA);
+WRITE_CMD_DATA8(0xC2, 0x65);
+WRITE_CMD_DATA8(0xC3, 0x74);
+WRITE_CMD_DATA8(0xC4, 0x47);
+WRITE_CMD_DATA8(0xC5, 0x56);
+WRITE_CMD_DATA8(0xC6, 0x00);
+WRITE_CMD_DATA8(0xC7, 0x88);
+WRITE_CMD_DATA8(0xC8, 0x99);
+WRITE_CMD_DATA8(0xC9, 0x33);
+
+WRITE_CMD_DATA8(0xD0, 0x21);
+WRITE_CMD_DATA8(0xD1, 0xAA);
+WRITE_CMD_DATA8(0xD2, 0x65);
+WRITE_CMD_DATA8(0xD3, 0x74);
+WRITE_CMD_DATA8(0xD4, 0x47);
+WRITE_CMD_DATA8(0xD5, 0x56);
+WRITE_CMD_DATA8(0xD6, 0x00);
+WRITE_CMD_DATA8(0xD7, 0x88);
+WRITE_CMD_DATA8(0xD8, 0x99);
+WRITE_CMD_DATA8(0xD9, 0x33);
+
+WRITE_CMD_DATA8(0xF3, 0x01);
+WRITE_CMD_DATA8(0xF0, 0x00);
+WRITE_CMD_DATA8(0xF0, 0x01);
+WRITE_CMD_DATA8(0xF1, 0x01);
+WRITE_CMD_DATA8(0xA0, 0x0B);
+WRITE_CMD_DATA8(0xA3, 0x2A);
+WRITE_CMD_DATA8(0xA5, 0xC3);
+
+delay(1);
+
+WRITE_CMD_DATA8(0xA3, 0x2B);
+WRITE_CMD_DATA8(0xA5, 0xC3);
+
+delay(1);
+
+WRITE_CMD_DATA8(0xA3, 0x2B);
+WRITE_CMD_DATA8(0xA5, 0xC3);
+
+delay(1);
+
+WRITE_CMD_DATA8(0xA3, 0x2C);
+WRITE_CMD_DATA8(0xA5, 0xC3);
+
+delay(1);
+
+WRITE_CMD_DATA8(0xA3, 0x2D);
+WRITE_CMD_DATA8(0xA5, 0xC3);
+
+delay(1);
+
+WRITE_CMD_DATA8(0xA3, 0x2E);
+WRITE_CMD_DATA8(0xA5, 0xC3);
+
+delay(1);
+
+WRITE_CMD_DATA8(0xA3, 0x2F);
+WRITE_CMD_DATA8(0xA5, 0xC3);
+
+delay(1);
+
+WRITE_CMD_DATA8(0xA3, 0x30);
+WRITE_CMD_DATA8(0xA5, 0xC3);
+
+delay(1);
+
+WRITE_CMD_DATA8(0xA3, 0x31);
+WRITE_CMD_DATA8(0xA5, 0xC3);
+
+delay(1);
+
+WRITE_CMD_DATA8(0xA3, 0x32);
+WRITE_CMD_DATA8(0xA5, 0xC3);
+
+delay(1);
+
+WRITE_CMD_DATA8(0xA3, 0x33);
+WRITE_CMD_DATA8(0xA5, 0xC3);
+
+delay(1);
+
+WRITE_CMD_DATA8(0xA0, 0x09);
+WRITE_CMD_DATA8(0xF1, 0x10);
+WRITE_CMD_DATA8(0xF0, 0x00);
+
+WRITE_COMMAND(0x2A);
+WRITE_BYTES(4, 
+{0x00, 0x00, 0x01, 0x67});
+
+WRITE_COMMAND(0x2B);
+WRITE_BYTES(4, 
+{0x01, 0x68, 0x01, 0x68});
+
+WRITE_CMD_DATA8(0x4D, 0x00);
+WRITE_CMD_DATA8(0x4E, 0x00);
+WRITE_CMD_DATA8(0x4F, 0x00);
+WRITE_CMD_DATA8(0x4C, 0x01);
+
+delay(10);
+
+WRITE_CMD_DATA8(0x4C, 0x00);
+
+WRITE_COMMAND(0x2A);
+WRITE_BYTES(4, 
+{0x00, 0x00, 0x01, 0x67});
+
+WRITE_CMD_DATA8(0x21, 0x00);
+WRITE_CMD_DATA8(0x3A, 0x55); // color=16
+WRITE_CMD_DATA8(0x11, 0x00);
+
+
+WRITE_COMMAND(ST77916_CASET);
+WRITE_COMMAND(ST77916_RASET);
+WRITE_COMMAND(ST77916_RAMWR);
+
+delay(ST77916_SLPOUT_DELAY);
+
+WRITE_CMD_DATA8(0x29, 0x00);
+
+end_tft_write();
+delay(ST77916_RST_DELAY);
+begin_tft_write();
+
+// WRITE_CMD_DATA8(0x29, 0x00); //Display on  
+
+// WRITE_COMMAND(ST77916_SLPIN); //Display on  
+// delay(ST77916_SLPIN_DELAY);
+
+	
+}
