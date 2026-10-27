@@ -111,15 +111,11 @@ void date() {
   }
   if((tm.tm_hour == 3 || tm.tm_hour == 9 || tm.tm_hour == 15 || tm.tm_hour == 21) && (tm.tm_min == 0 && tm.tm_sec <= 3)) tft.fillScreen(0x000000);
   
-  if((tm.tm_hour > 3 && tm.tm_hour < 9) || (tm.tm_hour > 15 && tm.tm_hour < 21)) { //datum oben -> zeiger unten
-    //tft.fillRect(70,90,110,25,TFT_BLACK);
-    //tft.setCursor(60,97);
-    tft.fillRect(115,290,130,25,TFT_BLACK);
-    tft.setCursor(120,297);
-    tft.setTextColor(TFT_PINK);
-    tft.setTextSize(2);
-    tft.printf("%02d.%02d.%04d ", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
-  }
+  tft.fillRect(115,290,130,25,TFT_BLACK);
+  tft.setCursor(120,297);
+  tft.setTextColor(TFT_PINK);
+  tft.setTextSize(2);
+  tft.printf("%02d.%02d.%04d ", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
 }
  
  void loop() {
